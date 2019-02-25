@@ -31,6 +31,8 @@ data = [x * 0.1 for x in range(-200, 201)]
 # plt.plot(data, data_parametric_rectified_linear_unit, label='PRELU')
 # plt.plot(data, data_parametric_rectified_linear_unit_derivative, label='Derivada PRELU')
 
+##
+
 # data_logistic = list(map(af.FullyDiff.logistic, data))
 # data_logistic_derivative = list(map(af.FullyDiff.logistic_derivative, data))
 # plt.plot(data, data_logistic, label='Logísitca')
@@ -55,6 +57,23 @@ data = [x * 0.1 for x in range(-200, 201)]
 # data_exponential_linear_unit_derivative = list(map(af.FullyDiff.exponential_linear_unit_derivative, data))
 # plt.plot(data, data_exponential_linear_unit, label='ELU')
 # plt.plot(data, data_exponential_linear_unit_derivative, label='Derivada ELU')
+
+##
+
+# data_sinusoid = list(map(af.OthersFunctions.sinusoid, data))
+# data_sinusoid_derivative = list(map(af.OthersFunctions.sinusoid_derivative, data))
+# plt.plot(data, data_sinusoid, label='Senóide')
+# plt.plot(data, data_sinusoid_derivative, label='Derivada Senóide')
+
+# data_arc_tangente = list(map(af.OthersFunctions.arc_tangente, data))
+# data_arc_tangente_derivative = list(map(af.OthersFunctions.arc_tangente_derivative, data))
+# plt.plot(data, data_arc_tangente, label='Arco tangente')
+# plt.plot(data, data_arc_tangente_derivative, label='Derivada Arco tangente')
+
+# data_soft_plus = list(map(af.OthersFunctions.soft_plus, data))
+# data_soft_plus_derivative = list(map(af.OthersFunctions.soft_plus_derivative, data))
+# plt.plot(data, data_soft_plus, label='SoftPlus')
+# plt.plot(data, data_soft_plus_derivative, label='Derivada SoftPlus')
 
 plt.legend()
 plt.show()

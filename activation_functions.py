@@ -48,6 +48,7 @@ class PartiallyDiff:
         
         return 1 if u > 0 else alpha
 
+
 class FullyDiff:
 
     @staticmethod
@@ -103,5 +104,27 @@ class FullyDiff:
         return 1 if u > 0 else FullyDiff.exponential_linear_unit(u, alpha) + alpha
     
 
+class OthersFunctions:
+    @staticmethod    
+    def sinusoid(u):
+        return math.sin(u)
     
+    @staticmethod    
+    def sinusoid_derivative(u):
+        return math.cos(u)
 
+    @staticmethod
+    def arc_tangente(u):
+        return math.atan(u)
+    
+    @staticmethod
+    def arc_tangente_derivative(u):
+        return 1/((u ** 2) + 1)
+    
+    @staticmethod
+    def soft_plus(u):
+        return math.log(1 + (math.e ** u))
+    
+    @staticmethod
+    def soft_plus_derivative(u):
+        return 1 / (1 + (math.e ** (-u)))
