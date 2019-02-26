@@ -1,130 +1,134 @@
 import math
 
-class PartiallyDiff:
+class ActivationFunctions:
+# class PartiallyDiff:
 
     @staticmethod
-    def step(u):
-        return 0 if u < 0 else 1
-    
-    @staticmethod
-    def step_derivative(u):
-        return 0
+    def apply_function(data, func, is_derivative):
+        return [func(i, is_derivative=is_derivative) for i in data]
 
     @staticmethod
-    def signal(u):
-        return 0 if u == 0 else (1 if u > 0 else -1)
+    def step(u, is_derivative=False):
+        if not is_derivative:
+            return 0 if u < 0 else 1
+        else:
+            return 0
 
     @staticmethod
-    def signal_derivative(u):
-        return 0
+    def signal(u, is_derivative=False):
+        if not is_derivative:
+            return 0 if u == 0 else (1 if u > 0 else -1)
+        else:
+            return 0
 
     @staticmethod
-    def symmetrical_ramp(u, a=2):
-        return a if u > a else (-a if u < -a else u)
+    def symmetrical_ramp(u, a=2, is_derivative=False):
+        if not is_derivative:
+            return a if u > a else (-a if u < -a else u)
+        else:
+            return 0 if u > a else (0 if u < -a else 1)
 
     @staticmethod
-    def symmetrical_ramp_derivative(u, a=2):
-        return 0 if u > a else (0 if u < -a else 1)
+    def rectified_linear_unit(u, is_derivative=False):
+        if not is_derivative:
+            return u if u > 0 else 0
+        else:
+            return PartiallyDiff.step(u)
 
     @staticmethod
-    def rectified_linear_unit(u):
-        return u if u > 0 else 0
-
-    @staticmethod
-    def rectified_linear_unit_derivative(u):
-        return PartiallyDiff.step(u)
-
-    @staticmethod
-    def parametric_rectified_linear_unit(u, alpha=0.2):
+    def parametric_rectified_linear_unit(u, alpha=0.2, is_derivative=False):
         if alpha <= 0:
             raise Exception("alpha > 0")
         
-        return u if u > 0 else alpha*u
+        if not is_derivative:
+            return u if u > 0 else alpha*u
+        else:
+            return 1 if u > 0 else alpha
     
-    @staticmethod
-    def parametric_rectified_linear_unit_derivative(u, alpha=0.2):
-        if alpha <= 0:
-            raise Exception("alpha > 0")
-        
-        return 1 if u > 0 else alpha
 
-
-class FullyDiff:
+# class FullyDiff:
 
     @staticmethod
-    def logistic(u, beta=0.5):
+    def logistic(u, beta=0.5, is_derivative=False):
         if beta <= 0:
             raise Exception("beta > 0")
 
-        return 1/(1 + math.e ** (-beta * u))
-    
-    @staticmethod
-    def logistic_derivative(u):
-        return FullyDiff.logistic(u) * (1 - FullyDiff.logistic(u))
+        if not is_derivative:
+            return 1/(1 + math.e ** (-beta * u))
+        else:
+            return FullyDiff.logistic(u) * (1 - FullyDiff.logistic(u))
 
     @staticmethod
-    def hyperbolic_tangent(u, beta=0.4):
+    def hyperbolic_tangent(u, beta=0.4, is_derivative=False):
         if beta <= 0:
             raise Exception("beta > 0")
         
-        return (1 - math.e ** (-beta * u))/(1 + math.e ** (-beta * u))
+        if not is_derivative:
+            return (1 - math.e ** (-beta * u))/(1 + math.e ** (-beta * u))
+        else:
+            return 1 - (FullyDiff.hyperbolic_tangent(u))**2
     
     @staticmethod
-    def hyperbolic_tangent_derivative(u):
-        return 1 - (FullyDiff.hyperbolic_tangent(u))**2
-    
-    @staticmethod
-    def gaussian(u, c=1, sigma=2):
+    def gaussian(u, c=1, sigma=2, is_derivative=False):
         if sigma == 0:
             raise Exception("sigma == 0")
-            
-        return math.e ** -(((u - c) ** 2)/(2 * (sigma ** 2)))
+        
+        if not is_derivative:
+            return math.e ** -(((u - c) ** 2)/(2 * (sigma ** 2)))
+        else:
+            return -(((math.e ** (-(((u - c) ** 2)/(2 * (sigma ** 2))))) * u - c)/(sigma ** 2))
     
     @staticmethod
-    def gaussian_derivative(u, c=1, sigma=2):
-        return -(((math.e ** (-(((u - c) ** 2)/(2 * (sigma ** 2))))) * u - c)/(sigma ** 2))
+    def linear(u, is_derivative=False):
+        if not is_derivative:
+            return u
+        else:
+            return 1
     
     @staticmethod
-    def linear(u):
-        return u
-
-    @staticmethod
-    def linear_derivative(u):
-        return 1
-    
-    @staticmethod
-    def exponential_linear_unit(u, alpha=1):
+    def exponential_linear_unit(u, alpha=1, is_derivative=False):
         if alpha <= 0:
             raise Exception("alpha > 0")
         
-        return u if u > 0 else alpha * ((math.e ** u) - 1)
-    
-    staticmethod
-    def exponential_linear_unit_derivative(u, alpha=1):
-        return 1 if u > 0 else FullyDiff.exponential_linear_unit(u, alpha) + alpha
-    
+        if not is_derivative:
+            return u if u > 0 else alpha * ((math.e ** u) - 1)
+        else:
+            return 1 if u > 0 else FullyDiff.exponential_linear_unit(u, alpha) + alpha
 
-class OthersFunctions:
-    @staticmethod    
-    def sinusoid(u):
-        return math.sin(u)
-    
-    @staticmethod    
-    def sinusoid_derivative(u):
-        return math.cos(u)
+# class OthersFunctions:
+    @staticmethod
+    def sinusoid(u, is_derivative=False):
+        if not is_derivative:
+            return math.sin(u)
+        else:
+            return math.cos(u)
 
     @staticmethod
-    def arc_tangente(u):
-        return math.atan(u)
+    def arc_tangente(u, is_derivative=False):
+        if not is_derivative:
+            return math.atan(u)
+        else:
+            return 1/((u ** 2) + 1)
     
     @staticmethod
-    def arc_tangente_derivative(u):
-        return 1/((u ** 2) + 1)
+    def soft_plus(u, is_derivative=False):
+        if not is_derivative:
+            return math.log(1 + (math.e ** u))
+        else:
+            return 1 / (1 + (math.e ** (-u)))
+
+    @staticmethod
+    def soft_sign(u, is_derivative=False):
+        if not is_derivative:
+            return u/(1 + math.fabs(u))
+        else:
+            return math.inf if u == 0 else -(u/(math.fabs(u) * ((1 + math.fabs(u)) ** 2)))
+            # return 1/((1 + math.fabs(u)) ** 2)
     
     @staticmethod
-    def soft_plus(u):
-        return math.log(1 + (math.e ** u))
-    
-    @staticmethod
-    def soft_plus_derivative(u):
-        return 1 / (1 + (math.e ** (-u)))
+    def square_nonlinearity(u, b=2, is_derivative=False):
+        if not is_derivative:
+            return 1 if u > b else (u - (u ** 2)/4 if u >= 0 else ((u + (u ** 2)/4) if u >= -b else -1))
+        else:
+            return 0 if u > b else (1 - u/2 if u >= 0 else ((1 + (u)/2) if u >= -b else 0))
+            # return 1 - math.fabs(u/2)
