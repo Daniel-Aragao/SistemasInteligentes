@@ -4,7 +4,7 @@ class ActivationFunctions:
 # class PartiallyDiff:
 
     @staticmethod
-    def apply_function(data, func, is_derivative):
+    def apply_function(func, data, is_derivative=False):
         return [func(i, is_derivative=is_derivative) for i in data]
 
     @staticmethod
@@ -33,7 +33,7 @@ class ActivationFunctions:
         if not is_derivative:
             return u if u > 0 else 0
         else:
-            return PartiallyDiff.step(u)
+            return ActivationFunctions.step(u)
 
     @staticmethod
     def parametric_rectified_linear_unit(u, alpha=0.2, is_derivative=False):
@@ -46,7 +46,7 @@ class ActivationFunctions:
             return 1 if u > 0 else alpha
     
 
-# class FullyDiff:
+# class ActivationFunctions.
 
     @staticmethod
     def logistic(u, beta=0.5, is_derivative=False):
@@ -56,7 +56,7 @@ class ActivationFunctions:
         if not is_derivative:
             return 1/(1 + math.e ** (-beta * u))
         else:
-            return FullyDiff.logistic(u) * (1 - FullyDiff.logistic(u))
+            return ActivationFunctions.logistic(u) * (1 - ActivationFunctions.logistic(u))
 
     @staticmethod
     def hyperbolic_tangent(u, beta=0.4, is_derivative=False):
@@ -66,7 +66,7 @@ class ActivationFunctions:
         if not is_derivative:
             return (1 - math.e ** (-beta * u))/(1 + math.e ** (-beta * u))
         else:
-            return 1 - (FullyDiff.hyperbolic_tangent(u))**2
+            return 1 - (ActivationFunctions.hyperbolic_tangent(u))**2
     
     @staticmethod
     def gaussian(u, c=1, sigma=2, is_derivative=False):
@@ -93,7 +93,7 @@ class ActivationFunctions:
         if not is_derivative:
             return u if u > 0 else alpha * ((math.e ** u) - 1)
         else:
-            return 1 if u > 0 else FullyDiff.exponential_linear_unit(u, alpha) + alpha
+            return 1 if u > 0 else ActivationFunctions.exponential_linear_unit(u, alpha) + alpha
 
 # class OthersFunctions:
     @staticmethod
