@@ -1,0 +1,6 @@
+Se vocês detectarem algum problema com os arquivos (dados), me informem. Já fiz testes com eles e não tive problemas.
+Arquivos:
+Xtrain: dados de entrada das amostras de treinamento
+dtrain: saída desejada (classes) das amostras de treinamento
+Xtest: dados de entrada das amostras de teste
+dtest: saída desejada (classes) das amostras de teste
