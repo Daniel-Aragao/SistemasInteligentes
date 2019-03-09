@@ -24,6 +24,7 @@ class Ploter:
 
         x = [i for i in range(xMin, xMax + 1)]
 
+        # -((w1*x1 - teta)/w2) = x2
 
         plane = []
 
