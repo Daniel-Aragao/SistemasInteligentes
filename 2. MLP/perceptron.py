@@ -3,6 +3,7 @@ from IO_Operations import Printer
 from sample import Sample
 from activation_functions import ActivationFunctions as AF
 import time
+from util import Normalize
 
 class Perceptron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
@@ -13,39 +14,49 @@ class Perceptron:
         self.learning_rate = learning_rate
 
         if is_random:
-            self.__weights = Randomize.get_random_vector(len(inputs[0]))
+            self.weights = Randomize.get_random_vector(len(inputs[0]))
             self.__threshold = Randomize.get_random()
         else:
-            self.__weights = [1 for i in range(len(inputs[0]))]
+            self.weights = [1 for i in range(len(inputs[0]))]
             self.__threshold = 0
 
-        self.__weights = [self.__threshold] + self.__weights
-        self.__inputs = Perceptron.__concatanate_threshold(inputs) #[-1] + inputs
+        self.weights = [self.__threshold] + self.weights
+
+        if(normalize):
+            self.__normalize(inputs)
+
+        self.inputs = Perceptron.__concatanate_threshold(inputs) #[-1] + inputs
 
         self.__samples: Sample = []
 
         self.printer = Printer
 
-        if(normalize):
-            self.__normalize()
+    @staticmethod
+    def __normalize(inputs):
+        axis = []
+        normalized_inputs = []
 
-    def __normalize():
-        raise Exception("TODO")
+        for i in range(len(inputs[0])):
+            xs = [inputt[i] for inputt in inputs]
+
+            for ix, x in enumerate(xs):
+                inputs[ix][i] = Normalize.min_max(x, xs)
+
 
     def __param_validation(self):
         import types
 
-        if self.__inputs is None or type(self.__inputs) != type([]):
+        if self.inputs is None or type(self.inputs) != type([]):
             raise Exception("Inputs can't be None and must be a function")
 
-        if self.__weights is None or type(self.__weights) != type([]):
+        if self.weights is None or type(self.weights) != type([]):
             raise Exception("Weights can't be None and must be a list")
 
-        if len(self.__inputs[0]) != len(self.__weights):
+        if len(self.inputs[0]) != len(self.weights):
             raise Exception(
                 "Inputs and Weights arrays must have the same size")
 
-        if len(self.__inputs) != len(self.__expected_outputs):
+        if len(self.inputs) != len(self.__expected_outputs):
             raise Exception(
                 "Inputs and Expected outputs arrays must have the same size")
 
@@ -75,7 +86,7 @@ class Perceptron:
         time_begin = time.time()
 
         self.__param_validation()
-        self.__samples = Perceptron.__associate_samples(self.__inputs, self.__expected_outputs)
+        self.__samples = Perceptron.__associate_samples(self.inputs, self.__expected_outputs)
         outputs = []
         epochs = 0
 
@@ -94,14 +105,14 @@ class Perceptron:
                 activation_potential = 0
 
                 for i, inputt in enumerate(sample.inputs):
-                    activation_potential += self.__weights[i] * inputt
+                    activation_potential += self.weights[i] * inputt
 
                 output = self.activation_function(activation_potential)
                 outputs.append(output)
 
                 if output != sample.expected_output:
                     for i, inputt in enumerate(sample.inputs):
-                        self.__weights[i] += self.learning_rate * (sample.expected_output - output) * inputt
+                        self.weights[i] += self.learning_rate * (sample.expected_output - output) * inputt
                         
                     have_error = True
 
@@ -109,12 +120,12 @@ class Perceptron:
         time_end = time.time()
         time_delta = time_end - time_begin
 
-        self.printer.print_msg("Duração(sec): " + str(time_delta))
-        self.printer.print_msg("Pesos: " + str(self.__weights[1::]))
-        self.printer.print_msg("Limiar: " + str(self.__weights[0]))
+        self.printer.print_msg("\nDuração(sec): " + str(time_delta))
+        self.printer.print_msg("Pesos: " + str(self.weights[1::]))
+        self.printer.print_msg("Limiar: " + str(self.weights[0]))
         self.printer.print_msg("Épocas: " + str(epochs))
 
-        return self.__weights, outputs
+        return self.weights, outputs, epochs
     
     def classify(self, inputs):
         inputs = Perceptron.__concatanate_threshold(inputs)
@@ -126,7 +137,7 @@ class Perceptron:
             activation_potential = 0
 
             for i, inputt in enumerate(sample.inputs):
-                activation_potential += self.__weights[i] * inputt
+                activation_potential += self.weights[i] * inputt
 
             output = self.activation_function(activation_potential)
             outputs.append(output)

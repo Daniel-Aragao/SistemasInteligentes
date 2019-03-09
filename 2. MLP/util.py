@@ -13,6 +13,7 @@ class Randomize:
 
 
 class TestClassification:
+
     @staticmethod
     def test_outputs(name, perceptron_output, test_output):
 
@@ -26,8 +27,16 @@ class TestClassification:
 
             # print(str(index).zfill(2) + ".", p_o, test_output[index], "Erro" if fail_local else "")
 
-
         if fail:
-            print("-------------------------------------- {" + name + "} deu erro --------------------------------------")
+            print(" => {" + name + "} deu erro --------------------------------------")
         else:
-            print("-------------------------------------- {" + name + "} deu bom --------------------------------------")
+            print(" => {" + name + "} deu bom                                       ")
+
+class Normalize:
+    
+    @staticmethod
+    def min_max(x, inputs):
+        xMax = max([i for i in inputs])
+        xMin = min([i for i in inputs])
+
+        return (x - xMin)/(xMax - xMin)

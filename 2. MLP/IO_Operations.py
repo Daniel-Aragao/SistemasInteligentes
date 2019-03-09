@@ -21,7 +21,7 @@ class Importer:
             for i, line in enumerate(file_obj):
                 line = line.replace("\n", "")
                 x1,x2 = line.split('\t')
-                lines.append((float(x1),float(x2)))
+                lines.append([float(x1),float(x2)])
 
         return lines
 
