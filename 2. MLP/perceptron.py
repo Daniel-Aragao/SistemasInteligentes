@@ -5,11 +5,11 @@ from activation_functions import ActivationFunctions as AF
 import time
 from util import Normalize
 
-from sklearn import preprocessing
+# from sklearn import preprocessing
 
 class Perceptron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 normalize: bool = False, is_random: bool = True, activation_function=AF.signal):
+                 normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
 
         self.__expected_outputs = expected_outputs
         self.activation_function = activation_function
@@ -31,21 +31,29 @@ class Perceptron:
 
         self.__samples: Sample = []
 
-        self.printer = Printer
+        self.printer = printer()
 
     @staticmethod
     def __normalize(inputs):
-        axis = []
-        normalized_inputs = []
+        nmax = 1
+        nmin = -1
+        maximum = max([value for i in inputs for value in i])
+        minimum = min([value for i in inputs for value in i])
 
-        scaler = preprocessing.StandardScaler().fit(inputs)
-        inputs = scaler.transform(inputs)
+        for i in range(len(inputs)):
+            for j in range(len(inputs[i])):
+                inputs[i][j] = ((inputs[i][j] - minimum) / (maximum - minimum)) * (nmax - nmin) + nmin
+        # axis = []
+        # normalized_inputs = []
 
-        for i in range(len(inputs[0])):
-            xs = [inputt[i] for inputt in inputs]
+        # scaler = preprocessing.StandardScaler().fit(inputs)
+        # inputs = scaler.transform(inputs)
 
-            for ix, x in enumerate(xs):
-                inputs[ix][i] = Normalize.min_max(x, xs)
+        # for i in range(len(inputs[0])):
+        #     xs = [inputt[i] for inputt in inputs]
+
+        #     for ix, x in enumerate(xs):
+        #         inputs[ix][i] = Normalize.min_max(x, xs)
 
 
     def __param_validation(self):

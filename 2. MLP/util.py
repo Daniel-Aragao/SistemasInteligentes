@@ -1,4 +1,5 @@
 import random
+from IO_Operations import Printer
 
 
 class Randomize:
@@ -15,7 +16,7 @@ class Randomize:
 class TestClassification:
 
     @staticmethod
-    def test_outputs(name, perceptron_output, test_output):
+    def test_outputs(name, perceptron_output, test_output, printer=Printer):
 
         fail = False
         for index, p_o in enumerate(perceptron_output):

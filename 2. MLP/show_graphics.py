@@ -44,5 +44,5 @@ class Ploter:
     
     @staticmethod
     def savefig(title):
-        plt.savefig("./output/" + title+ ".png", format="PNG")
+        plt.savefig("./output/img/" + title+ ".png", format="PNG")
         plt.close()
