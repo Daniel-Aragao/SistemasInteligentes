@@ -13,8 +13,8 @@ train_outputs = Importer.import_output('misc/dtrain.txt')
 test_inputs = Importer.import_input('misc/xtest.txt')
 test_outputs = Importer.import_output('misc/dtest.txt')
 
-save_image = True
-avoid_plot = True
+save_image = False
+avoid_plot_it_all = False
 save_data = False
 
 ######### FIM PARAMETRIZAÇÃO #########
@@ -53,7 +53,7 @@ def executar_perceptron(name, perceptron: Perceptron):
     testc.test_outputs("Execução " + name + " Treino", outputs, train_outputs, printer=Printer)
     testc.test_outputs("Execução " + name + " Teste", classify_outputs, classify_outputs, printer=Printer)
 
-    if not avoid_plot:
+    if not avoid_plot_it_all:
         ploting(name, perceptron.inputs, outputs, perceptron.weights)
         ploting(name + "_teste", classify_inputs, classify_outputs, perceptron.weights)
 

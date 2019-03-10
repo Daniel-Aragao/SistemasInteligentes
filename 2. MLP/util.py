@@ -1,5 +1,6 @@
 import random
 from IO_Operations import Printer
+import math
 
 
 class Randomize:
@@ -41,3 +42,16 @@ class Normalize:
         xMin = min([i for i in inputs])
 
         return (x - xMin)/(xMax - xMin)
+
+# class Distance:
+
+#     @staticmethod
+#     def euclidean_distance(x1,y1, x2, y2):
+#         return math.sqrt((x1-x2)**2 + (y1-y2)**2)
+    
+#     @staticmethod
+#     def nearest_points(points_list1, points_list2):
+#         best_points = ()
+
+#         for point1 in points_list1:
+#             for point2 in points_list2
