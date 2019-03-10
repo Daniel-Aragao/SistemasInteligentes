@@ -7,6 +7,7 @@ from util import Normalize
 
 # from sklearn import preprocessing
 
+
 class Perceptron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
                  normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
@@ -27,7 +28,8 @@ class Perceptron:
         if(normalize):
             self.__normalize(inputs)
 
-        self.inputs = Perceptron.__concatanate_threshold(inputs) #[-1] + inputs
+        self.inputs = Perceptron.__concatanate_threshold(
+            inputs)  # [-1] + inputs
 
         self.__samples: Sample = []
 
@@ -35,14 +37,7 @@ class Perceptron:
 
     @staticmethod
     def __normalize(inputs):
-        nmax = 1
-        nmin = -1
-        maximum = max([value for i in inputs for value in i])
-        minimum = min([value for i in inputs for value in i])
-
-        for i in range(len(inputs)):
-            for j in range(len(inputs[i])):
-                inputs[i][j] = ((inputs[i][j] - minimum) / (maximum - minimum)) * (nmax - nmin) + nmin
+        Normalize.min_max(-1, 1, inputs)
         # axis = []
         # normalized_inputs = []
 
@@ -54,7 +49,6 @@ class Perceptron:
 
         #     for ix, x in enumerate(xs):
         #         inputs[ix][i] = Normalize.min_max(x, xs)
-
 
     def __param_validation(self):
         import types
@@ -92,14 +86,15 @@ class Perceptron:
             sample = Sample(value, outputs[i])
 
             samples.append(sample)
-        
+
         return samples
 
-    def train(self, max_epoch=0):
+    def train(self, max_epoch=10000):
         time_begin = time.time()
 
         self.__param_validation()
-        self.__samples = Perceptron.__associate_samples(self.inputs, self.__expected_outputs)
+        self.__samples = Perceptron.__associate_samples(
+            self.inputs, self.__expected_outputs)
         outputs = []
         epochs = 0
 
@@ -107,10 +102,10 @@ class Perceptron:
 
         while(have_error):
             # self.printer.print_msg("Época:" + str(epochs) + " Pesos " + str(self.__weights))
-            outputs = []
-
-            if max_epoch and epochs >= max_epoch:
+            if epochs >= max_epoch:
                 break
+
+            outputs = []
             
             have_error = False
 
@@ -125,13 +120,18 @@ class Perceptron:
 
                 if output != sample.expected_output:
                     for i, inputt in enumerate(sample.inputs):
-                        self.weights[i] += self.learning_rate * (sample.expected_output - output) * inputt
-                        
+                        self.weights[i] += self.learning_rate * \
+                            (sample.expected_output - output) * inputt
+
                     have_error = True
 
             epochs += 1
+
         time_end = time.time()
         time_delta = time_end - time_begin
+
+        if epochs >= max_epoch:
+            self.printer.print_msg("Máximo de épocas atingido ("+str(max_epoch)+")")
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
         self.printer.print_msg("Pesos: " + str(self.weights[1::]))
@@ -139,7 +139,7 @@ class Perceptron:
         self.printer.print_msg("Épocas: " + str(epochs))
 
         return self.weights, outputs, epochs
-    
+
     def classify(self, inputs):
         inputs = Perceptron.__concatanate_threshold(inputs)
 
@@ -154,7 +154,7 @@ class Perceptron:
 
             output = self.activation_function(activation_potential)
             outputs.append(output)
-        
+
         return outputs, inputs
 
     # def __str__(self):

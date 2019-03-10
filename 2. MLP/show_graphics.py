@@ -1,18 +1,11 @@
 import matplotlib.pyplot as plt
+from util import Classification
 
 
 class Ploter:
     @staticmethod
     def plot_results(inputs,outputs):
-        A = ([], [])
-        B = ([], [])
-
-        for i, inputt in enumerate(inputs):
-            teta, x, y = inputt
-            C = (A if outputs[i] == 1 else B)
-
-            C[0].append(x)
-            C[1].append(y)
+        A, B = Classification.get_class_distribution(inputs,outputs)
 
         plt.scatter(A[0], A[1], c='blue', label="Classe A (1)")
         plt.scatter(B[0], B[1], c='red', label="Classe B (-1)")
