@@ -5,6 +5,8 @@ from activation_functions import ActivationFunctions as AF
 import time
 from util import Normalize
 
+from sklearn import preprocessing
+
 class Perceptron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
                  normalize: bool = False, is_random: bool = True, activation_function=AF.signal):
@@ -35,6 +37,9 @@ class Perceptron:
     def __normalize(inputs):
         axis = []
         normalized_inputs = []
+
+        scaler = preprocessing.StandardScaler().fit(inputs)
+        inputs = scaler.transform(inputs)
 
         for i in range(len(inputs[0])):
             xs = [inputt[i] for inputt in inputs]
@@ -142,7 +147,7 @@ class Perceptron:
             output = self.activation_function(activation_potential)
             outputs.append(output)
         
-        return outputs
+        return outputs, inputs
 
     # def __str__(self):
     #     string = "\nThreshold: " + str(self.__threshold) + " "

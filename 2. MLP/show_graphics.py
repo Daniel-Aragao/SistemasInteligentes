@@ -22,23 +22,16 @@ class Ploter:
         xMax = max([i[1] for i in inputs])
         xMin = min([i[1] for i in inputs])
 
-        x = [i for i in range(xMin, xMax + 1)]
-
-        # -((w1*x1 - teta)/w2) = x2
+        x = []
 
         plane = []
 
         for inputt in inputs:
-            summ = 0
-
-            for i, inp in enumerate(inputt):
-                summ += inp * weights[i]
-
-            plane.append(summ)
-
-
+            x.append(inputt[1])
+            # -((w1*x1 - teta)/w2) = x2
+            plane.append(-(inputt[1] * weights[1] - weights[0])/weights[2])
         
-        plt.plot(x, plane, '-g', c="green", label="Hiper plano")
+        plt.plot(x, plane, c="green", label="Hiper plano")
 
 
     @staticmethod
@@ -48,3 +41,8 @@ class Ploter:
 
         plt.legend()
         plt.show()
+    
+    @staticmethod
+    def savefig(title):
+        plt.savefig("./output/" + title+ ".png", format="PNG")
+        plt.close()

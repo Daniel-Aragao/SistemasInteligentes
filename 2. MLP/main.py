@@ -10,19 +10,34 @@ train_outputs = Importer.import_output('misc/dtrain.txt')
 test_inputs = Importer.import_input('misc/xtest.txt')
 test_outputs = Importer.import_output('misc/dtest.txt')
 
+saveImage = True
+avoid_plot = False
+
 def print_epoch_average(exec, epochs, qtd):
     Printer.print_msg("\nMédia de épocas para execução " + exec + ": " + str(epochs/qtd) +"\n\n")
+    
+
+def ploting(name, inputs, outputs, weights):
+    Ploter.plot_results(inputs, outputs)
+    Ploter.plot_line(inputs, weights)
+    
+    if saveImage:
+        Ploter.savefig("Execução " + name)
+    else:
+        Ploter.show("Execução " + name)
+
 
 ################### Perceptron ###################
 def executar_perceptron(name, perceptron: Perceptron):
     weights, outputs, epochs = perceptron.train()
+    classify_outputs, classify_inputs = perceptron.classify(test_inputs)
 
     testc.test_outputs("Execução " + name + " Treino", outputs, train_outputs)
-    testc.test_outputs("Execução " + name + " Teste", perceptron.classify(test_inputs), test_outputs)
-    
-    # Ploter.plot_results(perceptron.inputs, outputs)
-    # Ploter.plot_line(perceptron.inputs, perceptron.weights)
-    # Ploter.show("Execução " + name)
+    testc.test_outputs("Execução " + name + " Teste", classify_outputs, classify_outputs)
+
+    if not avoid_plot:
+        ploting(name, perceptron.inputs, outputs, perceptron.weights)
+        ploting(name + "_teste", classify_inputs, classify_outputs, perceptron.weights)
 
     return epochs
 

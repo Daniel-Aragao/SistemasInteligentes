@@ -1,0 +1,231 @@
+Duração(sec): 0.2897310256958008
+Pesos: [212.11015867327893, 113.54900345587315]
+Limiar: 16494.0
+Épocas: 1794
+ => {Execução 1_1 Treino} deu bom
+ => {Execução 1_1 Teste} deu bom
+
+Duração(sec): 0.2652909755706787
+Pesos: [166.14036775260968, 88.82797319453428]
+Limiar: 12936.54327912152
+Épocas: 1147
+ => {Execução 1_2 Treino} deu bom
+ => {Execução 1_2 Teste} deu bom
+
+Duração(sec): 0.2014620304107666
+Pesos: [165.78234999970823, 88.07457609524343]
+Limiar: 12890.938174032714
+Épocas: 1135
+ => {Execução 1_3 Treino} deu bom
+ => {Execução 1_3 Teste} deu bom
+
+Duração(sec): 0.2543308734893799
+Pesos: [212.23154346926282, 113.32254103250038]
+Limiar: 16510.94278666643
+Épocas: 1801
+ => {Execução 1_4 Treino} deu bom
+ => {Execução 1_4 Teste} deu bom
+
+Duração(sec): 0.08365154266357422
+Pesos: [103.45420382191733, 54.90065479868531]
+Limiar: 8036.760984835884
+Épocas: 568
+ => {Execução 1_5 Treino} deu bom
+ => {Execução 1_5 Teste} deu bom
+
+Média de épocas para execução 1: 1289.0
+
+
+
+Duração(sec): 0.08276915550231934
+Pesos: [10.29283238688908, 5.5134605410277775]
+Limiar: 797.2000000000443
+Épocas: 555
+ => {Execução 2_1 Treino} deu bom
+ => {Execução 2_1 Teste} deu bom
+
+Duração(sec): 0.14362120628356934
+Pesos: [12.555699448637865, 6.613243125607359]
+Limiar: 971.2485165562368
+Épocas: 736
+ => {Execução 2_2 Treino} deu bom
+ => {Execução 2_2 Teste} deu bom
+
+Duração(sec): 0.10073113441467285
+Pesos: [11.670704648915942, 5.966323808526615]
+Limiar: 898.3911126001437
+Épocas: 665
+ => {Execução 2_3 Treino} deu bom
+ => {Execução 2_3 Teste} deu bom
+
+Duração(sec): 0.13513946533203125
+Pesos: [13.366627127378008, 6.962500791976383]
+Limiar: 1026.499634418764
+Épocas: 786
+ => {Execução 2_4 Treino} deu bom
+ => {Execução 2_4 Teste} deu bom
+
+Duração(sec): 0.3346123695373535
+Pesos: [21.481876576669997, 11.294735256015933]
+Limiar: 1665.0598778934148
+Épocas: 1834
+ => {Execução 2_5 Treino} deu bom
+ => {Execução 2_5 Teste} deu bom
+
+Média de épocas para execução 2: 915.2
+
+
+
+Duração(sec): 0.08709406852722168
+Pesos: [1.0280408288924634, 0.5463990537724999]
+Limiar: 79.86000000000125
+Épocas: 562
+ => {Execução 3_1 Treino} deu bom
+ => {Execução 3_1 Teste} deu bom
+
+Duração(sec): 0.25881290435791016
+Pesos: [1.6645876661119576, 0.8884938798840509]
+Limiar: 129.01562312533818
+Épocas: 1128
+ => {Execução 3_2 Treino} deu bom
+ => {Execução 3_2 Teste} deu bom
+
+Duração(sec): 0.24933481216430664
+Pesos: [2.0684793172152958, 1.0947750564497172]
+Limiar: 159.81464706054737
+Épocas: 1668
+ => {Execução 3_3 Treino} deu bom
+ => {Execução 3_3 Teste} deu bom
+
+Duração(sec): 0.19448018074035645
+Pesos: [1.6650176644565473, 0.8906988915991818]
+Limiar: 129.60778527531897
+Épocas: 1137
+ => {Execução 3_4 Treino} deu bom
+ => {Execução 3_4 Teste} deu bom
+
+Duração(sec): 0.18051767349243164
+Pesos: [1.6493162785671487, 0.8733971922840353]
+Limiar: 127.63906268141163
+Épocas: 1127
+ => {Execução 3_5 Treino} deu bom
+ => {Execução 3_5 Teste} deu bom
+
+Média de épocas para execução 3: 1124.4
+
+
+
+Duração(sec): 0.2792532444000244
+Pesos: [212.11015867327893, 113.54900345587315]
+Limiar: 16494.0
+Épocas: 1794
+ => {Execução 4_1_1 Treino} deu bom
+ => {Execução 4_1_1 Teste} deu bom
+
+Duração(sec): 0.22539687156677246
+Pesos: [165.98801304327264, 87.60561204689955]
+Limiar: 12862.198504121145
+Épocas: 1141
+ => {Execução 4_1_2 Treino} deu bom
+ => {Execução 4_1_2 Teste} deu bom
+
+Duração(sec): 0.07579708099365234
+Pesos: [74.34884660691162, 38.512368011528]
+Limiar: 5738.821329300876
+Épocas: 364
+ => {Execução 4_1_3 Treino} deu bom
+ => {Execução 4_1_3 Teste} deu bom
+
+Duração(sec): 0.15658164024353027
+Pesos: [125.10515730558268, 67.07146606458738]
+Limiar: 9772.699465149994
+Épocas: 745
+ => {Execução 4_1_4 Treino} deu bom
+ => {Execução 4_1_4 Teste} deu bom
+
+Duração(sec): 0.19248485565185547
+Pesos: [170.210444581371, 87.1284548968321]
+Limiar: 13104.906886260515
+Épocas: 1173
+ => {Execução 4_1_5 Treino} deu bom
+ => {Execução 4_1_5 Teste} deu bom
+
+Média de épocas para execução 4_1: 1043.4
+
+
+
+Duração(sec): 0.08078432083129883
+Pesos: [10.29283238688908, 5.5134605410277775]
+Limiar: 797.2000000000443
+Épocas: 555
+ => {Execução 4_2_1 Treino} deu bom
+ => {Execução 4_2_1 Teste} deu bom
+
+Duração(sec): 0.14361572265625
+Pesos: [13.46992993285719, 7.154500387544901]
+Limiar: 1042.605425832972
+Épocas: 814
+ => {Execução 4_2_2 Treino} deu bom
+ => {Execução 4_2_2 Teste} deu bom
+
+Duração(sec): 0.0857706069946289
+Pesos: [10.669709304645236, 5.587815051049924]
+Limiar: 822.7642030979133
+Épocas: 586
+ => {Execução 4_2_3 Treino} deu bom
+ => {Execução 4_2_3 Teste} deu bom
+
+Duração(sec): 0.15857768058776855
+Pesos: [16.535143530584584, 8.831196696634493]
+Limiar: 1288.098453110599
+Épocas: 1143
+ => {Execução 4_2_4 Treino} deu bom
+ => {Execução 4_2_4 Teste} deu bom
+
+Duração(sec): 0.2633235454559326
+Pesos: [20.839291228469754, 11.258744162451361]
+Limiar: 1623.6745191392927
+Épocas: 1743
+ => {Execução 4_2_5 Treino} deu bom
+ => {Execução 4_2_5 Teste} deu bom
+
+Média de épocas para execução 4_2: 968.2
+
+
+
+Duração(sec): 0.08975887298583984
+Pesos: [1.0280408288924634, 0.5463990537724999]
+Limiar: 79.86000000000125
+Épocas: 562
+ => {Execução 4_3_1 Treino} deu bom
+ => {Execução 4_3_1 Teste} deu bom
+
+Duração(sec): 0.09574460983276367
+Pesos: [1.0554534677211382, 0.5437593031967933]
+Limiar: 81.0820013882759
+Épocas: 571
+ => {Execução 4_3_2 Treino} deu bom
+ => {Execução 4_3_2 Teste} deu bom
+
+Duração(sec): 0.1047201156616211
+Pesos: [1.079856552037782, 0.5793485866092485]
+Limiar: 83.75268283175795
+Épocas: 594
+ => {Execução 4_3_3 Treino} deu bom
+ => {Execução 4_3_3 Teste} deu bom
+
+Duração(sec): 0.23038291931152344
+Pesos: [2.0719501964461946, 1.1007452727717277]
+Limiar: 160.25039055703925
+Épocas: 1688
+ => {Execução 4_3_4 Treino} deu bom
+ => {Execução 4_3_4 Teste} deu bom
+
+Duração(sec): 0.08377623558044434
+Pesos: [1.0238310608284555, 0.5466335058080249]
+Limiar: 79.58273080676204
+Épocas: 554
+ => {Execução 4_3_5 Treino} deu bom
+ => {Execução 4_3_5 Teste} deu bom
+
+Média de épocas para execução 4_3: 793.8
