@@ -48,6 +48,7 @@ class Exporter:
                     file_obj.write(Exporter.result_file_header)
                     file_obj.write('\n')
     
+    @staticmethod
     def get_next_result_index():
         Exporter.create_results_file()
 
@@ -61,6 +62,7 @@ class Exporter:
             else:
                 return int(columns[0]) + 1
 
+    @staticmethod
     def end_results_line():
         Exporter.create_results_file()
         with open(Exporter.result_file_path, 'a') as file_obj:

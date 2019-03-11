@@ -25,7 +25,17 @@ class Ploter:
             plane.append(-(inputt[1] * weights[1] - weights[0])/weights[2])
         
         plt.plot(x, plane, c="green", label="Hiper plano")
+    
+    @staticmethod
+    def plot_eqm_epoch(epochs_eqm):
+        x = []
+        y = []
 
+        for i in epochs_eqm:
+            x.append(i[0])
+            y.append(i[1])
+
+        plt.plot(x, y)
 
     @staticmethod
     def show(title=None):

@@ -15,7 +15,6 @@ class Randomize:
 
 
 class Classification:
-
     @staticmethod
     def get_class_distribution(inputs,outputs, no_teta=False):
         A = ([], [])
@@ -59,15 +58,25 @@ class Classification:
                 " => {" + name + "} deu bom                                       ")
         
         return hits
+    
+
+    def get_pairs_from_class_distribution(L): 
+        return [[L[0][index], L[1][index]] for index in range(len(L[0]))]
         
     def change_nearest_points_classes(inputs, outputs):
         A, B = Classification.get_class_distribution(inputs, outputs, no_teta=True)
-        dist, a_index, b_index = DistanceCalcs.nearest_points(A, B)
 
+        A = Classification.get_pairs_from_class_distribution(A)
+        B = Classification.get_pairs_from_class_distribution(B)
+
+        dist, a_pair, b_pair = DistanceCalcs.nearest_points(A, B)
+
+        filter(lambda e: e[0] == A[a_pair][0] and e[1] == A[a_pair][1] , inputs)
+        
         new_outputs = [i for i in outputs]
 
-        new_outputs[a_index] *= -1
-        new_outputs[b_index] *= -1
+        new_outputs[inputs.index(a_pair)] *= -1
+        new_outputs[inputs.index(b_pair)] *= -1
 
         return new_outputs
 
@@ -107,7 +116,7 @@ class DistanceCalcs:
                     point1[0], point1[1], point2[0], point2[1])
 
                 if dist < best_points[0]:
-                    best_points = (dist, i, j)
+                    best_points = (dist, point1, point2)
 
         return best_points
     

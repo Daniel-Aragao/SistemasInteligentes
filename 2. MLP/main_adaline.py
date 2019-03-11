@@ -37,20 +37,30 @@ def end_results_file():
         Exporter.end_results_line()
 
 
-def ploting(name, inputs, outputs, weights):
+def ploting_inputs_class(name, inputs, outputs, weights):
     Ploter.plot_results(inputs, outputs)
     Ploter.plot_line(inputs, weights)
+    title = "Execução Adaline " + name
 
     if save_image:
-        Ploter.savefig("Execução Adaline " + name)
+        Ploter.savefig(title)
     else:
-        Ploter.show("Execução Adaline " + name)
+        Ploter.show(title)
+
+def ploting_eqm_epoch(name, epochs_eqm):
+    Ploter.plot_eqm_epoch(epochs_eqm)
+    title = "Execução Adaline " + name + "EQM x ÉPOCA "
+
+    if save_image:
+        Ploter.savefig(title)
+    else:
+        Ploter.show(title)
 
 ######################################################### ADALINE #########################################################
 
 
 def executar_adaline(name, adaline: Adaline, test=True):
-    weights, outputs, epochs = adaline.train()
+    weights, outputs, epochs, epochs_eqm = adaline.train()
     classify_outputs, classify_inputs = adaline.classify(test_inputs)
 
     testc.test_outputs("Execução Adaline " + name + " Treino",
@@ -61,10 +71,11 @@ def executar_adaline(name, adaline: Adaline, test=True):
                         classify_outputs, test_outputs, printer=Printer)
 
     if not avoid_plot_it_all:
-        ploting(name, adaline.inputs, outputs, adaline.weights)
+        ploting_inputs_class(name, adaline.inputs, outputs, adaline.weights)
+        ploting_eqm_epoch(name, epochs_eqm)
 
         if test:
-            ploting(name + "_teste", classify_inputs,
+            ploting_inputs_class(name + "_teste", classify_inputs,
                     classify_outputs, adaline.weights)
 
     return epochs
@@ -113,18 +124,18 @@ routine_adaline("2", learning_rate, precision, False)
 # calcular taxa de acerto quanto as amostras de treinamento
 # verificar se há alterações nas fronteiras
 # calcular taxa de acerto quanto as amostras de teste
-learning_rate = 0.01
-routine_adaline("3", learning_rate, precision, True)
-############# 4 #############
-routine_adaline("4", learning_rate, precision, False)
-############# 5 #############
-precision = 0.01
-routine_adaline("5_3", learning_rate, precision, True)
-routine_adaline("5_4", learning_rate, precision, False)
-############# 6 #############
-precision = 0.00001
-routine_adaline("6_3", learning_rate, precision, True)
-routine_adaline("6_4", learning_rate, precision, False)
+# learning_rate = 0.01
+# routine_adaline("3", learning_rate, precision, True)
+# ############# 4 #############
+# routine_adaline("4", learning_rate, precision, False)
+# ############# 5 #############
+# precision = 0.01
+# routine_adaline("5_3", learning_rate, precision, True)
+# routine_adaline("5_4", learning_rate, precision, False)
+# ############# 6 #############
+# precision = 0.00001
+# routine_adaline("6_3", learning_rate, precision, True)
+# routine_adaline("6_4", learning_rate, precision, False)
 ############# 7 #############
 # indicar qual foi o mais eficiente (menor qtd de épocas)
 # indicar qual foi o mais eficaz (nauir taxa de acerto sob treinamento de teste)

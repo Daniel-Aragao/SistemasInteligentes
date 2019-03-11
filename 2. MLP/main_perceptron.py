@@ -1,8 +1,8 @@
 from perceptron import Perceptron
-from IO_Operations import Importer
 from util import Classification as testc
 from util import DistanceCalcs
 from show_graphics import Ploter
+from IO_Operations import Importer
 from IO_Operations import PrinterFile as PrintOnFileEather
 from IO_Operations import Printer as PrintOnlyConsole
 from IO_Operations import Exporter
@@ -14,8 +14,8 @@ train_outputs = Importer.import_output('misc/dtrain.txt')
 test_inputs = Importer.import_input('misc/xtest.txt')
 test_outputs = Importer.import_output('misc/dtest.txt')
 
-save_image = False
-avoid_plot_it_all = True
+save_image = True
+avoid_plot_it_all = False
 save_data = False
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
@@ -40,11 +40,12 @@ def end_results_file():
 def ploting(name, inputs, outputs, weights):
     Ploter.plot_results(inputs, outputs)
     Ploter.plot_line(inputs, weights)
+    title = "Execução Perceptron " + name
 
     if save_image:
-        Ploter.savefig("Execução Perceptron " + name)
+        Ploter.savefig(title)
     else:
-        Ploter.show("Execução Perceptron " + name)
+        Ploter.show(title)
 
 ######################################################### PERCEPTRON #########################################################
 
@@ -105,40 +106,40 @@ def routine_perceptron(execution_name, learning_rate, normalize, test=True, outp
 ############# 1 #############
 routine_perceptron("1", 1, False)
 
-# ############# 2 #############
-# routine_perceptron("2", 0.1, False)
+############# 2 #############
+routine_perceptron("2", 0.1, False)
 
-# ############# 3 #############
-# routine_perceptron("3", 0.01, False)
+############# 3 #############
+routine_perceptron("3", 0.01, False)
 
 ############# 4 #############
 ####### 1 #######
 routine_perceptron("4_1", 1, True)
-# ####### 2 #######
-# routine_perceptron("4_2", 0.1, True)
-# ####### 3 #######
-# routine_perceptron("4_3", 0.01, True)
+####### 2 #######
+routine_perceptron("4_2", 0.1, True)
+####### 3 #######
+routine_perceptron("4_3", 0.01, True)
 
 # ############# 5 #############
 # indiciar qual foi o mais eficiente pela média de épocas
-############# 6 #############
-# new_train_outputs = testc.change_nearest_points_classes(train_inputs, train_outputs)
+############ 6 #############
+new_train_outputs = testc.change_nearest_points_classes(train_inputs, train_outputs)
 
-# ####### 1 #######
-# routine_perceptron("6_1", 1, False, outputs=new_train_outputs, test=False)
+####### 1 #######
+routine_perceptron("6_1", 1, False, outputs=new_train_outputs, test=False)
 
-# ####### 2 #######
-# routine_perceptron("6_2", 0.1, False, outputs=new_train_outputs, test=False)
+####### 2 #######
+routine_perceptron("6_2", 0.1, False, outputs=new_train_outputs, test=False)
 
-# ####### 3 #######
-# routine_perceptron("6_3", 0.01, False, outputs=new_train_outputs, test=False)
+####### 3 #######
+routine_perceptron("6_3", 0.01, False, outputs=new_train_outputs, test=False)
 
-# ####### 4 #######
-# ### 1 ###
-# routine_perceptron("6_4_1", 1, True, outputs=new_train_outputs, test=False)
-# ### 2 ###
-# routine_perceptron("6_4_2", 0.1, True, outputs=new_train_outputs, test=False)
-# ### 3 ###
-# routine_perceptron("6_4_3", 0.01, True, outputs=new_train_outputs, test=False)
+####### 4 #######
+### 1 ###
+routine_perceptron("6_4_1", 1, True, outputs=new_train_outputs, test=False)
+### 2 ###
+routine_perceptron("6_4_2", 0.1, True, outputs=new_train_outputs, test=False)
+### 3 ###
+routine_perceptron("6_4_3", 0.01, True, outputs=new_train_outputs, test=False)
 
 end_results_file()

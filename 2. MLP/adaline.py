@@ -16,15 +16,20 @@ class Adaline(Neuron):
                  precision: float = 0.1, is_offline=False, is_random: bool = True, 
                  activation_function=AF.signal, printer=Printer):
 
-        super().__init__(self, inputs, expected_outputs, learning_rate,
+        super().__init__(inputs, expected_outputs, learning_rate,
                          True, is_random, activation_function, printer)
 
         self.precision = precision
         self.is_offline = is_offline
 
-    @staticmethod
-    def calc_eqm(weights):
-        pass
+    def calc_eqm(self):
+        summ = 0
+
+        for sample in self._Neuron__samples:
+            activation_potential = self.get_activation_potential(sample)
+            summ += (sample.expected_output - activation_potential) ** 2
+        
+        return summ / len(self._Neuron__samples)
 
     def train(self, max_epoch=50000):
         self._Neuron__param_validation()
@@ -36,11 +41,15 @@ class Adaline(Neuron):
         epochs = 0
 
         eqm_current = math.inf
-        eqm_before = Adaline.calc_eqm(self.weights)
+        eqm_before = self.calc_eqm()
+
+        epochs_eqm = []
 
         while(abs(eqm_current - eqm_before) > self.precision):
             if epochs > max_epoch:
                 break
+
+            epochs_eqm.append((epochs, eqm_current))
 
             eqm_before = eqm_current
 
@@ -55,20 +64,20 @@ class Adaline(Neuron):
                     aux = 0
 
                     for samp in self._Neuron__samples:
-                        aux += (samp.expected_outputs - activation_potential)
+                        aux += (samp.expected_output - activation_potential)
 
                     aux *= self.learning_rate/len(self._Neuron__samples)
 
                 else:
                     aux = self.learning_rate * \
-                        (sample.expected_outputs - activation_potential)
+                        (sample.expected_output - activation_potential)
 
-                for index, weight in self.weights:
+                for index, weight in enumerate(self.weights):
                     self.weights[index] = weight + aux * sample.inputs[index]
 
             epochs += 1
 
-            eqm_current = Adaline.calc_eqm(self.weights)
+            eqm_current = self.calc_eqm()
 
         time_end = time.time()
         time_delta = time_end - time_begin
@@ -82,4 +91,4 @@ class Adaline(Neuron):
         self.printer.print_msg("Limiar: " + str(self.weights[0]))
         self.printer.print_msg("Épocas: " + str(epochs))
 
-        return self.weights, outputs, epochs
+        return self.weights, outputs, epochs, epochs_eqm
