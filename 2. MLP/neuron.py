@@ -13,7 +13,7 @@ class Neuron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
                  normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
 
-        self.__expected_outputs = expected_outputs
+        self.expected_outputs = expected_outputs
         self.activation_function = activation_function
         self.learning_rate = learning_rate
 
@@ -58,7 +58,7 @@ class Neuron:
             raise Exception(
                 "Inputs and Weights arrays must have the same size")
 
-        if len(self.inputs) != len(self.__expected_outputs):
+        if len(self.inputs) != len(self.expected_outputs):
             raise Exception(
                 "Inputs and Expected outputs arrays must have the same size")
 
@@ -94,9 +94,8 @@ class Neuron:
     def classify(self, inputs):
         pass
 
-    # def __str__(self):
-    #     string = "\nThreshold: " + str(self.__threshold) + " "
-    #     string += "Inputs: " + str(self.inputs) + " "
-    #     string += "Weight: " + str(self.weights) + " "
-    #     string += "Activation Function method: " + str(self.activation_function)
-    #     return string
+    def __str__(self):
+        string = "\nThreshold: " + str(self.__threshold) + " "
+        string += "Weight: " + str(self.weights) + " "
+        string += "Activation Function method: " + str(self.activation_function)
+        return string

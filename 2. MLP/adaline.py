@@ -24,11 +24,11 @@ class Adaline(Neuron):
         pass
 
     def train(self, max_epoch=50000):
-        self.__param_validation()
+        self._Neuron__param_validation()
 
         time_begin = time.time()
-        self.__samples = Adaline.__associate_samples(
-            self.inputs, self.__expected_outputs)
+        self._Neuron__samples = self._Neuron__associate_samples(
+            self.inputs, self.expected_outputs)
         outputs = []
         epochs = 0
 
@@ -44,7 +44,7 @@ class Adaline(Neuron):
 
             outputs = []
 
-            for sample in self.__samples:
+            for sample in self._Neuron__samples:
                 activation_potential = 0
 
                 for i, inputt in enumerate(sample.inputs):
@@ -77,7 +77,7 @@ class Adaline(Neuron):
         return self.weights, outputs, epochs
 
     def classify(self, inputs):
-        inputs = Adaline.__concatanate_threshold(inputs)
+        inputs = self._Neuron__concatanate_threshold(inputs)
 
         samples = [Sample(inputt, None) for inputt in inputs]
         outputs = []
@@ -92,10 +92,3 @@ class Adaline(Neuron):
             outputs.append(output)
 
         return outputs, inputs
-
-    # def __str__(self):
-    #     string = "\nThreshold: " + str(self.__threshold) + " "
-    #     string += "Inputs: " + str(self.inputs) + " "
-    #     string += "Weight: " + str(self.weights) + " "
-    #     string += "Activation Function method: " + str(self.activation_function)
-    #     return string
