@@ -70,14 +70,19 @@ class Normalize:
 
     @staticmethod
     def min_max(new_min, new_max, inputs):
+        new_inputs = [i for i in inputs]
         all_inputs = [j for i in inputs for j in i]
+
         old_max = max(all_inputs)
         old_min = min(all_inputs)
 
         for i in range(len(inputs)):
             for j in range(len(inputs[i])):
-                inputs[i][j] = ((inputs[i][j] - old_min) /
-                                (old_max - old_min)) * (new_max - new_min) + new_min
+                new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
+                # new_inputs[i][j] = ((inputs[i][j] - old_min) /
+                #                 (old_max - old_min)) * (new_max - new_min) + new_min
+        
+        return new_inputs
 
 
 class DistanceCalcs:
