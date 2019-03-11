@@ -21,8 +21,10 @@ class Perceptron(Neuron):
         self._Neuron__param_validation()
 
         time_begin = time.time()
+
         self._Neuron__samples = self._Neuron__associate_samples(
             self.inputs, self.expected_outputs)
+
         outputs = []
         epochs = 0
 
@@ -38,10 +40,7 @@ class Perceptron(Neuron):
             have_error = False
 
             for sample in self._Neuron__samples:
-                activation_potential = 0
-
-                for i, inputt in enumerate(sample.inputs):
-                    activation_potential += self.weights[i] * inputt
+                activation_potential = self.get_activation_potential(sample)
 
                 output = self.activation_function(activation_potential)
                 outputs.append(output)
@@ -68,20 +67,3 @@ class Perceptron(Neuron):
         self.printer.print_msg("Épocas: " + str(epochs))
 
         return self.weights, outputs, epochs
-
-    def classify(self, inputs):
-        inputs = self._Neuron__concatanate_threshold(inputs)
-
-        samples = [Sample(inputt, None) for inputt in inputs]
-        outputs = []
-
-        for sample in samples:
-            activation_potential = 0
-
-            for i, inputt in enumerate(sample.inputs):
-                activation_potential += self.weights[i] * inputt
-
-            output = self.activation_function(activation_potential)
-            outputs.append(output)
-
-        return outputs, inputs

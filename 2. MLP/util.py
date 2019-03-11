@@ -36,7 +36,7 @@ class Classification:
 
     @staticmethod
     def test_outputs(name, perceptron_output, test_output, printer=Printer):
-
+        qtd_errors = 0
         fail = False
         for index, p_o in enumerate(perceptron_output):
             fail_local = False
@@ -44,15 +44,21 @@ class Classification:
             if p_o != test_output[index]:
                 fail = True
                 fail_local = True
+                qtd_errors += 1
 
             # print(str(index).zfill(2) + ".", p_o, test_output[index], "Erro" if fail_local else "")
+        
+        samples_size = len(perceptron_output)
+        hits = (((samples_size - qtd_errors)/samples_size)*100)
 
-        if fail:
-            print(
-                " => {" + name + "} deu erro --------------------------------------")
+        if fail:            
+            printer.print_msg(
+                " => {" + name + "} deu "+str(qtd_errors)+" erro(s) com "+str(hits)+" de taxa de acerto --------------------------------------")
         else:
-            print(
+            printer.print_msg(
                 " => {" + name + "} deu bom                                       ")
+        
+        return hits
         
     def change_nearest_points_classes(inputs, outputs):
         A, B = Classification.get_class_distribution(inputs, outputs, no_teta=True)

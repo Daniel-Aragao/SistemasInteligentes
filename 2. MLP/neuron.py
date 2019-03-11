@@ -11,7 +11,8 @@ from sklearn import preprocessing
 
 class Neuron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
+                 normalize: bool = False, is_random: bool = True, 
+                 activation_function=AF.signal, printer=Printer):
 
         self.expected_outputs = expected_outputs
         self.activation_function = activation_function
@@ -84,15 +85,30 @@ class Neuron:
 
         return samples
     
-    @staticmethod
-    def calc_eqm(weights):
-        pass
+    def get_activation_potential(self, sample):
+        activation_potential = 0
+
+        for i, inputt in enumerate(sample.inputs):
+                activation_potential += self.weights[i] * inputt
+        
+        return activation_potential
 
     def train(self, max_epoch=50000):
         pass
 
     def classify(self, inputs):
-        pass
+        inputs = self.__concatanate_threshold(inputs)
+
+        samples = [Sample(inputt, None) for inputt in inputs]
+        outputs = []
+
+        for sample in samples:
+            activation_potential = self.get_activation_potential(sample)
+
+            output = self.activation_function(activation_potential)
+            outputs.append(output)
+
+        return outputs, inputs
 
     def __str__(self):
         string = "\nThreshold: " + str(self.__threshold) + " "

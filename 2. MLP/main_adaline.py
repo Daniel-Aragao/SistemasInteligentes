@@ -70,61 +70,61 @@ def executar_adaline(name, adaline: Adaline, test=True):
     return epochs
 
 
-def get_adaline(learning_rate, normalize, is_random, outputs=train_outputs):
-    return Adaline(train_inputs, outputs, learning_rate, normalize, is_random, printer=Printer)
+def get_adaline(learning_rate, precision, is_offline, is_random):
+    return Adaline(train_inputs, train_outputs, learning_rate, precision, is_offline, is_random=is_random, printer=Printer)
 
 
-def routine_adaline(exec, learning_rate, normalize, test=True, outputs=train_outputs):
+def routine_adaline(execution_name, learning_rate, precision, is_offline, test=True):
     epochs = 0
 
     ####### 1 #######
     is_random = False
-    epochs += executar_adaline(exec + "_1", get_adaline(
-        learning_rate, normalize, is_random, outputs), test=test)
+    epochs += executar_adaline(execution_name + "_1", get_adaline(
+        learning_rate, precision, is_offline, is_random), test=test)
 
     ####### 2 #######
     is_random = True
-    epochs += executar_adaline(exec + "_2", get_adaline(
-        learning_rate, normalize, is_random, outputs), test=test)
+    epochs += executar_adaline(execution_name + "_2", get_adaline(
+        learning_rate, precision, is_offline, is_random), test=test)
 
     ####### 3 #######
-    epochs += executar_adaline(exec + "_3", get_adaline(
-        learning_rate, normalize, is_random, outputs), test=test)
+    epochs += executar_adaline(execution_name + "_3", get_adaline(
+        learning_rate, precision, is_offline, is_random), test=test)
 
     ####### 4 #######
-    epochs += executar_adaline(exec + "_4", get_adaline(
-        learning_rate, normalize, is_random, outputs), test=test)
+    epochs += executar_adaline(execution_name + "_4", get_adaline(
+        learning_rate, precision, is_offline, is_random), test=test)
 
     ####### 5 #######
-    epochs += executar_adaline(exec + "_5", get_adaline(
-        learning_rate, normalize, is_random, outputs), test=test)
+    epochs += executar_adaline(execution_name + "_5", get_adaline(
+        learning_rate, precision, is_offline, is_random), test=test)
 
-    print_epoch_average(exec, epochs, 5)
+    print_epoch_average(execution_name, epochs, 5)
 
 
 ############# 1 #############
-normalized = True
 learning_rate = 1
 precision = 0.1
-# 5 execuções offline
-# 1 pesos e limiar nulos
-# 2 a 5 aleatório
-# se não convergir explique o motivo
+routine_adaline("1", learning_rate, precision, True)
+
 ############# 2 #############
-# 1, porém online
+routine_adaline("2", learning_rate, precision, False)
 ############# 3 #############
-learning_rate = 0.01
 # calcular taxa de acerto quanto as amostras de treinamento
 # verificar se há alterações nas fronteiras
 # calcular taxa de acerto quanto as amostras de teste
+learning_rate = 0.01
+routine_adaline("3", learning_rate, precision, True)
 ############# 4 #############
-# 3, porém online
+routine_adaline("4", learning_rate, precision, False)
 ############# 5 #############
-# 3 e 4
 precision = 0.01
+routine_adaline("5_3", learning_rate, precision, True)
+routine_adaline("5_4", learning_rate, precision, False)
 ############# 6 #############
-# 3 e 4
 precision = 0.00001
+routine_adaline("6_3", learning_rate, precision, True)
+routine_adaline("6_4", learning_rate, precision, False)
 ############# 7 #############
 # indicar qual foi o mais eficiente (menor qtd de épocas)
 # indicar qual foi o mais eficaz (nauir taxa de acerto sob treinamento de teste)

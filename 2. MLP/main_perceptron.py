@@ -74,32 +74,32 @@ def get_perceptron(learning_rate, normalize, is_random, outputs=train_outputs):
     return Perceptron(train_inputs, outputs, learning_rate, normalize, is_random, printer=Printer)
 
 
-def routine_perceptron(exec, learning_rate, normalize, test=True, outputs=train_outputs):
+def routine_perceptron(execution_name, learning_rate, normalize, test=True, outputs=train_outputs):
     epochs = 0
 
     ####### 1 #######
     is_random = False
-    epochs += executar_perceptron(exec + "_1", get_perceptron(
+    epochs += executar_perceptron(execution_name + "_1", get_perceptron(
         learning_rate, normalize, is_random, outputs), test=test)
 
     ####### 2 #######
     is_random = True
-    epochs += executar_perceptron(exec + "_2", get_perceptron(
+    epochs += executar_perceptron(execution_name + "_2", get_perceptron(
         learning_rate, normalize, is_random, outputs), test=test)
 
     ####### 3 #######
-    epochs += executar_perceptron(exec + "_3", get_perceptron(
+    epochs += executar_perceptron(execution_name + "_3", get_perceptron(
         learning_rate, normalize, is_random, outputs), test=test)
 
     ####### 4 #######
-    epochs += executar_perceptron(exec + "_4", get_perceptron(
+    epochs += executar_perceptron(execution_name + "_4", get_perceptron(
         learning_rate, normalize, is_random, outputs), test=test)
 
     ####### 5 #######
-    epochs += executar_perceptron(exec + "_5", get_perceptron(
+    epochs += executar_perceptron(execution_name + "_5", get_perceptron(
         learning_rate, normalize, is_random, outputs), test=test)
 
-    print_epoch_average(exec, epochs, 5)
+    print_epoch_average(execution_name, epochs, 5)
 
 
 ############# 1 #############

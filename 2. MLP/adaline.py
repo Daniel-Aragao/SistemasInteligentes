@@ -12,12 +12,15 @@ from neuron import Neuron
 
 
 class Adaline(Neuron):
-    def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1, precision: float = 0.1,
-                 normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
+    def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
+                 precision: float = 0.1, is_offline=False, is_random: bool = True, 
+                 activation_function=AF.signal, printer=Printer):
+
         super().__init__(self, inputs, expected_outputs, learning_rate,
-                         normalize, is_random, activation_function, printer)
+                         True, is_random, activation_function, printer)
 
         self.precision = precision
+        self.is_offline = is_offline
 
     @staticmethod
     def calc_eqm(weights):
@@ -36,7 +39,6 @@ class Adaline(Neuron):
         eqm_before = Adaline.calc_eqm(self.weights)
 
         while(abs(eqm_current - eqm_before) > self.precision):
-            # self.printer.print_msg("Época:" + str(epochs) + " Pesos " + str(self.__weights))
             if epochs > max_epoch:
                 break
 
@@ -44,19 +46,25 @@ class Adaline(Neuron):
 
             outputs = []
 
-            for sample in self._Neuron__samples:
-                activation_potential = 0
+            for i, sample in enumerate(self._Neuron__samples):
+                activation_potential = self.get_activation_potential(sample)
 
-                for i, inputt in enumerate(sample.inputs):
-                    activation_potential += self.weights[i] * inputt
+                outputs.append(self.activation_function(activation_potential))
 
-                output = self.activation_function(activation_potential)
-                outputs.append(output)
+                if self.is_offline:
+                    aux = 0
 
-                if output != sample.expected_output:
-                    for i, inputt in enumerate(sample.inputs):
-                        self.weights[i] += self.learning_rate * \
-                            (sample.expected_output - output) * inputt
+                    for samp in self._Neuron__samples:
+                        aux += (samp.expected_outputs - activation_potential)
+
+                    aux *= self.learning_rate/len(self._Neuron__samples)
+
+                else:
+                    aux = self.learning_rate * \
+                        (sample.expected_outputs - activation_potential)
+
+                for index, weight in self.weights:
+                    self.weights[index] = weight + aux * sample.inputs[index]
 
             epochs += 1
 
@@ -75,20 +83,3 @@ class Adaline(Neuron):
         self.printer.print_msg("Épocas: " + str(epochs))
 
         return self.weights, outputs, epochs
-
-    def classify(self, inputs):
-        inputs = self._Neuron__concatanate_threshold(inputs)
-
-        samples = [Sample(inputt, None) for inputt in inputs]
-        outputs = []
-
-        for sample in samples:
-            activation_potential = 0
-
-            for i, inputt in enumerate(sample.inputs):
-                activation_potential += self.weights[i] * inputt
-
-            output = self.activation_function(activation_potential)
-            outputs.append(output)
-
-        return outputs, inputs
