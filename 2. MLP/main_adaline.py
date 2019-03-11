@@ -42,9 +42,9 @@ def ploting(name, inputs, outputs, weights):
     Ploter.plot_line(inputs, weights)
 
     if save_image:
-        Ploter.savefig("Execução " + name)
+        Ploter.savefig("Execução Adaline " + name)
     else:
-        Ploter.show("Execução " + name)
+        Ploter.show("Execução Adaline " + name)
 
 ######################################################### ADALINE #########################################################
 
@@ -53,11 +53,11 @@ def executar_adaline(name, adaline: Adaline, test=True):
     weights, outputs, epochs = adaline.train()
     classify_outputs, classify_inputs = adaline.classify(test_inputs)
 
-    testc.test_outputs("Execução " + name + " Treino",
+    testc.test_outputs("Execução Adaline " + name + " Treino",
                        outputs, train_outputs, printer=Printer)
 
     if test:
-        testc.test_outputs("Execução " + name + " Teste",
+        testc.test_outputs("Execução Adaline " + name + " Teste",
                         classify_outputs, test_outputs, printer=Printer)
 
     if not avoid_plot_it_all:

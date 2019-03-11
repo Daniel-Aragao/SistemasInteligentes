@@ -42,9 +42,9 @@ def ploting(name, inputs, outputs, weights):
     Ploter.plot_line(inputs, weights)
 
     if save_image:
-        Ploter.savefig("Execução " + name)
+        Ploter.savefig("Execução Perceptron " + name)
     else:
-        Ploter.show("Execução " + name)
+        Ploter.show("Execução Perceptron " + name)
 
 ######################################################### PERCEPTRON #########################################################
 
@@ -53,11 +53,11 @@ def executar_perceptron(name, perceptron: Perceptron, test=True):
     weights, outputs, epochs = perceptron.train()
     classify_outputs, classify_inputs = perceptron.classify(test_inputs)
 
-    testc.test_outputs("Execução " + name + " Treino",
+    testc.test_outputs("Execução Perceptron " + name + " Treino",
                        outputs, train_outputs, printer=Printer)
 
     if test:
-        testc.test_outputs("Execução " + name + " Teste",
+        testc.test_outputs("Execução Perceptron " + name + " Teste",
                         classify_outputs, test_outputs, printer=Printer)
 
     if not avoid_plot_it_all:
