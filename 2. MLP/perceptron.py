@@ -16,7 +16,7 @@ class Perceptron(Neuron):
                  normalize, is_random, activation_function, printer)
 
     
-    def train(self, max_epoch=50000):
+    def train(self, max_epoch=10000):
         self._Neuron__param_validation()
 
         time_begin = time.time()
