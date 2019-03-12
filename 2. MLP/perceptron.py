@@ -5,7 +5,6 @@ from activation_functions import ActivationFunctions as AF
 import time
 from util import Normalize
 
-from sklearn import preprocessing
 
 from neuron import Neuron
 

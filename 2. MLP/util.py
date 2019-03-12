@@ -1,6 +1,7 @@
 import random
 from IO_Operations import Printer
 import math
+from sklearn import preprocessing
 
 
 class Randomize:
@@ -93,15 +94,20 @@ class Normalize:
 
         for i in range(len(inputs)):
             for j in range(len(inputs[i])):
-                new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
-                # new_inputs[i][j] = ((inputs[i][j] - old_min) /
-                #                 (old_max - old_min)) * (new_max - new_min) + new_min
+                # new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
+                new_inputs[i][j] = ((inputs[i][j] - old_min) /
+                                (old_max - old_min)) * (new_max - new_min) + new_min
         
         return new_inputs
+    
+    def scale_data(data_points):
+        scaler = preprocessing.StandardScaler()
+        scaler.fit(data_points)
+
+        return scaler.transform(data_points)
 
 
 class DistanceCalcs:
-
     @staticmethod
     def euclidean_distance(x1, y1, x2, y2):
         return math.sqrt((x1-x2)**2 + (y1-y2)**2)

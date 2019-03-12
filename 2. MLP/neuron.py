@@ -6,8 +6,6 @@ import time
 from util import Normalize
 import math
 
-from sklearn import preprocessing
-
 
 class Neuron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
@@ -39,11 +37,8 @@ class Neuron:
 
     @staticmethod
     def __normalize(inputs):
-        new_inputs = Normalize.min_max(-1, 1, inputs)
-
-        # new_inputs = [i for i in inputs]
-        # scaler = preprocessing.StandardScaler().fit(new_inputs)
-        # new_inputs = scaler.transform(new_inputs)
+        # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
+        new_inputs = Normalize.scale_data(inputs)
         return new_inputs
 
     def __param_validation(self):
@@ -97,6 +92,7 @@ class Neuron:
         pass
 
     def classify(self, inputs):
+        inputs = self.__normalize(inputs)
         inputs = self.__concatanate_threshold(inputs)
 
         samples = [Sample(inputt, None) for inputt in inputs]
