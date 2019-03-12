@@ -12,6 +12,7 @@ class Neuron:
                  normalize: bool = False, is_random: bool = True, 
                  activation_function=AF.signal, printer=Printer):
 
+        self.normalize = normalize
         self.expected_outputs = expected_outputs
         self.activation_function = activation_function
         self.learning_rate = learning_rate
@@ -25,6 +26,7 @@ class Neuron:
 
         self.weights = [self.__threshold] + self.weights
 
+        self.scaler = None
         if(normalize):
             inputs = self.__normalize(inputs)
 
@@ -35,11 +37,14 @@ class Neuron:
 
         self.printer = printer()
 
-    @staticmethod
-    def __normalize(inputs):
+    def __normalize(self,inputs):
         # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
-        new_inputs = Normalize.scale_data(inputs)
-        return new_inputs
+        if not self.scaler:
+            new_inputs, self.scaler = Normalize.scale_data(inputs)
+            return new_inputs
+        else:
+            return self.scaler.transform(inputs)
+
 
     def __param_validation(self):
         import types
@@ -92,7 +97,9 @@ class Neuron:
         pass
 
     def classify(self, inputs):
-        inputs = self.__normalize(inputs)
+        if self.normalize:
+            inputs = self.__normalize(inputs)
+
         inputs = self.__concatanate_threshold(inputs)
 
         samples = [Sample(inputt, None) for inputt in inputs]

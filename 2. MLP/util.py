@@ -38,6 +38,7 @@ class Classification:
     def test_outputs(name, perceptron_output, test_output, printer=Printer):
         qtd_errors = 0
         fail = False
+        
         for index, p_o in enumerate(perceptron_output):
             fail_local = False
 
@@ -84,27 +85,26 @@ class Classification:
 
 class Normalize:
 
-    @staticmethod
-    def min_max(new_min, new_max, inputs):
-        new_inputs = [i for i in inputs]
-        all_inputs = [j for i in inputs for j in i]
+    # @staticmethod correções necessárias
+    # def min_max(new_min, new_max, inputs):
+    #     new_inputs = [i for i in inputs]
+    #     all_inputs = [j for i in inputs for j in i]
 
-        old_max = max(all_inputs)
-        old_min = min(all_inputs)
+    #     old_max = max(all_inputs)
+    #     old_min = min(all_inputs)
 
-        for i in range(len(inputs)):
-            for j in range(len(inputs[i])):
-                # new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
-                new_inputs[i][j] = ((inputs[i][j] - old_min) /
-                                (old_max - old_min)) * (new_max - new_min) + new_min
+    #     for i in range(len(inputs)):
+    #         for j in range(len(inputs[i])):
+    #             # new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
+    #             new_inputs[i][j] = ((inputs[i][j] - old_min) /
+    #                             (old_max - old_min)) * (new_max - new_min) + new_min
         
-        return new_inputs
+    #     return new_inputs
     
     def scale_data(data_points):
-        scaler = preprocessing.StandardScaler()
-        scaler.fit(data_points)
+        scaler = preprocessing.StandardScaler().fit(data_points)
 
-        return scaler.transform(data_points)
+        return scaler.transform(data_points), scaler
 
 
 class DistanceCalcs:
