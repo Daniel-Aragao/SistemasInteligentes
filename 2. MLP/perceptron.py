@@ -64,5 +64,6 @@ class Perceptron(Neuron):
         self.printer.print_msg("Pesos: " + str(self.weights[1::]))
         self.printer.print_msg("Limiar: " + str(self.weights[0]))
         self.printer.print_msg("Épocas: " + str(epochs))
+        self.printer.print_msg("Random seed: " + str(self.seed))
 
         return self.weights, outputs, epochs

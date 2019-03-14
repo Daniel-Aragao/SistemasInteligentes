@@ -11,8 +11,9 @@ class Randomize:
         return random.random()
 
     @staticmethod
-    def get_random_vector(length, seed=2):
-        random.seed(seed)
+    def get_random_vector(length, seed=0):
+        if seed:
+            random.seed(seed)
         return [random.random() for i in range(length)]
 
 

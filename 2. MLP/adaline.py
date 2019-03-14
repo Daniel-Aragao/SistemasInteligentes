@@ -13,7 +13,7 @@ from neuron import Neuron
 
 class Adaline(Neuron):
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 precision: float = 0.1, is_offline=False, is_random: bool = True, 
+                 precision: float = 0.1, is_offline=False, is_random: bool = True,
                  activation_function=AF.signal, printer=Printer):
 
         super().__init__(inputs, expected_outputs, learning_rate,
@@ -28,12 +28,12 @@ class Adaline(Neuron):
 
         for sample in self._Neuron__samples:
             activation_potential = self.get_activation_potential(sample)
+
             summ += ((sample.expected_output - activation_potential) ** 2)/samples_size
-            # print(summ)
 
-        return summ 
+        return summ
 
-    def train(self, max_epoch=50000):
+    def train(self, max_epoch=10000):
         self._Neuron__param_validation()
 
         time_begin = time.time()
@@ -52,10 +52,9 @@ class Adaline(Neuron):
         while(abs(eqm_current - eqm_before) > self.precision):
             if epochs > max_epoch:
                 break
+            # print(epochs)
 
-            epochs_eqm.append((epochs, eqm_current))
-
-            eqm_before = eqm_current
+            eqm_before = self.calc_eqm()
 
             outputs = []
 
@@ -66,33 +65,54 @@ class Adaline(Neuron):
 
                 if self.is_offline:
                     aux = 0
+                    aux_array = [0 for i in self.weights]
+                    
+                    learn_per_size = self.learning_rate/len(self._Neuron__samples)
 
                     for samp in self._Neuron__samples:
-                        aux += (samp.expected_output - activation_potential)
+                        aux = learn_per_size * (samp.expected_output - activation_potential)
 
-                    aux *= self.learning_rate/len(self._Neuron__samples)
+                        for index, inputt in enumerate(samp.inputs):
+                            aux_array[index] +=  aux * inputt
+                    
+                    for index, weight in enumerate(self.weights):
+                        self.weights[index] = weight + aux_array[index]
+
+                    # for samp in self._Neuron__samples:
+                    #     aux = learn_per_size * (samp.expected_output - activation_potential)
+
+                    #     for index, inputt in enumerate(samp.inputs):
+                    #         self.weights[index] +=  aux * inputt
+
+                    # for samp in self._Neuron__samples:
+                    #     aux += (samp.expected_output -
+                    #             activation_potential) / len(self._Neuron__samples)
 
                 else:
-                    aux = self.learning_rate * \
-                        (sample.expected_output - activation_potential)
+                    aux = self.learning_rate * (sample.expected_output - activation_potential) 
 
-                for index, weight in enumerate(self.weights):
-                    self.weights[index] = weight + aux * sample.inputs[index]
+                    for index, weight in enumerate(self.weights):
+                        self.weights[index] = weight + aux * sample.inputs[index]
+
 
             epochs += 1
 
             eqm_current = self.calc_eqm()
+
+            epochs_eqm.append((epochs,eqm_current))
+
 
         time_end = time.time()
         time_delta = time_end - time_begin
 
         if epochs > max_epoch:
             self.printer.print_msg(
-                "Máximo de épocas atingido ("+str(max_epoch)+")")
+                "\nMáximo de épocas atingido ("+str(max_epoch)+")")
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
         self.printer.print_msg("Pesos: " + str(self.weights[1::]))
         self.printer.print_msg("Limiar: " + str(self.weights[0]))
         self.printer.print_msg("Épocas: " + str(epochs))
+        self.printer.print_msg("Random seed: " + str(self.seed))
 
         return self.weights, outputs, epochs, epochs_eqm

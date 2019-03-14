@@ -8,16 +8,21 @@ import math
 
 
 class Neuron:
+    seed_count = 0
+
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
                  normalize: bool = False, is_random: bool = True, 
-                 activation_function=AF.signal, printer=Printer):#, seed=2):
+                 activation_function=AF.signal, printer=Printer):
+
+        self.seed = Neuron.seed_count
+        Neuron.seed_count += 1
 
         self.expected_outputs = expected_outputs
         self.activation_function = activation_function
         self.learning_rate = learning_rate
 
         if is_random:
-            self.weights = Randomize.get_random_vector(len(inputs[0], seed))
+            self.weights = Randomize.get_random_vector(len(inputs[0]), self.seed)
             self.__threshold = Randomize.get_random()
         else:
             self.weights = [1 for i in range(len(inputs[0]))]
@@ -118,4 +123,5 @@ class Neuron:
         string = "\nThreshold: " + str(self.__threshold) + " "
         string += "Weight: " + str(self.weights) + " "
         string += "Activation Function method: " + str(self.activation_function)
+        string += "Random seed:" + str(self.seed)
         return string
