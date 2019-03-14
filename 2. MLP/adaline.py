@@ -33,7 +33,7 @@ class Adaline(Neuron):
 
         return summ
 
-    def train(self, max_epoch=30000):
+    def train(self, max_epoch=5000):
         self._Neuron__param_validation()
 
         time_begin = time.time()
@@ -80,7 +80,6 @@ class Adaline(Neuron):
 
                     # for samp in self._Neuron__samples:
                     #     aux = learn_per_size * (samp.expected_output - activation_potential)
-
                     #     for index, inputt in enumerate(samp.inputs):
                     #         self.weights[index] +=  aux * inputt
 
@@ -99,7 +98,7 @@ class Adaline(Neuron):
 
             eqm_current = self.calc_eqm()
 
-            epochs_eqm.append((epochs,eqm_current))
+            epochs_eqm.append((epochs, eqm_current))
 
 
         time_end = time.time()

@@ -14,9 +14,9 @@ train_outputs = Importer.import_output('misc/dtrain.txt')
 test_inputs = Importer.import_input('misc/xtest.txt')
 test_outputs = Importer.import_output('misc/dtest.txt')
 
-save_image = True
+save_image = False
 avoid_plot_it_all = False
-save_data = True
+save_data = False
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrintOnFileEather

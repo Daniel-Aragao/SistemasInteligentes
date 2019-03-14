@@ -102,8 +102,8 @@ class Neuron:
     def train(self, max_epoch=50000):
         pass
 
-    def classify(self, inputs):
-        if self.is_normalize:
+    def classify(self, inputs, input_normalized=False):
+        if self.is_normalize and not input_normalized:
             inputs = self.__normalize(inputs)
             
         inputs = self.__concatanate_threshold(inputs)
