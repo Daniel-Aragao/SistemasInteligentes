@@ -16,7 +16,7 @@ test_outputs = Importer.import_output('misc/dtest.txt')
 
 save_image = True
 avoid_plot_it_all = False
-save_data = False
+save_data = True
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrintOnFileEather

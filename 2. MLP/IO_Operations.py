@@ -38,7 +38,7 @@ class Importer:
         return lines
 
 class Exporter:
-    result_file_path = "output/epocha_results.csv"
+    result_file_path = "output/log/epocha_results.csv"
     result_file_header= "ID;1;2;3;4_1;4_2;4_3;6_1;6_2;6_3;6_4_1;6_4_2;6_4_3"
     #1_1;1_2;1_3;1_4;1_5;2_1;2_2;2_3;2_4;2_5;3_1;3_2;3_3;3_4;3_5;4_1_1;4_1_2;4_1_3;4_1_4;4_1_5;4_2_1;4_2_2;4_2_3;4_2_4;4_2_5;4_3_1;4_3_2;4_3_3;4_3_4;4_3_5
     @staticmethod
