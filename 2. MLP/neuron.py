@@ -10,14 +10,14 @@ import math
 class Neuron:
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
                  normalize: bool = False, is_random: bool = True, 
-                 activation_function=AF.signal, printer=Printer):
+                 activation_function=AF.signal, printer=Printer):#, seed=2):
 
         self.expected_outputs = expected_outputs
         self.activation_function = activation_function
         self.learning_rate = learning_rate
 
         if is_random:
-            self.weights = Randomize.get_random_vector(len(inputs[0]))
+            self.weights = Randomize.get_random_vector(len(inputs[0], seed))
             self.__threshold = Randomize.get_random()
         else:
             self.weights = [1 for i in range(len(inputs[0]))]

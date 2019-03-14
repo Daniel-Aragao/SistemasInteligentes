@@ -24,19 +24,23 @@ class Adaline(Neuron):
 
     def calc_eqm(self):
         summ = 0
+        samples_size = len(self._Neuron__samples)
 
         for sample in self._Neuron__samples:
             activation_potential = self.get_activation_potential(sample)
-            summ += (sample.expected_output - activation_potential) ** 2
-        
-        return summ / len(self._Neuron__samples)
+            summ += ((sample.expected_output - activation_potential) ** 2)/samples_size
+            # print(summ)
+
+        return summ 
 
     def train(self, max_epoch=50000):
         self._Neuron__param_validation()
 
         time_begin = time.time()
+
         self._Neuron__samples = self._Neuron__associate_samples(
             self.inputs, self.expected_outputs)
+
         outputs = []
         epochs = 0
 

@@ -93,24 +93,24 @@ def routine_adaline(execution_name, learning_rate, precision, is_offline, test=T
     epochs += executar_adaline(execution_name + "_1", get_adaline(
         learning_rate, precision, is_offline, is_random), test=test)
 
-    ####### 2 #######
-    is_random = True
-    epochs += executar_adaline(execution_name + "_2", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+    # ####### 2 #######
+    # is_random = True
+    # epochs += executar_adaline(execution_name + "_2", get_adaline(
+    #     learning_rate, precision, is_offline, is_random), test=test)
 
-    ####### 3 #######
-    epochs += executar_adaline(execution_name + "_3", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+    # ####### 3 #######
+    # epochs += executar_adaline(execution_name + "_3", get_adaline(
+    #     learning_rate, precision, is_offline, is_random), test=test)
 
-    ####### 4 #######
-    epochs += executar_adaline(execution_name + "_4", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+    # ####### 4 #######
+    # epochs += executar_adaline(execution_name + "_4", get_adaline(
+    #     learning_rate, precision, is_offline, is_random), test=test)
 
-    ####### 5 #######
-    epochs += executar_adaline(execution_name + "_5", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+    # ####### 5 #######
+    # epochs += executar_adaline(execution_name + "_5", get_adaline(
+    #     learning_rate, precision, is_offline, is_random), test=test)
 
-    print_epoch_average(execution_name, epochs, 5)
+    # print_epoch_average(execution_name, epochs, 5)
 
 
 ############# 1 #############
@@ -119,15 +119,15 @@ precision = 0.1
 routine_adaline("1", learning_rate, precision, True)
 
 ############# 2 #############
-routine_adaline("2", learning_rate, precision, False)
+# routine_adaline("2", learning_rate, precision, False)
 ############# 3 #############
 # calcular taxa de acerto quanto as amostras de treinamento
 # verificar se há alterações nas fronteiras
 # calcular taxa de acerto quanto as amostras de teste
-# learning_rate = 0.01
-# routine_adaline("3", learning_rate, precision, True)
-# ############# 4 #############
-# routine_adaline("4", learning_rate, precision, False)
+learning_rate = 0.01
+routine_adaline("3", learning_rate, precision, True)
+############# 4 #############
+routine_adaline("4", learning_rate, precision, False)
 # ############# 5 #############
 # precision = 0.01
 # routine_adaline("5_3", learning_rate, precision, True)
