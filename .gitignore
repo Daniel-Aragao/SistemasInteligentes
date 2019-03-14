@@ -103,5 +103,5 @@ venv.bak/
 # mypy
 .mypy_cache/
 
-*.png
+#*.png
 .vscode/settings.json
