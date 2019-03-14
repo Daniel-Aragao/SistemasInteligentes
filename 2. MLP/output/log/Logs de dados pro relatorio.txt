@@ -1,0 +1,468 @@
+
+Duração(sec): 0.19356989860534668
+Pesos: [212.11015867327893, 113.54900345587315]
+Limiar: 16494.0
+Épocas: 1794
+ => {Execução Perceptron 1_1 Treino} deu bom                                       
+ => {Execução Perceptron 1_1 Teste} deu bom                                       
+
+Duração(sec): 0.1631174087524414
+Pesos: [168.55830579365443, 90.16086573132284]
+Limiar: 13064.653112754506
+Épocas: 1149
+ => {Execução Perceptron 1_2 Treino} deu bom                                       
+ => {Execução Perceptron 1_2 Teste} deu bom                                       
+
+Duração(sec): 0.08867335319519043
+Pesos: [96.55213448740872, 48.75320039254689]
+Limiar: 7378.663076921832
+Épocas: 506
+ => {Execução Perceptron 1_3 Treino} deu bom                                       
+ => {Execução Perceptron 1_3 Teste} deu bom                                       
+
+Duração(sec): 0.15624094009399414
+Pesos: [165.6369011403376, 88.19059449953656]
+Limiar: 12898.732182384414
+Épocas: 1136
+ => {Execução Perceptron 1_4 Treino} deu bom                                       
+ => {Execução Perceptron 1_4 Teste} deu bom                                       
+
+Duração(sec): 0.22335124015808105
+Pesos: [206.45555711054482, 109.17291141416642]
+Limiar: 15942.778067379351
+Épocas: 1702
+ => {Execução Perceptron 1_5 Treino} deu bom                                       
+ => {Execução Perceptron 1_5 Teste} deu bom                                       
+
+Média de épocas para execução 1: 1257.4
+
+
+
+Duração(sec): 0.09159612655639648
+Pesos: [10.29283238688908, 5.5134605410277775]
+Limiar: 797.2000000000443
+Épocas: 555
+ => {Execução Perceptron 2_1 Treino} deu bom                                       
+ => {Execução Perceptron 2_1 Teste} deu bom                                       
+
+Duração(sec): 0.11591577529907227
+Pesos: [13.075061303847503, 6.72194432712443]
+Limiar: 1006.6175556476653
+Épocas: 769
+ => {Execução Perceptron 2_2 Treino} deu bom                                       
+ => {Execução Perceptron 2_2 Teste} deu bom                                       
+
+Duração(sec): 0.091033935546875
+Pesos: [11.994571416934077, 6.361310349852656]
+Limiar: 928.4898517094042
+Épocas: 687
+ => {Execução Perceptron 2_3 Treino} deu bom                                       
+ => {Execução Perceptron 2_3 Teste} deu bom                                       
+
+Duração(sec): 0.2013700008392334
+Pesos: [21.30415765079521, 11.501269842540125]
+Limiar: 1655.6531205944877
+Épocas: 1789
+ => {Execução Perceptron 2_4 Treino} deu bom                                       
+ => {Execução Perceptron 2_4 Teste} deu bom                                       
+
+Duração(sec): 0.19947552680969238
+Pesos: [20.734793177622855, 11.063417218432903]
+Limiar: 1605.9809103323373
+Épocas: 1699
+ => {Execução Perceptron 2_5 Treino} deu bom                                       
+ => {Execução Perceptron 2_5 Teste} deu bom                                       
+
+Média de épocas para execução 2: 1099.8
+
+
+
+Duração(sec): 0.0949854850769043
+Pesos: [1.0280408288924634, 0.5463990537724999]
+Limiar: 79.86000000000125
+Épocas: 562
+ => {Execução Perceptron 3_1 Treino} deu bom                                       
+ => {Execução Perceptron 3_1 Teste} deu bom                                       
+
+Duração(sec): 0.07027935981750488
+Pesos: [0.9986881146057578, 0.5113410532108922]
+Limiar: 76.6832579462662
+Épocas: 531
+ => {Execução Perceptron 3_2 Treino} deu bom                                       
+ => {Execução Perceptron 3_2 Teste} deu bom                                       
+
+Duração(sec): 0.1340043544769287
+Pesos: [1.6905919076041283, 0.8637082851571274]
+Limiar: 129.8844961879351
+Épocas: 1145
+ => {Execução Perceptron 3_3 Treino} deu bom                                       
+ => {Execução Perceptron 3_3 Teste} deu bom                                       
+
+Duração(sec): 0.11852192878723145
+Pesos: [1.3339609771883838, 0.686018301969745]
+Limiar: 102.18880981675812
+Épocas: 786
+ => {Execução Perceptron 3_4 Treino} deu bom                                       
+ => {Execução Perceptron 3_4 Teste} deu bom                                       
+
+Duração(sec): 0.08769726753234863
+Pesos: [1.246304328126059, 0.6202484791599292]
+Limiar: 95.09343851583206
+Épocas: 713
+ => {Execução Perceptron 3_5 Treino} deu bom                                       
+ => {Execução Perceptron 3_5 Teste} deu bom                                       
+
+Média de épocas para execução 3: 747.4
+
+
+
+Duração(sec): 0.041661977767944336
+Pesos: [44.75215126575098, 23.902526868119217]
+Limiar: -2.0
+Épocas: 208
+ => {Execução Perceptron 4_1_1 Treino} deu bom                                       
+ => {Execução Perceptron 4_1_1 Teste} deu bom                                       
+
+Duração(sec): 0.02570796012878418
+Pesos: [38.45660673452013, 20.54670411149445]
+Limiar: -1.8219888986583919
+Épocas: 153
+ => {Execução Perceptron 4_1_2 Treino} deu bom                                       
+ => {Execução Perceptron 4_1_2 Teste} deu bom                                       
+
+Duração(sec): 0.030359745025634766
+Pesos: [45.125806620982644, 24.061611813953427]
+Limiar: -1.9564707695462538
+Épocas: 220
+ => {Execução Perceptron 4_1_3 Treino} deu bom                                       
+ => {Execução Perceptron 4_1_3 Teste} deu bom                                       
+
+Duração(sec): 0.022649288177490234
+Pesos: [37.46979643617038, 19.897639719250023]
+Limiar: -1.7036602335007918
+Épocas: 165
+ => {Execução Perceptron 4_1_4 Treino} deu bom                                       
+ => {Execução Perceptron 4_1_4 Teste} deu bom                                       
+
+Duração(sec): 0.016774415969848633
+Pesos: [32.47936737545338, 17.398576621780002]
+Limiar: -1.2763520940278985
+Épocas: 119
+ => {Execução Perceptron 4_1_5 Treino} deu bom                                       
+ => {Execução Perceptron 4_1_5 Teste} deu bom                                       
+
+Média de épocas para execução 4_1: 173.0
+
+
+
+Duração(sec): 0.042380332946777344
+Pesos: [4.445708264712101, 2.3760158110658622]
+Limiar: -0.2
+Épocas: 205
+ => {Execução Perceptron 4_2_1 Treino} deu bom                                       
+ => {Execução Perceptron 4_2_1 Teste} deu bom                                       
+
+Duração(sec): 0.01635146141052246
+Pesos: [3.162797038139096, 1.7242332368945419]
+Limiar: -0.1061366973664491
+Épocas: 116
+ => {Execução Perceptron 4_2_2 Treino} deu bom                                       
+ => {Execução Perceptron 4_2_2 Teste} deu bom                                       
+
+Duração(sec): 0.022691965103149414
+Pesos: [3.8597612788818005, 2.0633520765402125]
+Limiar: -0.18019253261163626
+Épocas: 164
+ => {Execução Perceptron 4_2_3 Treino} deu bom                                       
+ => {Execução Perceptron 4_2_3 Teste} deu bom                                       
+
+Duração(sec): 0.019762277603149414
+Pesos: [3.5114002724763864, 1.869114435833722]
+Limiar: -0.16118834599152143
+Épocas: 140
+ => {Execução Perceptron 4_2_4 Treino} deu bom                                       
+ => {Execução Perceptron 4_2_4 Teste} deu bom                                       
+
+Duração(sec): 0.015631914138793945
+Pesos: [3.2657664506661592, 1.7674702866335892]
+Limiar: -0.15042008719610472
+Épocas: 113
+ => {Execução Perceptron 4_2_5 Treino} deu bom                                       
+ => {Execução Perceptron 4_2_5 Teste} deu bom                                       
+
+Média de épocas para execução 4_2: 147.6
+
+
+
+Duração(sec): 0.0014154911041259766
+Pesos: [1.206904345811599, 0.6542069239546598]
+Limiar: -0.039999999999999994
+Épocas: 5
+ => {Execução Perceptron 4_3_1 Treino} deu bom                                       
+ => {Execução Perceptron 4_3_1 Teste} deu bom                                       
+
+Duração(sec): 0.0004937648773193359
+Pesos: [0.49117037856911977, 0.26489630894236393]
+Limiar: -0.0231393927107665
+Épocas: 3
+ => {Execução Perceptron 4_3_2 Treino} deu bom                                       
+ => {Execução Perceptron 4_3_2 Teste} deu bom                                       
+
+Duração(sec): 0.001058816909790039
+Pesos: [0.5787838320721922, 0.30851189101270504]
+Limiar: -0.025120181982186508
+Épocas: 7
+ => {Execução Perceptron 4_3_3 Treino} deu bom                                       
+ => {Execução Perceptron 4_3_3 Teste} deu bom                                       
+
+Duração(sec): 0.0013234615325927734
+Pesos: [0.6946229086674256, 0.37408381759513437]
+Limiar: -0.02169476908678263
+Épocas: 9
+ => {Execução Perceptron 4_3_4 Treino} deu bom                                       
+ => {Execução Perceptron 4_3_4 Teste} deu bom                                       
+
+Duração(sec): 0.0016369819641113281
+Pesos: [0.2777355241141885, 0.14983492787665717]
+Limiar: -0.010761045850901239
+Épocas: 11
+ => {Execução Perceptron 4_3_5 Treino} deu bom                                       
+ => {Execução Perceptron 4_3_5 Teste} deu bom                                       
+
+Média de épocas para execução 4_3: 7.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.0039992332458496
+Pesos: [448.444008922698, 256.8597839839224]
+Limiar: 34334.0
+Épocas: 10001
+ => {Execução Perceptron 6_1_1 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9853055477142334
+Pesos: [481.8087625068335, 155.9216886678853]
+Limiar: 34336.37509281744
+Épocas: 10001
+ => {Execução Perceptron 6_1_2 Treino} deu 11 erro(s) com 86.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.0277369022369385
+Pesos: [481.75850917439175, 258.76979253440584]
+Limiar: 34370.8244689819
+Épocas: 10001
+ => {Execução Perceptron 6_1_3 Treino} deu 6 erro(s) com 92.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.0046100616455078
+Pesos: [476.2818899063621, 164.14464543142444]
+Limiar: 34314.51175667584
+Épocas: 10001
+ => {Execução Perceptron 6_1_4 Treino} deu 13 erro(s) com 83.75 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9836905002593994
+Pesos: [470.10474916617915, 190.88512152363788]
+Limiar: 34330.22110960213
+Épocas: 10001
+ => {Execução Perceptron 6_1_5 Treino} deu 11 erro(s) com 86.25 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_1: 10001.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9715042114257812
+Pesos: [46.57204542892566, 18.217561442434796]
+Limiar: 3433.799999999068
+Épocas: 10001
+ => {Execução Perceptron 6_2_1 Treino} deu 11 erro(s) com 86.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9927480220794678
+Pesos: [44.38486417333751, 26.442471462029356]
+Limiar: 3436.429036401135
+Épocas: 10001
+ => {Execução Perceptron 6_2_2 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9798572063446045
+Pesos: [45.926431642231385, 17.798997611425555]
+Limiar: 3434.805848328854
+Épocas: 10001
+ => {Execução Perceptron 6_2_3 Treino} deu 9 erro(s) com 88.75 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9839150905609131
+Pesos: [45.8891457064762, 17.844288748789943]
+Limiar: 3441.0097215623605
+Épocas: 10001
+ => {Execução Perceptron 6_2_4 Treino} deu 9 erro(s) com 88.75 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.034665822982788
+Pesos: [47.309981931619966, 20.45316026478084]
+Limiar: 3445.96178347415
+Épocas: 10001
+ => {Execução Perceptron 6_2_5 Treino} deu 11 erro(s) com 86.25 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_2: 10001.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.0211570262908936
+Pesos: [4.616779667779555, 2.7070516505699955]
+Limiar: 343.5399999999775
+Épocas: 10001
+ => {Execução Perceptron 6_3_1 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9949228763580322
+Pesos: [4.062797604537076, 1.9595622078954016]
+Limiar: 343.81443243427157
+Épocas: 10001
+ => {Execução Perceptron 6_3_2 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9881720542907715
+Pesos: [4.670651958339632, 1.8774146914957903]
+Limiar: 344.4698854362161
+Épocas: 10001
+ => {Execução Perceptron 6_3_3 Treino} deu 11 erro(s) com 86.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9861032962799072
+Pesos: [4.068912826362476, 1.970700995557728]
+Limiar: 345.0555215295471
+Épocas: 10001
+ => {Execução Perceptron 6_3_4 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 0.9822728633880615
+Pesos: [5.124382298648495, 1.7743807102264963]
+Limiar: 343.44783294211396
+Épocas: 10001
+ => {Execução Perceptron 6_3_5 Treino} deu 15 erro(s) com 81.25 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_3: 10001.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.3102381229400635
+Pesos: [17.399077115720473, 9.191442687838942]
+Limiar: 0.0
+Épocas: 10001
+ => {Execução Perceptron 6_4_1_1 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2380528450012207
+Pesos: [21.529842895432758, 8.636963206326076]
+Limiar: -3.394243554907097
+Épocas: 10001
+ => {Execução Perceptron 6_4_1_2 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2563071250915527
+Pesos: [21.155277035020426, 7.994925883951664]
+Limiar: -3.4831371720724347
+Épocas: 10001
+ => {Execução Perceptron 6_4_1_3 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2901320457458496
+Pesos: [17.278756843178368, 8.706065911051407]
+Limiar: 0.46023707733259167
+Épocas: 10001
+ => {Execução Perceptron 6_4_1_4 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.3286516666412354
+Pesos: [17.285732860226823, 9.033709016277138]
+Limiar: 0.0981131989231212
+Épocas: 10001
+ => {Execução Perceptron 6_4_1_5 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_4_1: 10001.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2572124004364014
+Pesos: [1.8598843189540126, 0.7588690055197792]
+Limiar: 0.0
+Épocas: 10001
+ => {Execução Perceptron 6_4_2_1 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2453892230987549
+Pesos: [2.086137802147613, 0.8653669417845754]
+Limiar: -0.27940276219975724
+Épocas: 10001
+ => {Execução Perceptron 6_4_2_2 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.3670551776885986
+Pesos: [2.093957874063261, 0.8477170459836797]
+Limiar: -0.29213981969793046
+Épocas: 10001
+ => {Execução Perceptron 6_4_2_3 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2785227298736572
+Pesos: [1.9541867739006784, 0.8200149330812124]
+Limiar: -0.22895771557776912
+Épocas: 10001
+ => {Execução Perceptron 6_4_2_4 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.4180517196655273
+Pesos: [1.8625125628734318, 0.7279447673444382]
+Limiar: 0.018646388927806234
+Épocas: 10001
+ => {Execução Perceptron 6_4_2_5 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_4_2: 10001.0
+
+
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.379690170288086
+Pesos: [0.17497940960820446, 0.09243422026779448]
+Limiar: 6.938893903907228e-18
+Épocas: 10001
+ => {Execução Perceptron 6_4_3_1 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2628974914550781
+Pesos: [0.21565618191531338, 0.09575941622002698]
+Limiar: -0.010458558156937001
+Épocas: 10001
+ => {Execução Perceptron 6_4_3_2 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.2533183097839355
+Pesos: [0.18279206266512749, 0.07454039320886685]
+Limiar: 0.0018266161870836226
+Épocas: 10001
+ => {Execução Perceptron 6_4_3_3 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.3011257648468018
+Pesos: [0.22746951725172765, 0.0847978974577061]
+Limiar: -0.013052287627820878
+Épocas: 10001
+ => {Execução Perceptron 6_4_3_4 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+Máximo de épocas atingido (10000)
+
+Duração(sec): 1.364276647567749
+Pesos: [0.22621149495139764, 0.09887622313676078]
+Limiar: -0.01160697109005496
+Épocas: 10001
+ => {Execução Perceptron 6_4_3_5 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 6_4_3: 10001.0
+
+

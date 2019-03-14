@@ -38,14 +38,14 @@ class Neuron:
 
         self.printer = printer()
 
-    def __normalize(self, inputs):
+    def __normalize(self,inputs):
         # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
         if not self.scaler:
             new_inputs, self.scaler = Normalize.scale_data(inputs)
+            return new_inputs
         else:
-            new_inputs = self.scaler.transform(inputs)
+            return self.scaler.transform(inputs)
 
-        return new_inputs
 
     def __param_validation(self):
         import types
