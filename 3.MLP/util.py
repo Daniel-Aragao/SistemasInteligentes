@@ -29,7 +29,7 @@ class Classification:
             else:
                 teta, x, y = inputt
 
-            C = (A if outputs[i] == 1 else B)
+            C = (B if outputs[i] == -1 else A)
 
             C[0].append(x)
             C[1].append(y)

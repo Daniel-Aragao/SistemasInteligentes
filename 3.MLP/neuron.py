@@ -81,23 +81,15 @@ class Neuron:
         return [(-1, t[0], t[1]) for t in inputs]
 
     @staticmethod
-    def __associate_samples(inputs, outputs):
+    def __associate_samples(inputs, outputs, weights):
         samples: Sample = []
 
         for i, value in enumerate(inputs):
-            sample = Sample(value, outputs[i])
+            sample = Sample(value, outputs[i], weights)
 
             samples.append(sample)
 
         return samples
-    
-    def get_activation_potential(self, sample):
-        activation_potential = 0
-
-        for i, inputt in enumerate(sample.inputs):
-                activation_potential += self.weights[i] * inputt
-        
-        return activation_potential
 
     def train(self, max_epoch=50000):
         pass
@@ -108,11 +100,11 @@ class Neuron:
             
         inputs = self.__concatanate_threshold(inputs)
 
-        samples = [Sample(inputt, None) for inputt in inputs]
+        samples = [Sample(inputt, None, self.weights) for inputt in inputs]
         outputs = []
 
         for sample in samples:
-            activation_potential = self.get_activation_potential(sample)
+            activation_potential = sample.get_activation_potential()
 
             output = self.activation_function(activation_potential)
             outputs.append(output)

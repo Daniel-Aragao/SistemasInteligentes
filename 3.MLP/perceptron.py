@@ -22,7 +22,7 @@ class Perceptron(Neuron):
         time_begin = time.time()
 
         self._Neuron__samples = self._Neuron__associate_samples(
-            self.inputs, self.expected_outputs)
+            self.inputs, self.expected_outputs, self.weights)
 
         outputs = []
         epochs = 0
@@ -39,7 +39,7 @@ class Perceptron(Neuron):
             have_error = False
 
             for sample in self._Neuron__samples:
-                activation_potential = self.get_activation_potential(sample)
+                activation_potential = sample.get_activation_potential()
 
                 output = self.activation_function(activation_potential)
                 outputs.append(output)

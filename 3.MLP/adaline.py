@@ -27,7 +27,7 @@ class Adaline(Neuron):
         samples_size = len(self._Neuron__samples)
 
         for sample in self._Neuron__samples:
-            activation_potential = self.get_activation_potential(sample)
+            activation_potential = sample.get_activation_potential()
 
             summ += ((sample.expected_output - activation_potential) ** 2)/samples_size
 
@@ -39,7 +39,7 @@ class Adaline(Neuron):
         time_begin = time.time()
 
         self._Neuron__samples = self._Neuron__associate_samples(
-            self.inputs, self.expected_outputs)
+            self.inputs, self.expected_outputs, self.weights)
 
         outputs = []
         epochs = 0
@@ -59,7 +59,7 @@ class Adaline(Neuron):
             outputs = []
 
             for i, sample in enumerate(self._Neuron__samples):
-                activation_potential = self.get_activation_potential(sample)
+                activation_potential = sample.get_activation_potential()
 
                 outputs.append(self.activation_function(activation_potential))
 
