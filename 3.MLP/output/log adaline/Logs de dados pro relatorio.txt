@@ -1,0 +1,392 @@
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.6677043437958
+Pesos: [1903087.528020635, 394793.7929426365]
+Limiar: 1259301.4337294614
+Épocas: 30001
+Random seed: 0
+ => {Execução Adaline 1_1 Treino} deu 24 erro(s) com 70.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 1_1 Teste} deu 2 erro(s) com 90.0 de taxa de acerto --------------------------------------
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 407.13280749320984
+Pesos: [1903086.6623849084, 394793.6403763825]
+Limiar: 1259300.8577297358
+Épocas: 30001
+Random seed: 1
+ => {Execução Adaline 1_2 Treino} deu 24 erro(s) com 70.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 1_2 Teste} deu 2 erro(s) com 90.0 de taxa de acerto --------------------------------------
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 406.7298595905304
+Pesos: [1903087.4840548057, 394793.74077014875]
+Limiar: 1259301.409729957
+Épocas: 30001
+Random seed: 2
+ => {Execução Adaline 1_3 Treino} deu 24 erro(s) com 70.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 1_3 Teste} deu 2 erro(s) com 90.0 de taxa de acerto --------------------------------------
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.00544786453247
+Pesos: [1903086.7659850928, 394793.33717191464]
+Limiar: 1259300.964697565
+Épocas: 30001
+Random seed: 3
+ => {Execução Adaline 1_4 Treino} deu 24 erro(s) com 70.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 1_4 Teste} deu 2 erro(s) com 90.0 de taxa de acerto --------------------------------------
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.0922145843506
+Pesos: [1903086.764068872, 394792.89610875037]
+Limiar: 1259301.015563637
+Épocas: 30001
+Random seed: 4
+ => {Execução Adaline 1_5 Treino} deu 24 erro(s) com 70.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 1_5 Teste} deu 2 erro(s) com 90.0 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 1: 30001.0
+
+
+
+Duração(sec): 0.019922733306884766
+Pesos: [-2.110279851139728e+164, -1.4689211594022117e+164]
+Limiar: -2.449226292721588e+165
+Épocas: 21
+Random seed: 5
+ => {Execução Adaline 2_1 Treino} deu 46 erro(s) com 42.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 2_1 Teste} deu 12 erro(s) com 40.0 de taxa de acerto --------------------------------------
+
+Duração(sec): 0.019945859909057617
+Pesos: [-1.7395247272796056e+164, -1.210846361360242e+164]
+Limiar: -2.01892165941477e+165
+Épocas: 21
+Random seed: 6
+ => {Execução Adaline 2_2 Treino} deu 46 erro(s) com 42.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 2_2 Teste} deu 12 erro(s) com 40.0 de taxa de acerto --------------------------------------
+
+Duração(sec): 0.018927574157714844
+Pesos: [-2.664962335441518e+164, -1.8550239018894876e+164]
+Limiar: -3.0930001144402317e+165
+Épocas: 21
+Random seed: 7
+ => {Execução Adaline 2_3 Treino} deu 46 erro(s) com 42.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 2_3 Teste} deu 12 erro(s) com 40.0 de taxa de acerto --------------------------------------
+
+Duração(sec): 0.019968509674072266
+Pesos: [-2.0922944258029025e+164, -1.4564018853240138e+164]
+Limiar: -2.428352105538809e+165
+Épocas: 21
+Random seed: 8
+ => {Execução Adaline 2_4 Treino} deu 46 erro(s) com 42.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 2_4 Teste} deu 12 erro(s) com 40.0 de taxa de acerto --------------------------------------
+
+Duração(sec): 0.019945621490478516
+Pesos: [-3.010463120545118e+164, -2.0955196890025784e+164]
+Limiar: -3.4939941373773705e+165
+Épocas: 21
+Random seed: 9
+ => {Execução Adaline 2_5 Treino} deu 46 erro(s) com 42.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 2_5 Teste} deu 12 erro(s) com 40.0 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2: 21.0
+
+
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 410.3322229385376
+Pesos: [19031.865279433056, 3948.9279294328035]
+Limiar: 507.48413644161417
+Épocas: 30001
+Random seed: 10
+ => {Execução Adaline 3_1 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 3_1 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.8242566585541
+Pesos: [19031.31765898661, 3948.4877018189063]
+Limiar: 507.467681732533
+Épocas: 30001
+Random seed: 11
+ => {Execução Adaline 3_2 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 3_2 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 407.70921516418457
+Pesos: [19031.339850111784, 3948.585401935474]
+Limiar: 507.4688011688963
+Épocas: 30001
+Random seed: 12
+ => {Execução Adaline 3_3 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 3_3 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 409.1942946910858
+Pesos: [19031.12428792483, 3948.613187425799]
+Limiar: 507.4634637040192
+Épocas: 30001
+Random seed: 13
+ => {Execução Adaline 3_4 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 3_4 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.2787415981293
+Pesos: [19030.97210797083, 3948.6305149568134]
+Limiar: 507.4596826569609
+Épocas: 30001
+Random seed: 14
+ => {Execução Adaline 3_5 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 3_5 Teste} deu bom                                       
+
+Média de épocas para execução 3: 30001.0
+
+
+
+Duração(sec): 0.0019943714141845703
+Pesos: [0.8997789509431221, 0.437227011320295]
+Limiar: -0.037091597492075426
+Épocas: 2
+Random seed: 15
+ => {Execução Adaline 4_1 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 4_1 Teste} deu bom                                       
+
+Duração(sec): 0.0019943714141845703
+Pesos: [0.7476870452089434, 0.3028769239239456]
+Limiar: 0.04371489528283616
+Épocas: 2
+Random seed: 16
+ => {Execução Adaline 4_2 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 4_2 Teste} deu bom                                       
+
+Duração(sec): 0.0019936561584472656
+Pesos: [0.8204824963128944, 0.32383075244201404]
+Limiar: 0.040923536195273946
+Épocas: 3
+Random seed: 17
+ => {Execução Adaline 4_3 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 4_3 Teste} deu bom                                       
+
+Duração(sec): 0.0029916763305664062
+Pesos: [0.7857972331162989, 0.2999111011264195]
+Limiar: -0.014239054253519505
+Épocas: 3
+Random seed: 18
+ => {Execução Adaline 4_4 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 4_4 Teste} deu bom                                       
+
+Duração(sec): 0.0019919872283935547
+Pesos: [0.8243270712048538, 0.37881070899596275]
+Limiar: 0.06480194737077888
+Épocas: 2
+Random seed: 19
+ => {Execução Adaline 4_5 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 4_5 Teste} deu bom                                       
+
+Média de épocas para execução 4: 2.4
+
+
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.0522952079773
+Pesos: [19031.865279433056, 3948.9279294328035]
+Limiar: 507.48413644161417
+Épocas: 30001
+Random seed: 20
+ => {Execução Adaline 5_3_1 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_3_1 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.2647535800934
+Pesos: [19031.030228912954, 3948.6176963570324]
+Limiar: 507.4610915779423
+Épocas: 30001
+Random seed: 21
+ => {Execução Adaline 5_3_2 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_3_2 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 412.2770195007324
+Pesos: [19031.823488812875, 3948.0682980229017]
+Limiar: 507.4781988218186
+Épocas: 30001
+Random seed: 22
+ => {Execução Adaline 5_3_3 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_3_3 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.7534463405609
+Pesos: [19031.790144684688, 3948.8765352108117]
+Limiar: 507.48192986403035
+Épocas: 30001
+Random seed: 23
+ => {Execução Adaline 5_3_4 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_3_4 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.38343620300293
+Pesos: [19031.577622420908, 3948.767729169136]
+Limiar: 507.47589570036394
+Épocas: 30001
+Random seed: 24
+ => {Execução Adaline 5_3_5 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_3_5 Teste} deu bom                                       
+
+Média de épocas para execução 5_3: 30001.0
+
+
+
+Duração(sec): 0.0029976367950439453
+Pesos: [0.8548042018069701, 0.3194452034033802]
+Limiar: -0.04495025034038823
+Épocas: 4
+Random seed: 25
+ => {Execução Adaline 5_4_1 Treino} deu 2 erro(s) com 97.5 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_4_1 Teste} deu bom                                       
+
+Duração(sec): 0.0029921531677246094
+Pesos: [0.824263433232106, 0.27558520390990393]
+Limiar: -0.025209010104892817
+Épocas: 3
+Random seed: 26
+ => {Execução Adaline 5_4_2 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_4_2 Teste} deu bom                                       
+
+Duração(sec): 0.0030164718627929688
+Pesos: [0.833784683273517, 0.30000342993189355]
+Limiar: -0.008136731245746886
+Épocas: 4
+Random seed: 27
+ => {Execução Adaline 5_4_3 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_4_3 Teste} deu bom                                       
+
+Duração(sec): 0.003988981246948242
+Pesos: [0.8012339809897463, 0.26576777076542923]
+Limiar: -0.022639409301535532
+Épocas: 4
+Random seed: 28
+ => {Execução Adaline 5_4_4 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_4_4 Teste} deu bom                                       
+
+Duração(sec): 0.003988504409790039
+Pesos: [0.8232973960836354, 0.2830380816233249]
+Limiar: -0.012679001186832833
+Épocas: 4
+Random seed: 29
+ => {Execução Adaline 5_4_5 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 5_4_5 Teste} deu bom                                       
+
+Média de épocas para execução 5_4: 3.8
+
+
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 410.76207280158997
+Pesos: [19031.865279433056, 3948.9279294328035]
+Limiar: 507.48413644161417
+Épocas: 30001
+Random seed: 30
+ => {Execução Adaline 6_3_1 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_3_1 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 410.180627822876
+Pesos: [19030.87755768053, 3948.040328293861]
+Limiar: 507.45392731890917
+Épocas: 30001
+Random seed: 31
+ => {Execução Adaline 6_3_2 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_3_2 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 408.52904653549194
+Pesos: [19030.942701216984, 3948.141546222274]
+Limiar: 507.4561616048705
+Épocas: 30001
+Random seed: 32
+ => {Execução Adaline 6_3_3 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_3_3 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 409.5792372226715
+Pesos: [19031.435607856227, 3948.5601624283763]
+Limiar: 507.4710990984955
+Épocas: 30001
+Random seed: 33
+ => {Execução Adaline 6_3_4 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_3_4 Teste} deu bom                                       
+
+Máximo de épocas atingido (30000)
+
+Duração(sec): 407.6693465709686
+Pesos: [19031.39421481603, 3948.5136762875923]
+Limiar: 507.46978045805713
+Épocas: 30001
+Random seed: 34
+ => {Execução Adaline 6_3_5 Treino} deu 7 erro(s) com 91.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_3_5 Teste} deu bom                                       
+
+Média de épocas para execução 6_3: 30001.0
+
+
+
+Duração(sec): 0.009972572326660156
+Pesos: [0.8355164271634105, 0.28646471395557516]
+Limiar: -0.04710899402915472
+Épocas: 10
+Random seed: 35
+ => {Execução Adaline 6_4_1 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_4_1 Teste} deu bom                                       
+
+Duração(sec): 0.007978439331054688
+Pesos: [0.835136314185669, 0.28632444796189305]
+Limiar: -0.04646187959655086
+Épocas: 9
+Random seed: 36
+ => {Execução Adaline 6_4_2 Treino} deu 3 erro(s) com 96.25 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_4_2 Teste} deu bom                                       
+
+Duração(sec): 0.007006645202636719
+Pesos: [0.8344840053342325, 0.2853597206231135]
+Limiar: -0.04614943744113822
+Épocas: 8
+Random seed: 37
+ => {Execução Adaline 6_4_3 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_4_3 Teste} deu bom                                       
+
+Duração(sec): 0.007977724075317383
+Pesos: [0.8350330542685367, 0.28601245086500865]
+Limiar: -0.04662136668099672
+Épocas: 9
+Random seed: 38
+ => {Execução Adaline 6_4_4 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_4_4 Teste} deu bom                                       
+
+Duração(sec): 0.006981372833251953
+Pesos: [0.8339514898356143, 0.2852466470799324]
+Limiar: -0.04680170235924615
+Épocas: 8
+Random seed: 39
+ => {Execução Adaline 6_4_5 Treino} deu 4 erro(s) com 95.0 de taxa de acerto --------------------------------------
+ => {Execução Adaline 6_4_5 Teste} deu bom                                       
+
+Média de épocas para execução 6_4: 8.8
+
+
