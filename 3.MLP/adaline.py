@@ -29,9 +29,9 @@ class Adaline(Neuron):
         for sample in self._Neuron__samples:
             activation_potential = sample.get_activation_potential()
 
-            summ += ((sample.expected_output - activation_potential) ** 2)/samples_size
+            summ += ((sample.expected_output - activation_potential) ** 2)
 
-        return summ
+        return summ/samples_size
 
     def train(self, max_epoch=5000):
         self._Neuron__param_validation()
@@ -49,7 +49,7 @@ class Adaline(Neuron):
 
         epochs_eqm = []
 
-        while(abs(eqm_current - eqm_before) > self.precision):
+        while(abs(eqm_current - eqm_before) >= self.precision):
             if epochs > max_epoch:
                 break
             # print(epochs)
@@ -65,27 +65,23 @@ class Adaline(Neuron):
 
                 if self.is_offline:
                     aux = 0
-                    aux_array = [0 for i in self.weights]
+                    aux_input = [0 for i in self.weights]
                     
                     learn_per_size = self.learning_rate/len(self._Neuron__samples)
 
                     for samp in self._Neuron__samples:
-                        aux = learn_per_size * (samp.expected_output - activation_potential)
+                        activation_potential = samp.get_activation_potential()
 
                         for index, inputt in enumerate(samp.inputs):
-                            aux_array[index] +=  aux * inputt
+                            aux_input[index] +=  (samp.expected_output - activation_potential) * inputt
                     
                     for index, weight in enumerate(self.weights):
-                        self.weights[index] = weight + aux_array[index]
+                        self.weights[index] = weight + aux_input[index] * learn_per_size
 
                     # for samp in self._Neuron__samples:
                     #     aux = learn_per_size * (samp.expected_output - activation_potential)
                     #     for index, inputt in enumerate(samp.inputs):
                     #         self.weights[index] +=  aux * inputt
-
-                    # for samp in self._Neuron__samples:
-                    #     aux += (samp.expected_output -
-                    #             activation_potential) / len(self._Neuron__samples)
 
                 else:
                     aux = self.learning_rate * (sample.expected_output - activation_potential) 

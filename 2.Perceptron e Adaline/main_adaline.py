@@ -37,8 +37,8 @@ def end_results_file():
         Exporter.end_results_line()
 
 
-def ploting_inputs_class(name, inputs, outputs, weights):
-    Ploter.plot_results(inputs, outputs)
+def ploting_inputs_class(name, inputs, expected_outputs, outputs, weights):
+    Ploter.plot_results(inputs, expected_outputs, outputs)
     Ploter.plot_line(inputs, weights)
     title = "Execução Adaline " + name
 
@@ -60,23 +60,23 @@ def ploting_eqm_epoch(name, epochs_eqm):
 
 
 def executar_adaline(name, adaline: Adaline, test=True):
-    weights, outputs, epochs, epochs_eqm = adaline.train()
+    weights, resulted_outputs, epochs, epochs_eqm = adaline.train()
     classify_outputs, classify_inputs = adaline.classify(test_inputs)
 
     testc.test_outputs("Execução Adaline " + name + " Treino",
-                       outputs, train_outputs, printer=Printer)
+                       resulted_outputs, train_outputs, printer=Printer)
 
     if test:
         testc.test_outputs("Execução Adaline " + name + " Teste",
                         classify_outputs, test_outputs, printer=Printer)
 
     if not avoid_plot_it_all:
-        ploting_inputs_class(name, adaline.inputs, outputs, adaline.weights)
+        ploting_inputs_class(name, adaline.inputs, train_outputs, resulted_outputs, adaline.weights)
         ploting_eqm_epoch(name, epochs_eqm)
 
         if test:
             ploting_inputs_class(name + "_teste", classify_inputs,
-                    classify_outputs, adaline.weights)
+                    test_outputs, classify_outputs, adaline.weights)
 
     return epochs
 
@@ -126,13 +126,13 @@ routine_adaline("2", learning_rate, precision, False)
 # # calcular taxa de acerto quanto as amostras de teste
 learning_rate = 0.01
 routine_adaline("3", learning_rate, precision, True)
-############# 4 #############
+############ 4 #############
 routine_adaline("4", learning_rate, precision, False)
-############# 5 #############
+############ 5 #############
 precision = 0.01
 routine_adaline("5_3", learning_rate, precision, True)
 routine_adaline("5_4", learning_rate, precision, False)
-############# 6 #############
+############ 6 #############
 precision = 0.00001
 routine_adaline("6_3", learning_rate, precision, True)
 routine_adaline("6_4", learning_rate, precision, False)

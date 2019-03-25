@@ -4,11 +4,26 @@ from util import Classification
 
 class Ploter:
     @staticmethod
-    def plot_results(inputs,outputs):
-        A, B = Classification.get_class_distribution(inputs,outputs)
+    def plot_results(inputs, expected_outputs, outputs):
+        A_expected, B_expected = Classification.get_class_distribution(inputs,expected_outputs)
+        A_resulting, B_resulting = Classification.get_class_distribution(inputs,outputs)
 
-        plt.scatter(A[0], A[1], c='blue', label="Classe A (1)")
-        plt.scatter(B[0], B[1], c='red', label="Classe B (-1)")
+        fig, subplt = plt.subplots()
+
+        subplt.scatter(A_expected[0], A_expected[1], c='blue', label="Classe A (1)")
+        subplt.scatter(B_expected[0], B_expected[1], c='red', label="Classe B (-1)")
+
+
+        def annotate(vector, text):
+            for i, x in enumerate(vector[0]):
+                y = vector[1][i]
+                subplt.annotate(text, (x, y))
+        
+        annotate(A_resulting, "A")
+        annotate(B_resulting, "B")
+        # annotate(A_expected, "A")
+        # annotate(B_expected, "B")
+
 
     @staticmethod
     def plot_line(inputs, weights):
