@@ -32,8 +32,13 @@ class Importer:
         with open(path, 'r') as file_obj:
             for i, line in enumerate(file_obj):
                 line = line.replace("\n", "")
-                x1,x2 = line.split('\t')
-                lines.append([float(x1),float(x2)])
+                line_splited = line.split('\t')
+                
+                line_float = []
+                for item in line_splited:
+                    line_float.append(float(item))
+
+                lines.append(line_float)
 
         return lines
 

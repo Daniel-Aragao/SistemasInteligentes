@@ -11,7 +11,7 @@ class Neuron:
     seed_count = 0
 
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 normalize: bool = False, is_random: bool = True, 
+                 normalize = None, is_random: bool = True, 
                  activation_function=AF.signal, printer=Printer):
 
         self.seed = Neuron.seed_count

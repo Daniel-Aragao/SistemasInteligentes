@@ -33,7 +33,7 @@ class Adaline(Neuron):
 
         return summ/samples_size
 
-    def train(self, max_epoch=5000):
+    def train(self, max_epoch=10000):
         self._Neuron__param_validation()
 
         time_begin = time.time()
