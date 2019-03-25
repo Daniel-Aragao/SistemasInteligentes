@@ -78,11 +78,6 @@ class Adaline(Neuron):
                     for index, weight in enumerate(self.weights):
                         self.weights[index] = weight + aux_input[index] * learn_per_size
 
-                    # for samp in self._Neuron__samples:
-                    #     aux = learn_per_size * (samp.expected_output - activation_potential)
-                    #     for index, inputt in enumerate(samp.inputs):
-                    #         self.weights[index] +=  aux * inputt
-
                 else:
                     aux = self.learning_rate * (sample.expected_output - activation_potential) 
 
