@@ -9,8 +9,9 @@ from util import Normalize
 from neuron import Neuron
 
 class Perceptron(Neuron):
-    def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 normalize: bool = False, is_random: bool = True, activation_function=AF.signal, printer=Printer):
+    def __init__(self, inputs, expected_outputs: list, learning_rate: float = 1,
+                 normalize = None, is_random: bool = True, activation_function=AF.signal, 
+                 parents: list = None, printer=Printer):
 
         super().__init__(inputs, expected_outputs, learning_rate,
                  normalize, is_random, activation_function, printer)

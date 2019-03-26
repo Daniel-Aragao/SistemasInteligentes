@@ -5,28 +5,28 @@ from sklearn import preprocessing
 
 
 class Randomize:
+    @staticmethod
+    def get_random(interval_start=-0.5, interval_end=0.5):
+        return random.uniform(interval_start, interval_end)
 
     @staticmethod
-    def get_random():
-        return random.random()
-
-    @staticmethod
-    def get_random_vector(length, seed=0):
+    def get_random_vector(length, seed=0, interval_start=-0.5, interval_end=0.5):
         if seed:
             random.seed(seed)
-        return [random.random() for i in range(length)]
+        
+        return [Randomize.get_random(interval_start, interval_end) for i in range(length)]
 
 
 class Classification:
     @staticmethod
-    def get_class_distribution(inputs,outputs, no_teta=False):
+    def get_class_distribution(inputs,outputs):
         A = ([], [])
         B = ([], [])
 
         for i, inputt in enumerate(inputs):
-            if no_teta:
+            if len(inputt) == 2:
                 x, y = inputt
-            else:
+            elif len(inputt) == 3:
                 teta, x, y = inputt
 
             C = (B if outputs[i] == -1 else A)

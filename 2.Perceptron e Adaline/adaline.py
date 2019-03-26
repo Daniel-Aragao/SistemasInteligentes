@@ -13,11 +13,11 @@ from neuron import Neuron
 
 class Adaline(Neuron):
     def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
-                 precision: float = 0.1, is_offline=False, is_random: bool = True,
+                 normalize = True, precision: float = 0.1, is_offline=False, is_random: bool = True,
                  activation_function=AF.signal, printer=Printer):
 
         super().__init__(inputs, expected_outputs, learning_rate,
-                         True, is_random, activation_function, printer)
+                         normalize, is_random, activation_function, printer)
 
         self.precision = precision
         self.is_offline = is_offline

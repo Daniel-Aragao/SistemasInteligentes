@@ -7,7 +7,7 @@ from IO_Operations import Printer as PrintOnlyConsole
 from IO_Operations import Exporter
 from activation_functions import ActivationFunctions
 
-from perceptron_multiple_layer import MLPerceptron as perceptron
+from network_controller import MultiLayerPerceptron as MLP
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
 train_inputs = Importer.import_input('misc/xtrain_bodyfat.txt')
@@ -61,12 +61,12 @@ def ploting_eqm_epoch(name, epochs_eqm):
 PMC1 = {
     "layers" :[
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 2
         },
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.linear,
             "quantity": 1
         }
@@ -76,12 +76,12 @@ PMC1 = {
 PMC2 = {
     "layers" :[
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 5
         },
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.linear,
             "quantity": 1
         }
@@ -91,17 +91,41 @@ PMC2 = {
 PMC3 = {
     "layers" :[
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 10
         },
         {
-            "neuron_type": perceptron,
+            "neuron_type": 'perceptron',
             "activation_funcion" : ActivationFunctions.linear,
             "quantity": 1
         }
     ]
 }
+
+config_neuron = {
+    "learning_rate": 0.01,
+    "precision": 0.1,
+    "normalize": True,
+    "inputs": train_inputs,
+    "expected_outputs": train_outputs
+}
+
+mlp1 = MLP(PMC1, config_neuron)
+
+epochs, epochs_eqm = mlp1.train(max_epoch=10000)
+
+train_results = mlp1.classify(train_inputs)
+test_results = mlp1.classify(test_inputs)
+
+name = "1"
+
+testc.test_outputs("Execução MLP " + name + " Treino",
+                       train_results, train_outputs, printer=Printer)
+
+testc.test_outputs("Execução MLP " + name + " Teste",
+                       test_results, train_outputs, printer=Printer)
+
 
 # Bodyfat
 # uma camada escondida nas 3 topologias

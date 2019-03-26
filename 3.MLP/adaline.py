@@ -12,7 +12,7 @@ from neuron import Neuron
 
 
 class Adaline(Neuron):
-    def __init__(self, inputs: list, expected_outputs: list, learning_rate: float = 1,
+    def __init__(self, inputs, expected_outputs: list, learning_rate: float = 1,
                  precision: float = 0.1, is_offline=False, is_random: bool = True,
                  activation_function=AF.signal, printer=Printer):
 
@@ -49,7 +49,7 @@ class Adaline(Neuron):
 
         epochs_eqm = []
 
-        while(abs(eqm_current - eqm_before) >= self.precision):
+        while(abs(eqm_current - eqm_before) > self.precision):
             if epochs > max_epoch:
                 break
             # print(epochs)

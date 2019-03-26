@@ -8,7 +8,7 @@ class Sample:
         activation_potential = 0
 
         for i, inputt in enumerate(self.inputs):
-                activation_potential += self.weights[i] * inputt
+            activation_potential += self.weights[i] * inputt
         
         return activation_potential
     
