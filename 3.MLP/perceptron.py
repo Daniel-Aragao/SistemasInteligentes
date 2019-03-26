@@ -14,7 +14,7 @@ class Perceptron(Neuron):
                  parents: list = None, printer=Printer):
 
         super().__init__(inputs, expected_outputs, learning_rate,
-                 normalize, is_random, activation_function, printer)
+                 normalize, is_random, activation_function, parents, printer)
 
     
     def train(self, max_epoch=10000):

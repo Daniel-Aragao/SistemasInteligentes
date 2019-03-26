@@ -51,7 +51,7 @@ def ploting_inputs_class(name, inputs, expected_outputs, outputs, weights):
 
 def ploting_eqm_epoch(name, epochs_eqm):
     Ploter.plot_eqm_epoch(epochs_eqm)
-    title = "Execução MLP " + name + "EQM x ÉPOCA "
+    title = "Execução MLP " + name + " EQM x ÉPOCA "
 
     if save_image:
         Ploter.savefig(title)
@@ -62,12 +62,12 @@ PMC1 = {
     "layers" :[
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
+            "activation_function" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 2
         },
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.linear,
+            "activation_function" : ActivationFunctions.linear,
             "quantity": 1
         }
     ]
@@ -77,12 +77,12 @@ PMC2 = {
     "layers" :[
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
+            "activation_function" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 5
         },
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.linear,
+            "activation_function" : ActivationFunctions.linear,
             "quantity": 1
         }
     ]
@@ -92,28 +92,29 @@ PMC3 = {
     "layers" :[
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
+            "activation_function" : ActivationFunctions.hyperbolic_tangent,
             "quantity": 10
         },
         {
             "neuron_type": 'perceptron',
-            "activation_funcion" : ActivationFunctions.linear,
+            "activation_function" : ActivationFunctions.linear,
             "quantity": 1
         }
     ]
 }
 
 config_neuron = {
-    "learning_rate": 0.01,
-    "precision": 0.1,
+    "learning_rate": 0.001,
+    "precision": 0.000001,
     "normalize": True,
     "inputs": train_inputs,
-    "expected_outputs": train_outputs
+    "expected_outputs": train_outputs,
+    "printer": Printer
 }
 
 mlp1 = MLP(PMC1, config_neuron)
 
-epochs, epochs_eqm = mlp1.train(max_epoch=10000)
+epochs, epochs_eqm = mlp1.train(max_epoch=10000, offline=False)
 
 train_results = mlp1.classify(train_inputs)
 test_results = mlp1.classify(test_inputs)
@@ -124,8 +125,9 @@ testc.test_outputs("Execução MLP " + name + " Treino",
                        train_results, train_outputs, printer=Printer)
 
 testc.test_outputs("Execução MLP " + name + " Teste",
-                       test_results, train_outputs, printer=Printer)
+                       test_results, test_outputs, printer=Printer)
 
+ploting_eqm_epoch(name, epochs_eqm)
 
 # Bodyfat
 # uma camada escondida nas 3 topologias

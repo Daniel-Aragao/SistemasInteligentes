@@ -35,9 +35,9 @@ class Neuron:
         self.inputs = None
         self.parents = None
 
-        if parents:
-            self.parents = parents
-        else:
+        self.parents = parents
+
+        if not inputs is None and type(inputs) == type([]):
             self.inputs = Neuron.concatanate_threshold(inputs)  # [-1] + inputs
 
         self.__samples: Sample = []
@@ -45,7 +45,7 @@ class Neuron:
         self.printer = printer()
     
     def create_weights(self, inputs, is_random=True):
-        if type(self.inputs) != type([]):
+        if type(inputs) != type([]):
             weights_size = inputs
         else:
             weights_size = len(inputs[0])
@@ -134,3 +134,6 @@ class Neuron:
             str(self.activation_function)
         string += "Random seed:" + str(self.seed)
         return string
+    
+    def __repr__(self):
+        return str(self.parents)

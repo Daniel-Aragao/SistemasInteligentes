@@ -17,7 +17,7 @@ class Adaline(Neuron):
                  activation_function=AF.signal, printer=Printer):
 
         super().__init__(inputs, expected_outputs, learning_rate,
-                         True, is_random, activation_function, printer)
+                         True, is_random, activation_function, printer=printer)
 
         self.precision = precision
         self.is_offline = is_offline

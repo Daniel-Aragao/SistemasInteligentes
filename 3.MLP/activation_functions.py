@@ -59,7 +59,7 @@ class ActivationFunctions:
             return ActivationFunctions.logistic(u) * (1 - ActivationFunctions.logistic(u))
 
     @staticmethod
-    def hyperbolic_tangent(u, beta=0.4, is_derivative=False):
+    def hyperbolic_tangent(u, beta=0.001, is_derivative=False):
         if beta <= 0:
             raise Exception("beta > 0")
         
