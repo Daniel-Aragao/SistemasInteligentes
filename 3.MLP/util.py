@@ -2,7 +2,7 @@ import random
 from IO_Operations import Printer
 import math
 from sklearn import preprocessing
-
+import numpy as np
 
 class Randomize:
     @staticmethod
@@ -101,11 +101,33 @@ class Normalize:
     #                             (old_max - old_min)) * (new_max - new_min) + new_min
         
     #     return new_inputs
-    
-    def scale_data(data_points):
-        scaler = preprocessing.StandardScaler().fit(data_points)
 
-        return scaler.transform(data_points), scaler
+    @staticmethod
+    def reshape(data_points):
+        return [[i] for i in data_points]
+    
+    @staticmethod
+    def unshape(data_points):
+        return [i[0] for i in data_points]
+    
+    @staticmethod
+    def scale_data(data_points, scaler=None):
+        reshape = False
+
+        if type(data_points[0]) == type(1):
+            reshape = True
+            data_points = Normalize.reshape(data_points)
+
+        if not scaler:
+            scaler = preprocessing.StandardScaler().fit(data_points)
+            
+        transformed = scaler.transform(data_points)
+
+        if reshape:
+            data_points = Normalize.unshape(transformed)
+            return data_points, scaler
+
+        return transformed, scaler
 
 
 class DistanceCalcs:

@@ -24,24 +24,34 @@ class MultiLayerPerceptron:
         self.config_network = config_network
         self.config_neuron = config_neuron
 
-        self.scaler__normalize = None
+        self.scaler__normalize_output = None
+        self.scaler__normalize_input = None
 
         self.printer = self.config_neuron['printer'] 
         self.precision = config_neuron["precision"]
         self.expected_outputs = config_neuron["expected_outputs"]
 
-        self.nodes = []
+        self.layers_node = []
         self.last_layer_nodes = []
 
         self.__init_configuration()
     
-    def __normalize(self, inputs):
+    def __normalize_input(self, inputs):
         # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
-        if not self.scaler__normalize:
-            new_inputs, self.scaler__normalize = Normalize.scale_data(inputs)
+        if not self.scaler__normalize_input:
+            new_inputs, self.scaler__normalize_input = Normalize.scale_data(inputs)
             return new_inputs
         else:
-            return self.scaler__normalize.transform(inputs)
+            return self.scaler__normalize_input.transform(inputs)
+    
+    def __normalize_output(self, output):
+        # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
+        if not self.scaler__normalize_output:
+            new_inputs, self.scaler__normalize_output = Normalize.scale_data(output)
+            return new_inputs
+        else:
+            new_inputs, self.scaler__normalize_output = Normalize.scale_data(self.scaler__normalize_output)
+            return new_inputs
     
     def __init_configuration(self):
         config_neuron = self.config_neuron
@@ -50,13 +60,13 @@ class MultiLayerPerceptron:
 
         normalize = config_neuron['normalize']
 
-        self.samples = self.__normalize(config_neuron['inputs'])
+        self.samples = self.__normalize_input(config_neuron['inputs'])
         self.samples = Perceptron.concatanate_threshold(self.samples)
 
-        self.expected_outputs = config_neuron['expected_outputs']
+        self.expected_outputs = self.__normalize_output(config_neuron['expected_outputs'])
 
         for index, layer in enumerate(layers):
-            self.nodes.append([])
+            self.layers_node.append([])
 
             # if layer['neuron_type'] == 'perceptron':
             for i in range(layer['quantity']):
@@ -68,14 +78,14 @@ class MultiLayerPerceptron:
                     inputs = len(self.samples[0]) - 1
                     before_layer_nodes = None
                 else:
-                    before_layer_nodes = self.nodes[index - 1]
+                    before_layer_nodes = self.layers_node[index - 1]
                     inputs = len(before_layer_nodes)
 
                 p = Perceptron(inputs, expected_outputs, config_neuron['learning_rate'], 
                         normalize, is_random=True, activation_function=layer['activation_function'], 
                         parents=before_layer_nodes)
 
-                self.nodes[index].append(p)
+                self.layers_node[index].append(p)
                 p.network_recursion_activation_potential = [None for i in range(len(self.samples))]
 
                 if index == len(layers) - 1:
@@ -106,7 +116,7 @@ class MultiLayerPerceptron:
             return activation_potential
 
     def clean_recursion_output(self, sample_index):
-        for layer in self.nodes:
+        for layer in self.layers_node:
             for node in layer:
                 node.network_recursion_activation_potential = [None for i in range(len(self.samples))]
                 
@@ -136,6 +146,26 @@ class MultiLayerPerceptron:
             error += self.get_error(sample_index)
         
         return error/len(self.samples)
+
+    
+    def get_node_delta_output_layer(self, node, sample_index):
+        d = self.expected_outputs[sample_index]
+        y = MultiLayerPerceptron.output(node, self.samples, sample_index)
+        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
+        g_ = node.activation_function(u, is_derivative=True)
+
+        return -((d - y) * g_)
+
+    def get_node_delta_first_layer(self, node, node_index, sample_index):
+        summ = 0
+
+        for children_node in self.layers_node[1]:
+            summ += children_node.network_delta * children_node.weights[node_index]
+
+        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
+
+        return summ * node.activation_function(u, is_derivative=True)
+        
         
     def train(self, max_epoch=10000, offline=False):
         precision = self.config_neuron['precision']
@@ -160,40 +190,42 @@ class MultiLayerPerceptron:
 
                 if offline:
                     for node in self.last_layer_nodes:
-                        d = self.expected_outputs[sample_index]
-                        y = MultiLayerPerceptron.output(node, self.samples, sample_index)
-                        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-                        g_ = node.activation_function(u, is_derivative=True)
-
-                        delta = -((d - y) * g_)
+                        delta = self.get_node_delta_output_layer(node, sample_index)
                         node.network_delta = delta
 
-                        for index_parent, parent in enumerate(node.parents):
-                            node.weights[index_parent + 1] += node.learning_rate * delta *  MultiLayerPerceptron.output(parent, self.samples, sample_index)
+                        aux = [0 for i in node.parents]
+                        aux_threshold = 0
 
-                        node.weights[0] += node.learning_rate * delta *  (- 1)
-                    
-                    for node_index, node in enumerate(self.nodes[0]):
-                        summ = 0
+                        for samp_index, samp in enumerate(self.samples):
+                            delta = self.get_node_delta_output_layer(node, samp_index)
 
-                        for children_node in self.nodes[1]:
-                            summ += children_node.network_delta * children_node.weights[node_index]
-
-                        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-
-                        delta = summ * node.activation_function(u, is_derivative=True)
-                        node.network_delta = delta
+                            for index_parent, parent in enumerate(node.parents):
+                                aux[index_parent] += delta * MultiLayerPerceptron.output(parent, self.samples, samp_index)
+                            
+                            aux_threshold += delta * -1
+                                                    
                         
+                        for index_parent, parent in enumerate(node.parents):
+                            node.weights[index_parent + 1] += node.learning_rate/len(self.samples) * aux[index_parent]
+
+                        node.weights[0] += node.learning_rate/len(self.samples) *  aux_threshold
+
+                    
+                    for node_index, node in enumerate(self.layers_node[0]):
+                        aux = [0 for i in node.weights]
+
+                        for samp_index, samp in enumerate(self.samples):
+                            delta = self.get_node_delta_first_layer(node, node_index, samp_index)
+
+                            for index_weights, weight in enumerate(node.weights):
+                                aux[index_weights] = delta * samp[index_weights]
+                                                
                         for index_weights, weight in enumerate(node.weights):
-                            node.weights[index_weights] = weight + node.learning_rate * delta *  sample[index_weights]
+                            node.weights[index_weights] = weight + node.learning_rate/len(self.samples) * aux[index_weights]
+
                 else:
                     for node in self.last_layer_nodes:
-                        d = self.expected_outputs[sample_index]
-                        y = MultiLayerPerceptron.output(node, self.samples, sample_index)
-                        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-                        g_ = node.activation_function(u, is_derivative=True)
-
-                        delta = -((d - y) * g_)
+                        delta = self.get_node_delta_output_layer(node, sample_index)
                         node.network_delta = delta
 
                         for index_parent, parent in enumerate(node.parents):
@@ -201,15 +233,8 @@ class MultiLayerPerceptron:
 
                         node.weights[0] += node.learning_rate * delta *  (- 1)
                     
-                    for node_index, node in enumerate(self.nodes[0]):
-                        summ = 0
-
-                        for children_node in self.nodes[1]:
-                            summ += children_node.network_delta * children_node.weights[node_index]
-
-                        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-
-                        delta = summ * node.activation_function(u, is_derivative=True)
+                    for node_index, node in enumerate(self.layers_node[0]):
+                        delta = self.get_node_delta_first_layer(node, node_index, sample_index)
                         node.network_delta = delta
                         
                         for index_weights, weight in enumerate(node.weights):
@@ -236,7 +261,7 @@ class MultiLayerPerceptron:
         return epochs, epochs_eqm
 
     def classify(self, samples):
-        samples = self.__normalize(samples)
+        samples = self.__normalize_input(samples)
         samples = Perceptron.concatanate_threshold(samples)
 
         outputs = []
