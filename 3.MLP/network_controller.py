@@ -156,7 +156,7 @@ class MultiLayerPerceptron:
         u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
         g_ = node.activation_function(u, is_derivative=True)
 
-        return -((d - y) * g_)
+        return ((d - y) * g_)
 
     def get_node_delta_first_layer(self, node, node_index, sample_index):
         summ = 0
@@ -166,7 +166,7 @@ class MultiLayerPerceptron:
 
         u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
 
-        return summ * node.activation_function(u, is_derivative=True)
+        return (summ * node.activation_function(u, is_derivative=True))
         
         
     def train(self, max_epoch=10000, offline=False):

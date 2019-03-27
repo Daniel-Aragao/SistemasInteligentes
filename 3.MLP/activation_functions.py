@@ -64,9 +64,13 @@ class ActivationFunctions:
             raise Exception("beta > 0")
         
         if not is_derivative:
-            return (1 - math.e ** (-beta * u))/(1 + math.e ** (-beta * u))
+            return math.tanh(u)
         else:
-            return 1 - (ActivationFunctions.hyperbolic_tangent(u))**2
+            return ((math.cosh(u)**2) - (math.sinh(u)**2))/(math.cosh(u)**2)
+        # if not is_derivative:
+        #     return (1 - math.e ** (-beta * u))/(1 + math.e ** (-beta * u))
+        # else:
+        #     return 1 - (ActivationFunctions.hyperbolic_tangent(u))**2
     
     @staticmethod
     def gaussian(u, c=1, sigma=2, is_derivative=False):
