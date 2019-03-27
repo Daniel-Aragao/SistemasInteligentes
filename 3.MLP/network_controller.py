@@ -87,6 +87,8 @@ class MultiLayerPerceptron:
 
                 self.layers_node[index].append(p)
                 p.network_recursion_activation_potential = [None for i in range(len(self.samples))]
+                p.network_delta = [1 for i in self.samples]
+
 
                 if index == len(layers) - 1:
                     self.last_layer_nodes.append(p)
@@ -160,7 +162,7 @@ class MultiLayerPerceptron:
         summ = 0
 
         for children_node in self.layers_node[1]:
-            summ += children_node.network_delta * children_node.weights[node_index]
+            summ += children_node.network_delta[sample_index] * children_node.weights[node_index + 1]
 
         u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
 
@@ -190,14 +192,12 @@ class MultiLayerPerceptron:
 
                 if offline:
                     for node in self.last_layer_nodes:
-                        delta = self.get_node_delta_output_layer(node, sample_index)
-                        node.network_delta = delta
-
                         aux = [0 for i in node.parents]
                         aux_threshold = 0
 
                         for samp_index, samp in enumerate(self.samples):
                             delta = self.get_node_delta_output_layer(node, samp_index)
+                            node.network_delta[samp_index] = delta
 
                             for index_parent, parent in enumerate(node.parents):
                                 aux[index_parent] += delta * MultiLayerPerceptron.output(parent, self.samples, samp_index)
@@ -216,6 +216,7 @@ class MultiLayerPerceptron:
 
                         for samp_index, samp in enumerate(self.samples):
                             delta = self.get_node_delta_first_layer(node, node_index, samp_index)
+                            node.network_delta[samp_index] = delta
 
                             for index_weights, weight in enumerate(node.weights):
                                 aux[index_weights] = delta * samp[index_weights]
@@ -226,7 +227,7 @@ class MultiLayerPerceptron:
                 else:
                     for node in self.last_layer_nodes:
                         delta = self.get_node_delta_output_layer(node, sample_index)
-                        node.network_delta = delta
+                        node.network_delta[sample_index] = delta
 
                         for index_parent, parent in enumerate(node.parents):
                             node.weights[index_parent + 1] += node.learning_rate * delta *  MultiLayerPerceptron.output(parent, self.samples, sample_index)
@@ -235,7 +236,7 @@ class MultiLayerPerceptron:
                     
                     for node_index, node in enumerate(self.layers_node[0]):
                         delta = self.get_node_delta_first_layer(node, node_index, sample_index)
-                        node.network_delta = delta
+                        node.network_delta[sample_index] = delta
                         
                         for index_weights, weight in enumerate(node.weights):
                             node.weights[index_weights] = weight + node.learning_rate * delta *  sample[index_weights]

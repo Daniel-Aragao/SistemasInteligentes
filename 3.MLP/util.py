@@ -114,9 +114,10 @@ class Normalize:
     def scale_data(data_points, scaler=None):
         reshape = False
 
-        if type(data_points[0]) == type(1):
+        if type(data_points[0]) != type([]):
             reshape = True
             data_points = Normalize.reshape(data_points)
+            # print(data_points)
 
         if not scaler:
             scaler = preprocessing.StandardScaler().fit(data_points)
