@@ -17,9 +17,9 @@ train_outputs = Importer.import_output('misc/dtrain_bodyfat.txt')
 test_inputs = Importer.import_input('misc/xtest_bodyfat.txt')
 test_outputs = Importer.import_output('misc/dtest_bodyfat.txt')
 
-save_image = False
+save_image = True
 avoid_plot_it_all = False
-save_data = False
+save_data = True
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrintOnFileEather
