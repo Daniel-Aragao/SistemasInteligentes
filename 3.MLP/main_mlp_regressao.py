@@ -1,6 +1,7 @@
 from IO_Operations import Importer
 from util import Classification as testc
 from util import DistanceCalcs
+from util import Normalize
 from show_graphics import Ploter
 from IO_Operations import PrinterFile as PrintOnFileEather
 from IO_Operations import Printer as PrintOnlyConsole
@@ -106,26 +107,28 @@ PMC3 = {
 config_neuron = {
     "learning_rate": 0.001,
     "precision": 0.000001,
-    "normalize": True,
     "inputs": train_inputs,
     "expected_outputs": train_outputs,
+    "normalize_function": Normalize.standard_scale_data,
     "printer": Printer
 }
 
 mlp1 = MLP(PMC1, config_neuron)
 
-epochs, epochs_eqm = mlp1.train(max_epoch=10000, offline=False)
+epochs, epochs_eqm, eqm_final = mlp1.train(max_epoch=10000, offline=True)
 
 train_results = mlp1.classify(train_inputs)
+
 test_results = mlp1.classify(test_inputs)
 
 name = "1"
 
-testc.test_outputs("Execução MLP " + name + " Treino",
+testc.test_regression_outputs("Execução MLP " + name + " Treino",
                        train_results, train_outputs, printer=Printer)
 
-testc.test_outputs("Execução MLP " + name + " Teste",
+testc.test_regression_outputs("Execução MLP " + name + " Teste",
                        test_results, test_outputs, printer=Printer)
+
 
 ploting_eqm_epoch(name, epochs_eqm)
 

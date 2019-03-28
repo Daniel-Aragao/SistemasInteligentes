@@ -62,7 +62,7 @@ class Neuron:
     def __normalize(self, inputs):
         # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
         if not self.scaler__normalize:
-            new_inputs, self.scaler__normalize = Normalize.scale_data(inputs)
+            new_inputs, self.scaler__normalize = Normalize.standard_scale_data(inputs)
             return new_inputs
         else:
             return self.scaler__normalize.transform(inputs)

@@ -1,18 +1,3 @@
-# config_network = {
-#     "layers" :[
-#         {
-#             "neuron_type": perceptron,
-#             "activation_funcion" : ActivationFunctions.hyperbolic_tangent,
-#             "quantity": 2
-#         },
-#         {
-#             "neuron_type": perceptron,
-#             "activation_funcion" : ActivationFunctions.linear,
-#             "quantity": 1
-#         }
-#     ]
-# }
-
 import time
 import math
 from perceptron import Perceptron
@@ -24,6 +9,8 @@ class MultiLayerPerceptron:
         self.config_network = config_network
         self.config_neuron = config_neuron
 
+        self.normalize_function = config_neuron['normalize_function']
+
         self.scaler__normalize_output = None
         self.scaler__normalize_input = None
 
@@ -34,31 +21,36 @@ class MultiLayerPerceptron:
         self.layers_node = []
         self.last_layer_nodes = []
 
+        self.training_samples = None
+
         self.__init_configuration()
     
     def __normalize_input(self, inputs):
-        # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
         if not self.scaler__normalize_input:
-            new_inputs, self.scaler__normalize_input = Normalize.scale_data(inputs)
+            new_inputs, self.scaler__normalize_input = self.normalize_function(inputs)
             return new_inputs
         else:
-            return self.scaler__normalize_input.transform(inputs)
+            new_inputs, self.scaler__normalize_input = self.normalize_function(inputs, self.scaler__normalize_input)
+            return new_inputs
     
     def __normalize_output(self, output):
-        # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
         if not self.scaler__normalize_output:
-            new_inputs, self.scaler__normalize_output = Normalize.scale_data(output)
+            new_inputs, self.scaler__normalize_output = self.normalize_function(output)
             return new_inputs
         else:
-            new_inputs, self.scaler__normalize_output = Normalize.scale_data(self.scaler__normalize_output)
+            new_inputs, self.scaler__normalize_output = self.normalize_function(output, self.scaler__normalize_output)
             return new_inputs
+        
+    def __unnormalize_input(self, inputs):
+        return Normalize.unscale_data(inputs, self.scaler__normalize_input)
+
+    def __unnormalize_output(self, outputs):
+        return Normalize.unscale_data(outputs, self.scaler__normalize_output)
     
     def __init_configuration(self):
         config_neuron = self.config_neuron
         config_network = self.config_network
         layers = config_network["layers"]
-
-        normalize = config_neuron['normalize']
 
         self.samples = self.__normalize_input(config_neuron['inputs'])
         self.samples = Perceptron.concatanate_threshold(self.samples)
@@ -117,13 +109,13 @@ class MultiLayerPerceptron:
             
             return activation_potential
 
-    def clean_recursion_output(self, sample_index):
+    def clean_recursion_output(self):
         for layer in self.layers_node:
             for node in layer:
                 node.network_recursion_activation_potential = [None for i in range(len(self.samples))]
                 
     def update_recursion_output(self, sample_index):
-        self.clean_recursion_output(sample_index)
+        self.clean_recursion_output()
 
         for node in self.last_layer_nodes:
                 MultiLayerPerceptron.output(node, self.samples, sample_index)
@@ -141,9 +133,9 @@ class MultiLayerPerceptron:
     
     def calc_eqm(self):
         error = 0
+        self.clean_recursion_output()
         
         for sample_index, sample in enumerate(self.samples):
-            self.clean_recursion_output(sample_index)
 
             error += self.get_error(sample_index)
         
@@ -210,6 +202,9 @@ class MultiLayerPerceptron:
 
                         node.weights[0] += node.learning_rate/len(self.samples) *  aux_threshold
 
+                    # for layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
+                    #     for node_index, node in enumerate(layer):
+                    #         pass
                     
                     for node_index, node in enumerate(self.layers_node[0]):
                         aux = [0 for i in node.weights]
@@ -234,6 +229,10 @@ class MultiLayerPerceptron:
 
                         node.weights[0] += node.learning_rate * delta *  (- 1)
                     
+                    # for layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
+                    #     for node_index, node in enumerate(layer):
+                    #         pass
+                    
                     for node_index, node in enumerate(self.layers_node[0]):
                         delta = self.get_node_delta_first_layer(node, node_index, sample_index)
                         node.network_delta[sample_index] = delta
@@ -250,6 +249,7 @@ class MultiLayerPerceptron:
         time_end = time.time()
         time_delta = time_end - time_begin
 
+        self.training_samples = self.samples
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
         self.printer.print_msg("EQM Final: " + str(eqm_current))
@@ -259,20 +259,24 @@ class MultiLayerPerceptron:
             self.printer.print_msg(
                 "Máximo de épocas atingido ("+str(max_epoch)+")")
 
-        return epochs, epochs_eqm
+        return epochs, epochs_eqm, eqm_current
 
     def classify(self, samples):
         samples = self.__normalize_input(samples)
         samples = Perceptron.concatanate_threshold(samples)
 
+        self.samples = samples
+
         outputs = []
 
-        for sample_index, sample in enumerate(samples):
-            self.clean_recursion_output(sample_index)
-            # outputs.append([])
+        self.clean_recursion_output()
 
+        for sample_index, sample in enumerate(samples):
             for node in self.last_layer_nodes:
-                # outputs[sample_index].append(MultiLayerPerceptron.output(node, samples, sample_index))
                 outputs.append(MultiLayerPerceptron.output(node, samples, sample_index))
         
-        return outputs
+        eqm = self.calc_eqm()
+
+        self.printer.print_msg("EQM: " + str(eqm))
+        
+        return self.__unnormalize_output(outputs)

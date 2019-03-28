@@ -62,6 +62,17 @@ class Classification:
         
         return hits
     
+    @staticmethod
+    def test_regression_outputs(name, results_output, test_output, printer=Printer):
+        error = 0
+
+        for index, output in enumerate(results_output):
+            error += abs(output - test_output[index])**2
+        
+        error = error/len(results_output)
+
+        printer.print_msg(
+            " => {" + name + "} EQM: "+str(error))
 
     def get_pairs_from_class_distribution(L): 
         return [[L[0][index], L[1][index]] for index in range(len(L[0]))]
@@ -85,39 +96,45 @@ class Classification:
 
 
 class Normalize:
-    # método incorreto, aproveitar a fórmula não comentada
-    # @staticmethod
-    # def min_max(new_min, new_max, inputs):
-    #     new_inputs = [i for i in inputs]
-    #     all_inputs = [j for i in inputs for j in i]
-
-    #     old_max = max(all_inputs)
-    #     old_min = min(all_inputs)
-
-    #     for i in range(len(inputs)):
-    #         for j in range(len(inputs[i])):
-    #             # new_inputs[i][j] = (inputs[i][j] - old_min) / (old_max - old_min)
-    #             new_inputs[i][j] = ((inputs[i][j] - old_min) /
-    #                             (old_max - old_min)) * (new_max - new_min) + new_min
-        
-    #     return new_inputs
-
     @staticmethod
     def reshape(data_points):
-        return [[i] for i in data_points]
+        if type(data_points[0]) != type([]):
+            return True, [[i] for i in data_points]
+
+        return False, data_points
     
     @staticmethod
     def unshape(data_points):
         return [i[0] for i in data_points]
+        
+    @staticmethod
+    def unscale_data(data_points, scaler):
+        reshape, data_points = Normalize.reshape(data_points)
+
+        result = scaler.inverse_transform(data_points)
+
+        if reshape:
+            result = Normalize.unshape(result)
+        
+        return result
     
     @staticmethod
-    def scale_data(data_points, scaler=None):
-        reshape = False
+    def min_max_scale_data(data_points, scaler=None, min=-0.5, max=0.5):
+        reshape, data_points = Normalize.reshape(data_points)
 
-        if type(data_points[0]) != type([]):
-            reshape = True
-            data_points = Normalize.reshape(data_points)
-            # print(data_points)
+        if not scaler:
+            scaler = preprocessing.MinMaxScaler((min,max)).fit(data_points)
+            
+        transformed = scaler.transform(data_points)
+
+        if reshape:
+            transformed = Normalize.unshape(transformed)
+
+        return transformed, scaler
+
+    @staticmethod
+    def standard_scale_data(data_points, scaler=None):
+        reshape, data_points = Normalize.reshape(data_points)
 
         if not scaler:
             scaler = preprocessing.StandardScaler().fit(data_points)
@@ -125,8 +142,7 @@ class Normalize:
         transformed = scaler.transform(data_points)
 
         if reshape:
-            data_points = Normalize.unshape(transformed)
-            return data_points, scaler
+            transformed = Normalize.unshape(transformed)
 
         return transformed, scaler
 
