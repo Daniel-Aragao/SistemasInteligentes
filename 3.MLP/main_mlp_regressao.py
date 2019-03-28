@@ -74,23 +74,25 @@ def executar_MLP(execution_name, mlp, is_offline):
 
 def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
     epochs = 0
-    is_random = True
+    try:
+        
+        ####### 1 #######
+        epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
 
-    ####### 1 #######
-    epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
+        ####### 2 #######
+        epochs += executar_MLP(execution_name + "_2", MLP(PMC, config_neuron), is_offline)
 
-    ####### 2 #######
-    epochs += executar_MLP(execution_name + "_2", MLP(PMC, config_neuron), is_offline)
+        ####### 3 #######
+        epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
 
-    ####### 3 #######
-    epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
+        ####### 4 #######
+        epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
 
-    ####### 4 #######
-    epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
+        ####### 5 #######
+        epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
 
-    ####### 5 #######
-    epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
-
+    except Exception :
+        pass
     print_epoch_average(execution_name, epochs, 5)
 
 
@@ -158,7 +160,7 @@ config_neuron = {
 }
 ############# 1 #############
 for PMC in PMCs:
-    for learning_rate in learning_rates:
+    for learning_rate in learning_rates[3:]:
         config_neuron["learning_rate"] = learning_rate
         routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
