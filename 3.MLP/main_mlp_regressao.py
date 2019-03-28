@@ -31,15 +31,6 @@ def print_epoch_average(exec, epochs, qtd):
     Printer.print_msg("\nMédia de épocas para execução " +
                       exec + ": " + str(epochs/qtd) + "\n\n")
 
-    if save_data:
-        Exporter.add_result_entry(exec, epochs/qtd)
-
-
-def end_results_file():
-    if save_data:
-        Exporter.end_results_line()
-
-
 def ploting_inputs_class(name, inputs, expected_outputs, outputs, weights):
     Ploter.plot_results(inputs, expected_outputs, outputs)
     Ploter.plot_line(inputs, weights)
@@ -59,7 +50,48 @@ def ploting_eqm_epoch(name, epochs_eqm):
     else:
         Ploter.show(title)
 
+def executar_MLP(execution_name, mlp, is_offline):
+    epochs, epochs_eqm, eqm_final = mlp.train(max_epoch=10000, offline=is_offline)
+
+    train_results = mlp.classify(train_inputs)
+
+    test_results = mlp.classify(test_inputs)
+
+    testc.test_regression_outputs("Execução MLP " + execution_name + " Treino",
+                       train_results, mlp.normalize_output(train_outputs), printer=Printer)
+
+    testc.test_regression_outputs("Execução MLP " + execution_name + " Teste",
+                        test_results, mlp.normalize_output(test_outputs), printer=Printer)
+
+    if not avoid_plot_it_all:
+        ploting_eqm_epoch(execution_name, epochs_eqm)
+
+    return epochs
+
+def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
+    epochs = 0
+    is_random = True
+
+    ####### 1 #######
+    epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
+
+    ####### 2 #######
+    epochs += executar_MLP(execution_name + "_2", MLP(PMC, config_neuron), is_offline)
+
+    ####### 3 #######
+    epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
+
+    ####### 4 #######
+    epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
+
+    ####### 5 #######
+    epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
+
+    print_epoch_average(execution_name, epochs, 5)
+
+
 PMC1 = {
+    "name": "PMC1",
     "layers" :[
         {
             "neuron_type": 'perceptron',
@@ -75,6 +107,7 @@ PMC1 = {
 }
 
 PMC2 = {
+    "name": "PMC2",
     "layers" :[
         {
             "neuron_type": 'perceptron',
@@ -90,6 +123,7 @@ PMC2 = {
 }
 
 PMC3 = {
+    "name": "PMC3",
     "layers" :[
         {
             "neuron_type": 'perceptron',
@@ -104,33 +138,61 @@ PMC3 = {
     ]
 }
 
+PMCs = [PMC1, PMC2, PMC3]
+
+##################### GERAL #####################
+learning_rates = [0.01, 0.1, 0.2, 0.5, 0.7, 1.0]
+
 config_neuron = {
-    "learning_rate": 0.001,
+    "learning_rate": 0.1,
     "precision": 0.000001,
     "inputs": train_inputs,
     "expected_outputs": train_outputs,
     "normalize_function": Normalize.standard_scale_data,
-    "printer": Printer
+    "printer": Printer,
+    "shuffle": True
 }
+############# 1 #############
+for PMC in PMCs:
+    for learning_rate in learning_rates:
+        config_neuron["learning_rate"] = learning_rate
+        routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
-mlp1 = MLP(PMC1, config_neuron)
+############# 2 #############
+config_neuron["shuffle"] = False
 
-epochs, epochs_eqm, eqm_final = mlp1.train(max_epoch=10000, offline=True)
+for PMC in PMCs:
+    for learning_rate in learning_rates:
+        config_neuron["learning_rate"] = learning_rate
+        routine_adaline("2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
-train_results = mlp1.classify(train_inputs)
+############# 3 #############
+config_neuron["normalize_function"] = Normalize.min_max_scale_data
 
-test_results = mlp1.classify(test_inputs)
+######### 1 #########
+config_neuron["shuffle"] = True
 
-name = "1"
+for PMC in PMCs:
+    for learning_rate in learning_rates:
+        config_neuron["learning_rate"] = learning_rate
+        routine_adaline("3_1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
-testc.test_regression_outputs("Execução MLP " + name + " Treino",
-                       train_results, train_outputs, printer=Printer)
+######### 2 #########
+config_neuron["shuffle"] = False
+for PMC in PMCs:
+    for learning_rate in learning_rates:
+        config_neuron["learning_rate"] = learning_rate
+        routine_adaline("3_2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
-testc.test_regression_outputs("Execução MLP " + name + " Teste",
-                       test_results, test_outputs, printer=Printer)
+############# 4 #############
+config_neuron["normalize_function"] = Normalize.standard_scale_data
 
+config_neuron["shuffle"] = True
 
-ploting_eqm_epoch(name, epochs_eqm)
+for PMC in PMCs:
+    for learning_rate in learning_rates:
+        config_neuron["learning_rate"] = learning_rate
+        routine_adaline("4_2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
 # Bodyfat
 # uma camada escondida nas 3 topologias

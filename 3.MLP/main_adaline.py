@@ -2,17 +2,24 @@ from adaline import Adaline
 from IO_Operations import Importer
 from util import Classification as testc
 from util import DistanceCalcs
+from util import Normalize
 from show_graphics import Ploter
 from IO_Operations import PrinterFile as PrintOnFileEather
 from IO_Operations import Printer as PrintOnlyConsole
 from IO_Operations import Exporter
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
-train_inputs = Importer.import_input('misc/xtrain.txt')
-train_outputs = Importer.import_output('misc/dtrain.txt')
+train_inputs = Importer.import_input('misc/xtrain_bodyfat.txt')
+train_outputs = Importer.import_output('misc/dtrain_bodyfat.txt')
 
-test_inputs = Importer.import_input('misc/xtest.txt')
-test_outputs = Importer.import_output('misc/dtest.txt')
+test_inputs = Importer.import_input('misc/xtest_bodyfat.txt')
+test_outputs = Importer.import_output('misc/dtest_bodyfat.txt')
+
+# train_inputs = Importer.import_input('misc/xtrain.txt')
+# train_outputs = Importer.import_output('misc/dtrain.txt')
+
+# test_inputs = Importer.import_input('misc/xtest.txt')
+# test_outputs = Importer.import_output('misc/dtest.txt')
 
 save_image = False
 avoid_plot_it_all = False
@@ -28,24 +35,6 @@ def print_epoch_average(exec, epochs, qtd):
     Printer.print_msg("\nMédia de épocas para execução " +
                       exec + ": " + str(epochs/qtd) + "\n\n")
 
-    if save_data:
-        Exporter.add_result_entry(exec, epochs/qtd)
-
-
-def end_results_file():
-    if save_data:
-        Exporter.end_results_line()
-
-
-def ploting_inputs_class(name, inputs, expected_outputs, outputs, weights):
-    Ploter.plot_results(inputs, expected_outputs, outputs)
-    Ploter.plot_line(inputs, weights)
-    title = "Execução Adaline " + name
-
-    if save_image:
-        Ploter.savefig(title)
-    else:
-        Ploter.show(title)
 
 def ploting_eqm_epoch(name, epochs_eqm):
     Ploter.plot_eqm_epoch(epochs_eqm)
@@ -59,83 +48,91 @@ def ploting_eqm_epoch(name, epochs_eqm):
 ######################################################### ADALINE #########################################################
 
 
-def executar_adaline(name, adaline: Adaline, test=True):
+def executar_adaline(name, adaline: Adaline):
     weights, resulted_outputs, epochs, epochs_eqm = adaline.train()
-    classify_outputs, classify_inputs = adaline.classify(test_inputs)
+    classify_outputs, classify_inputs = adaline.classify(test_inputs)    
 
-    testc.test_outputs("Execução Adaline " + name + " Treino",
-                       resulted_outputs, train_outputs, printer=Printer)
+    testc.test_regression_outputs("Execução Adaline " + name + " Treino",
+                       resulted_outputs, adaline.normalize_output(train_outputs), printer=Printer)
 
-    if test:
-        testc.test_outputs("Execução Adaline " + name + " Teste",
-                        classify_outputs, test_outputs, printer=Printer)
+    testc.test_regression_outputs("Execução Adaline " + name + " Teste",
+                    classify_outputs, adaline.normalize_output(test_outputs), printer=Printer)
 
     if not avoid_plot_it_all:
-        ploting_inputs_class(name, adaline.inputs, train_outputs, resulted_outputs, adaline.weights)
         ploting_eqm_epoch(name, epochs_eqm)
-
-        if test:
-            ploting_inputs_class(name + "_teste", classify_inputs,
-                    test_outputs, classify_outputs, adaline.weights)
 
     return epochs
 
 
-def get_adaline(learning_rate, precision, is_offline, is_random):
-    return Adaline(train_inputs, train_outputs, learning_rate, precision, is_offline, is_random=is_random, printer=Printer)
+def get_adaline(learning_rate, precision, is_offline, is_random, normalize):
+    return Adaline(train_inputs, train_outputs, learning_rate, precision, is_offline, is_random=is_random, printer=Printer, normalize=normalize)
 
 
-def routine_adaline(execution_name, learning_rate, precision, is_offline, test=True):
+def routine_adaline(execution_name, learning_rate, precision, is_offline, normalize=Normalize.standard_scale_data):
     epochs = 0
+    is_random = True
 
     ####### 1 #######
-    is_random = False
     epochs += executar_adaline(execution_name + "_1", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+        learning_rate, precision, is_offline, is_random, normalize))
 
     ####### 2 #######
-    is_random = True
     epochs += executar_adaline(execution_name + "_2", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+        learning_rate, precision, is_offline, is_random, normalize))
 
     ####### 3 #######
     epochs += executar_adaline(execution_name + "_3", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+        learning_rate, precision, is_offline, is_random, normalize))
 
     ####### 4 #######
     epochs += executar_adaline(execution_name + "_4", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+        learning_rate, precision, is_offline, is_random, normalize))
 
     ####### 5 #######
     epochs += executar_adaline(execution_name + "_5", get_adaline(
-        learning_rate, precision, is_offline, is_random), test=test)
+        learning_rate, precision, is_offline, is_random, normalize))
 
     print_epoch_average(execution_name, epochs, 5)
 
+##################### GERAL #####################
+learning_rates = [0.01, 0.1, 0.2, 0.5, 0.7, 1.0]
+precision = 0.000001
 
 ############# 1 #############
-learning_rate = 1
-precision = 0.1
-routine_adaline("1", learning_rate, precision, True)
+
+for learning_rate in learning_rates:
+    routine_adaline("1_"+str(learning_rate), learning_rate, precision, False)
 
 ############# 2 #############
-routine_adaline("2", learning_rate, precision, False)
-# ############# 3 #############
-# # calcular taxa de acerto quanto as amostras de treinamento
-# # verificar se há alterações nas fronteiras
-# # calcular taxa de acerto quanto as amostras de teste
-learning_rate = 0.01
-routine_adaline("3", learning_rate, precision, True)
-############ 4 #############
-routine_adaline("4", learning_rate, precision, False)
-############ 5 #############
-precision = 0.01
-routine_adaline("5_3", learning_rate, precision, True)
-routine_adaline("5_4", learning_rate, precision, False)
-############ 6 #############
-precision = 0.00001
-routine_adaline("6_3", learning_rate, precision, True)
-routine_adaline("6_4", learning_rate, precision, False)
+
+for learning_rate in learning_rates:
+    routine_adaline("2_"+str(learning_rate), learning_rate, precision, True)
+
+############# 3 #############
+######### 1 #########
+
+for learning_rate in learning_rates:
+    routine_adaline("3_1_"+str(learning_rate), learning_rate, precision, False, normalize=Normalize.min_max_scale_data)
+
+######### 2 #########
+
+for learning_rate in learning_rates:
+    routine_adaline("3_2_"+str(learning_rate), learning_rate, precision, True, normalize=Normalize.min_max_scale_data)
+
+# precision = 0.001
+# learning_rate = 0.01
+# routine_adaline("3", learning_rate, precision, True)
+# ############ 4 #############
+# routine_adaline("4", learning_rate, precision, False)
+
+# ############ 5 #############
+# precision = 0.01
+# routine_adaline("5_3", learning_rate, precision, True)
+# routine_adaline("5_4", learning_rate, precision, False)
+# ############ 6 #############
+# precision = 0.00001
+# routine_adaline("6_3", learning_rate, precision, True)
+# routine_adaline("6_4", learning_rate, precision, False)
 # ############ 7 #############
 # indicar qual foi o mais eficiente (menor qtd de épocas)
 # indicar qual foi o mais eficaz (maior taxa de acerto sob treinamento de teste)

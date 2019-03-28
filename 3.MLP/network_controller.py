@@ -1,3 +1,4 @@
+import random
 import time
 import math
 from perceptron import Perceptron
@@ -17,6 +18,7 @@ class MultiLayerPerceptron:
         self.printer = self.config_neuron['printer'] 
         self.precision = config_neuron["precision"]
         self.expected_outputs = config_neuron["expected_outputs"]
+        self.shuffle = config_neuron['shuffle']
 
         self.layers_node = []
         self.last_layer_nodes = []
@@ -33,7 +35,7 @@ class MultiLayerPerceptron:
             new_inputs, self.scaler__normalize_input = self.normalize_function(inputs, self.scaler__normalize_input)
             return new_inputs
     
-    def __normalize_output(self, output):
+    def normalize_output(self, output):
         if not self.scaler__normalize_output:
             new_inputs, self.scaler__normalize_output = self.normalize_function(output)
             return new_inputs
@@ -55,7 +57,7 @@ class MultiLayerPerceptron:
         self.samples = self.__normalize_input(config_neuron['inputs'])
         self.samples = Perceptron.concatanate_threshold(self.samples)
 
-        self.expected_outputs = self.__normalize_output(config_neuron['expected_outputs'])
+        self.expected_outputs = self.normalize_output(config_neuron['expected_outputs'])
 
         for index, layer in enumerate(layers):
             self.layers_node.append([])
@@ -177,17 +179,23 @@ class MultiLayerPerceptron:
             if epochs > max_epoch:
                 break
 
+            if self.shuffle:
+                random.shuffle(self.samples)
+
             eqm_before = self.calc_eqm()
 
-            for sample_index, sample in enumerate(self.samples):
-                self.update_recursion_output(sample_index)
 
-                if offline:
+            if offline:
+                # for sample_index, sample in enumerate(self.samples):
+                #     self.update_recursion_output(sample_index)
+
                     for node in self.last_layer_nodes:
                         aux = [0 for i in node.parents]
                         aux_threshold = 0
 
                         for samp_index, samp in enumerate(self.samples):
+                            self.update_recursion_output(samp_index)
+
                             delta = self.get_node_delta_output_layer(node, samp_index)
                             node.network_delta[samp_index] = delta
 
@@ -219,7 +227,10 @@ class MultiLayerPerceptron:
                         for index_weights, weight in enumerate(node.weights):
                             node.weights[index_weights] = weight + node.learning_rate/len(self.samples) * aux[index_weights]
 
-                else:
+            else:
+                for sample_index, sample in enumerate(self.samples):
+                    self.update_recursion_output(sample_index)
+
                     for node in self.last_layer_nodes:
                         delta = self.get_node_delta_output_layer(node, sample_index)
                         node.network_delta[sample_index] = delta
@@ -275,8 +286,9 @@ class MultiLayerPerceptron:
             for node in self.last_layer_nodes:
                 outputs.append(MultiLayerPerceptron.output(node, samples, sample_index))
         
-        eqm = self.calc_eqm()
+        # eqm = self.calc_eqm()
 
-        self.printer.print_msg("EQM: " + str(eqm))
+        # self.printer.print_msg("EQM: " + str(eqm))
         
-        return self.__unnormalize_output(outputs)
+        return outputs
+        # return self.__unnormalize_output(outputs)

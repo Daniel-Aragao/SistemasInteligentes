@@ -19,25 +19,29 @@ class Neuron:
         self.seed = Neuron.seed_count
         Neuron.seed_count += 1
 
+        self.normalize_function = normalize
+
         self.expected_outputs = expected_outputs
         self.activation_function = activation_function
         self.learning_rate = learning_rate
 
         self.create_weights(inputs, is_random)
 
-        self.scaler__normalize = None
+        self.scaler__normalize_input = None
+        self.scaler__normalize_output = None
 
         if(normalize):
-            inputs = self.__normalize(inputs)
+            inputs = self.__normalize_input(inputs)
+            self.expected_outputs = self.normalize_output(expected_outputs)
 
-        self.is_normalize = normalize
+        self.normalize = normalize
 
         self.inputs = None
         self.parents = None
 
         self.parents = parents
 
-        if not inputs is None and type(inputs) == type([]):
+        if not (inputs is None) and type(inputs) == type([]):
             self.inputs = Neuron.concatanate_threshold(inputs)  # [-1] + inputs
 
         self.__samples: Sample = []
@@ -59,19 +63,27 @@ class Neuron:
         
         self.weights = [self.__threshold] + self.weights
 
-    def __normalize(self, inputs):
-        # new_inputs = Normalize.min_max(-0.5, 0.5, inputs)
-        if not self.scaler__normalize:
-            new_inputs, self.scaler__normalize = Normalize.standard_scale_data(inputs)
+    def __normalize_input(self, inputs):
+        if not self.scaler__normalize_input:
+            new_inputs, self.scaler__normalize_input = self.normalize_function(inputs)
             return new_inputs
         else:
-            return self.scaler__normalize.transform(inputs)
+            new_inputs, self.scaler__normalize_input = self.normalize_function(inputs, self.scaler__normalize_input)
+            return new_inputs
+    
+    def normalize_output(self, output):
+        if not self.scaler__normalize_output:
+            new_inputs, self.scaler__normalize_output = self.normalize_function(output)
+            return new_inputs
+        else:
+            new_inputs, self.scaler__normalize_output = self.normalize_function(output, self.scaler__normalize_output)
+            return new_inputs
 
     def __param_validation(self):
         import types
 
         if self.inputs is None or type(self.inputs) != type([]):
-            raise Exception("\"Inputs\" can't be None and must be a function")
+            raise Exception("\"Inputs\" can't be None and must be a list")
 
         if self.weights is None or type(self.weights) != type([]):
             raise Exception("\"Weights\" can't be None and must be a list")
@@ -110,22 +122,41 @@ class Neuron:
 
         return samples
 
+    def calc_eqm(self):
+        summ = 0
+        samples_size = len(self._Neuron__samples)
+
+        for sample in self._Neuron__samples:
+            activation_potential = sample.get_activation_potential()
+
+            summ += ((sample.expected_output - activation_potential) ** 2)
+
+        return summ/samples_size
+
     def train(self, max_epoch=10000):
         pass
     
-    def get_neuron_output(self, inputt):
-        inputt = self.concatanate_threshold([inputt])[0]
-        sample = Sample(inputt, None, self.weights)
+    def classify(self, inputs):
+        if self.normalize:
+            inputs = self.__normalize_input(inputs)
 
-        activation_potential = sample.get_activation_potential()
+        inputs = self.concatanate_threshold(inputs)
 
-        return self.activation_function(activation_potential)
+        samples = [Sample(inputt, None, self.weights) for inputt in inputs]
+        outputs = []
 
-    def classify(self, inputs, input_normalized=False):
-        if self.is_normalize and not input_normalized:
-            inputs = self.__normalize(inputs)
-        
-        return [self.get_neuron_output(inputt) for inputt in inputs], inputs
+
+        for sample in samples:
+            activation_potential = sample.get_activation_potential()
+
+            output = self.activation_function(activation_potential)
+            outputs.append(output)
+
+        self.__samples = samples
+        # eqm = self.calc_eqm()
+        # self.printer.print_msg("EQM Classify: " + str(eqm))
+
+        return outputs, inputs
 
     def __str__(self):
         string = "\nThreshold: " + str(self.__threshold) + " "

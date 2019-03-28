@@ -48,8 +48,6 @@ class Classification:
                 fail_local = True
                 qtd_errors += 1
 
-            # print(str(index).zfill(2) + ".", p_o, test_output[index], "Erro" if fail_local else "")
-        
         samples_size = len(perceptron_output)
         hits = (((samples_size - qtd_errors)/samples_size)*100)
 
@@ -64,19 +62,16 @@ class Classification:
     
     @staticmethod
     def test_regression_outputs(name, results_output, test_output, printer=Printer):
-        error = 0
-
-        for index, output in enumerate(results_output):
-            error += abs(output - test_output[index])**2
-        
-        error = error/len(results_output)
+        error= Classification.calc_eqm(results_output, test_output)
 
         printer.print_msg(
             " => {" + name + "} EQM: "+str(error))
 
+    @staticmethod
     def get_pairs_from_class_distribution(L): 
         return [[L[0][index], L[1][index]] for index in range(len(L[0]))]
         
+    @staticmethod
     def change_nearest_points_classes(inputs, outputs):
         A, B = Classification.get_class_distribution(inputs, outputs, no_teta=True)
 
@@ -93,6 +88,15 @@ class Classification:
         new_outputs[inputs.index(b_pair)] *= -1
 
         return new_outputs
+    
+    @staticmethod
+    def calc_eqm(results, outputs):
+        summ = 0
+
+        for i, output in enumerate(outputs):
+            summ += ((results[i] - output) ** 2)
+
+        return summ/len(outputs)
 
 
 class Normalize:
@@ -116,7 +120,7 @@ class Normalize:
         if reshape:
             result = Normalize.unshape(result)
         
-        return result
+        return list(result)
     
     @staticmethod
     def min_max_scale_data(data_points, scaler=None, min=-0.5, max=0.5):
@@ -130,7 +134,7 @@ class Normalize:
         if reshape:
             transformed = Normalize.unshape(transformed)
 
-        return transformed, scaler
+        return list(transformed), scaler
 
     @staticmethod
     def standard_scale_data(data_points, scaler=None):
@@ -144,7 +148,7 @@ class Normalize:
         if reshape:
             transformed = Normalize.unshape(transformed)
 
-        return transformed, scaler
+        return list(transformed), scaler
 
 
 class DistanceCalcs:
