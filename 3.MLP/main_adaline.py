@@ -7,6 +7,7 @@ from show_graphics import Ploter
 from IO_Operations import PrinterFile as PrintOnFileEather
 from IO_Operations import Printer as PrintOnlyConsole
 from IO_Operations import Exporter
+import time
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
 train_inputs = Importer.import_input('misc/xtrain_bodyfat.txt')
@@ -21,15 +22,18 @@ test_outputs = Importer.import_output('misc/dtest_bodyfat.txt')
 # test_inputs = Importer.import_input('misc/xtest.txt')
 # test_outputs = Importer.import_output('misc/dtest.txt')
 
-save_image = False
+save_image = True
 avoid_plot_it_all = False
-save_data = False
+save_data = True
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrintOnFileEather
 else:
     Printer = PrintOnlyConsole
 
+tempo_inicio = time.time()
+tempo_inicio_local = time.localtime()
+Printer.print_msg(str(tempo_inicio_local.tm_hour)+":"+str(tempo_inicio_local.tm_min)+":"+str(tempo_inicio_local.tm_sec))
 
 def print_epoch_average(exec, epochs, qtd):
     Printer.print_msg("\nMédia de épocas para execução " +
@@ -138,4 +142,10 @@ for learning_rate in learning_rates:
 # indicar qual foi o mais eficaz (maior taxa de acerto sob treinamento de teste)
 
 
-end_results_file()
+tempo_fim = time.time()
+tempo_fim_local = time.localtime()
+Printer.print_msg(str(tempo_fim_local.tm_hour)+":"+str(tempo_fim_local.tm_min)+":"+str(tempo_fim_local.tm_sec))
+
+delta = tempo_fim - tempo_inicio
+
+Printer.print_msg("Delta tempo: " + str(delta))
