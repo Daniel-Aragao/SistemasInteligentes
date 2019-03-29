@@ -85,21 +85,22 @@ def routine_adaline(execution_name, learning_rate, precision, is_offline, normal
         learning_rate, precision, is_offline, is_random, normalize))
 
     ####### 3 #######
-    epochs += executar_adaline(execution_name + "_3", get_adaline(
-        learning_rate, precision, is_offline, is_random, normalize))
+    # epochs += executar_adaline(execution_name + "_3", get_adaline(
+    #     learning_rate, precision, is_offline, is_random, normalize))
 
-    ####### 4 #######
-    epochs += executar_adaline(execution_name + "_4", get_adaline(
-        learning_rate, precision, is_offline, is_random, normalize))
+    # ####### 4 #######
+    # epochs += executar_adaline(execution_name + "_4", get_adaline(
+    #     learning_rate, precision, is_offline, is_random, normalize))
 
-    ####### 5 #######
-    epochs += executar_adaline(execution_name + "_5", get_adaline(
-        learning_rate, precision, is_offline, is_random, normalize))
+    # ####### 5 #######
+    # epochs += executar_adaline(execution_name + "_5", get_adaline(
+    #     learning_rate, precision, is_offline, is_random, normalize))
 
     print_epoch_average(execution_name, epochs, 5)
 
 ##################### GERAL #####################
 learning_rates = [0.01, 0.1, 0.2, 0.5, 0.7, 1.0]
+# learning_rates = [0.01, 0.1]#, 0.2, 0.5, 0.7, 1.0]
 precision = 0.000001
 
 ############# 1 #############
@@ -109,18 +110,18 @@ for learning_rate in learning_rates:
 
 ############# 2 #############
 
-for learning_rate in learning_rates:
+# for learning_rate in learning_rates:
     routine_adaline("2_"+str(learning_rate), learning_rate, precision, True)
 
 ############# 3 #############
 ######### 1 #########
 
-for learning_rate in learning_rates:
+# for learning_rate in learning_rates:
     routine_adaline("3_1_"+str(learning_rate), learning_rate, precision, False, normalize=Normalize.min_max_scale_data)
 
 ######### 2 #########
 
-for learning_rate in learning_rates:
+# for learning_rate in learning_rates:
     routine_adaline("3_2_"+str(learning_rate), learning_rate, precision, True, normalize=Normalize.min_max_scale_data)
 
 # precision = 0.001

@@ -161,7 +161,19 @@ class MultiLayerPerceptron:
         u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
 
         return (summ * node.activation_function(u, is_derivative=True))
-        
+    
+    def __shuffle(self):
+        shuffle_map = [i for i in range(len(self.samples))]
+        random.shuffle(shuffle_map)
+
+        for i, new_i in enumerate(shuffle_map):
+            a = self.samples[i]
+            self.samples[i] = self.samples[new_i]
+            self.samples[new_i] = a
+
+            b = self.expected_outputs[i]
+            self.expected_outputs[i] = self.expected_outputs[new_i]
+            self.expected_outputs[new_i] = b
         
     def train(self, max_epoch=10000, offline=False):
         precision = self.config_neuron['precision']
@@ -180,10 +192,9 @@ class MultiLayerPerceptron:
                 break
 
             if self.shuffle:
-                random.shuffle(self.samples)
+                self.__shuffle()                
 
             eqm_before = self.calc_eqm()
-
 
             if offline:
                 # for sample_index, sample in enumerate(self.samples):

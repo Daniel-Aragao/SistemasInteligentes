@@ -18,9 +18,9 @@ train_outputs = Importer.import_output('misc/dtrain_bodyfat.txt')
 test_inputs = Importer.import_input('misc/xtest_bodyfat.txt')
 test_outputs = Importer.import_output('misc/dtest_bodyfat.txt')
 
-save_image = True
+save_image = False
 avoid_plot_it_all = False
-save_data = True
+save_data = False
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrinterFileMLP
@@ -83,13 +83,13 @@ def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
         epochs += executar_MLP(execution_name + "_2", MLP(PMC, config_neuron), is_offline)
 
         ####### 3 #######
-        epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
+        # epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
 
-        ####### 4 #######
-        epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
+        # ####### 4 #######
+        # epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
 
-        ####### 5 #######
-        epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
+        # ####### 5 #######
+        # epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
 
     except Exception :
         pass
@@ -148,7 +148,7 @@ PMCs = [PMC1, PMC2, PMC3]
 
 ##################### GERAL #####################
 learning_rates = [0.01, 0.1, 0.2, 0.5, 0.7, 1.0]
-
+# learning_rates = [0.01]
 config_neuron = {
     "learning_rate": 0.1,
     "precision": 0.000001,
@@ -160,45 +160,48 @@ config_neuron = {
 }
 ############# 1 #############
 for PMC in PMCs:
-    for learning_rate in learning_rates[3:]:
+    for learning_rate in learning_rates:
+        config_neuron["normalize_function"] = Normalize.standard_scale_data
+
+        config_neuron["shuffle"] = True
         config_neuron["learning_rate"] = learning_rate
         routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
 ############# 2 #############
-config_neuron["shuffle"] = False
 
-for PMC in PMCs:
-    for learning_rate in learning_rates:
+# for PMC in PMCs:
+#     for learning_rate in learning_rates:
+        config_neuron["shuffle"] = False
         config_neuron["learning_rate"] = learning_rate
         routine_adaline("2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
 ############# 3 #############
-config_neuron["normalize_function"] = Normalize.min_max_scale_data
+        config_neuron["normalize_function"] = Normalize.min_max_scale_data
 
 ######### 1 #########
-config_neuron["shuffle"] = True
 
-for PMC in PMCs:
-    for learning_rate in learning_rates:
+# for PMC in PMCs:
+#     for learning_rate in learning_rates:
+        config_neuron["shuffle"] = True
         config_neuron["learning_rate"] = learning_rate
         routine_adaline("3_1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
 ######### 2 #########
-config_neuron["shuffle"] = False
-for PMC in PMCs:
-    for learning_rate in learning_rates:
+# for PMC in PMCs:
+#     for learning_rate in learning_rates:
+        config_neuron["shuffle"] = False
         config_neuron["learning_rate"] = learning_rate
         routine_adaline("3_2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
-############# 4 #############
-config_neuron["normalize_function"] = Normalize.standard_scale_data
+# ############# 4 #############
+# config_neuron["normalize_function"] = Normalize.standard_scale_data
 
-config_neuron["shuffle"] = True
+# config_neuron["shuffle"] = True
 
-for PMC in PMCs:
-    for learning_rate in learning_rates:
-        config_neuron["learning_rate"] = learning_rate
-        routine_adaline("4_2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
+# for PMC in PMCs:
+#     for learning_rate in learning_rates:
+#         config_neuron["learning_rate"] = learning_rate
+#         routine_adaline("4_2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 
 # Bodyfat
 # uma camada escondida nas 3 topologias

@@ -1,410 +1,145 @@
-5:56:59
+15:52:20
 
-Duração(sec): 70.38406372070312
-EQM Final: 0.5001094806142168
-Épocas: 1683
- => {Execução MLP 1_PMC1_0.01_1 Treino} EQM: 1.0223837613847884
- => {Execução MLP 1_PMC1_0.01_1 Teste} EQM: 0.9204471311373177
+Duração(sec): 352.2889087200165
+EQM Final: 0.10840978001722777
+Épocas: 3445
+ => {Execução MLP 1_PMC1_0.01_1 Treino} EQM: 0.21681956003445532
+ => {Execução MLP 1_PMC1_0.01_1 Teste} EQM: 0.2928481195929012
+16:7:19
 
-Duração(sec): 17.96945548057556
-EQM Final: 0.49889345395378226
-Épocas: 419
- => {Execução MLP 1_PMC1_0.01_2 Treino} EQM: 0.9717085722904932
- => {Execução MLP 1_PMC1_0.01_2 Teste} EQM: 0.8659127113744227
+Duração(sec): 23.425034284591675
+EQM Final: 0.10969642451478151
+Épocas: 260
+ => {Execução MLP 1_PMC1_0.01_1 Treino} EQM: 0.21939284902956305
+ => {Execução MLP 1_PMC1_0.01_1 Teste} EQM: 0.3146251456855725
 
-Duração(sec): 115.47254347801208
-EQM Final: 0.4996877135793735
-Épocas: 2907
- => {Execução MLP 1_PMC1_0.01_3 Treino} EQM: 0.987853467391723
- => {Execução MLP 1_PMC1_0.01_3 Teste} EQM: 0.8788357821809833
-
-Duração(sec): 187.8105432987213
-EQM Final: 0.4955720050377081
-Épocas: 5683
- => {Execução MLP 1_PMC1_0.01_4 Treino} EQM: 1.05998993410117
- => {Execução MLP 1_PMC1_0.01_4 Teste} EQM: 0.9538257388305472
-
-Duração(sec): 157.3570156097412
-EQM Final: 0.49937606604984813
-Épocas: 4765
- => {Execução MLP 1_PMC1_0.01_5 Treino} EQM: 0.959894937447048
- => {Execução MLP 1_PMC1_0.01_5 Teste} EQM: 0.8615651292370718
-
-Média de épocas para execução 1_PMC1_0.01: 3091.4
-
-
-
-Duração(sec): 327.54969453811646
-EQM Final: 0.5594237430318858
+Duração(sec): 844.0860371589661
+EQM Final: 0.09991406692846101
 Épocas: 10001
 Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.1_1 Treino} EQM: 1.4078258995065405
- => {Execução MLP 1_PMC1_0.1_1 Teste} EQM: 1.2486055086125503
+ => {Execução MLP 1_PMC1_0.01_2 Treino} EQM: 0.19982813385692197
+ => {Execução MLP 1_PMC1_0.01_2 Teste} EQM: 0.2537829724222774
 
-Duração(sec): 327.1657214164734
-EQM Final: 0.5939160028941992
+Média de épocas para execução 1_PMC1_0.01: 2052.2
+
+
+
+Duração(sec): 55.256596326828
+EQM Final: 0.3339553198392932
+Épocas: 672
+ => {Execução MLP 2_PMC1_0.01_1 Treino} EQM: 0.6679106396785864
+ => {Execução MLP 2_PMC1_0.01_1 Teste} EQM: 0.6146927224009395
+
+Duração(sec): 239.25934052467346
+EQM Final: 0.3275348734394883
+Épocas: 3069
+ => {Execução MLP 2_PMC1_0.01_2 Treino} EQM: 0.6550697468789766
+ => {Execução MLP 2_PMC1_0.01_2 Teste} EQM: 0.5193899427773111
+
+Média de épocas para execução 2_PMC1_0.01: 748.2
+
+
+
+Duração(sec): 10.592326164245605
+EQM Final: 0.004799520195230174
+Épocas: 154
+ => {Execução MLP 3_1_PMC1_0.01_1 Treino} EQM: 0.00959904039046035
+ => {Execução MLP 3_1_PMC1_0.01_1 Teste} EQM: 0.011481522376947322
+
+Duração(sec): 15.718574523925781
+EQM Final: 0.004462500368178065
+Épocas: 226
+ => {Execução MLP 3_1_PMC1_0.01_2 Treino} EQM: 0.008925000736356136
+ => {Execução MLP 3_1_PMC1_0.01_2 Teste} EQM: 0.010948813662159917
+
+Média de épocas para execução 3_1_PMC1_0.01: 76.0
+
+
+
+Duração(sec): 179.92296862602234
+EQM Final: 0.01682082427679843
+Épocas: 2584
+ => {Execução MLP 3_2_PMC1_0.01_1 Treino} EQM: 0.03364164855359686
+ => {Execução MLP 3_2_PMC1_0.01_1 Teste} EQM: 0.03035567852853006
+
+Duração(sec): 19.957218408584595
+EQM Final: 0.017941955831550553
+Épocas: 261
+ => {Execução MLP 3_2_PMC1_0.01_2 Treino} EQM: 0.035883911663101106
+ => {Execução MLP 3_2_PMC1_0.01_2 Teste} EQM: 0.03411473219733541
+
+Média de épocas para execução 3_2_PMC1_0.01: 569.0
+
+
+
+Duração(sec): 776.0195696353912
+EQM Final: 0.16375932473958424
 Épocas: 10001
 Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.1_2 Treino} EQM: 0.7712502303210128
- => {Execução MLP 1_PMC1_0.1_2 Teste} EQM: 0.6472023299969595
+ => {Execução MLP 1_PMC1_0.1_1 Treino} EQM: 0.3275186494791682
+ => {Execução MLP 1_PMC1_0.1_1 Teste} EQM: 0.5145347377203645
 
-Duração(sec): 327.5437099933624
-EQM Final: 0.5251325036008385
+Duração(sec): 727.361734867096
+EQM Final: 0.12983263126947636
+Épocas: 9387
+ => {Execução MLP 1_PMC1_0.1_2 Treino} EQM: 0.25966526253895267
+ => {Execução MLP 1_PMC1_0.1_2 Teste} EQM: 0.3831681630171543
+
+Média de épocas para execução 1_PMC1_0.1: 3877.6
+
+
+
+Duração(sec): 9.312774896621704
+EQM Final: 0.25003310982557925
+Épocas: 118
+ => {Execução MLP 2_PMC1_0.1_1 Treino} EQM: 0.5000662196511585
+ => {Execução MLP 2_PMC1_0.1_1 Teste} EQM: 0.5087986401324249
+
+Duração(sec): 137.1057345867157
+EQM Final: 0.3065850069151834
+Épocas: 1852
+ => {Execução MLP 2_PMC1_0.1_2 Treino} EQM: 0.6131700138303668
+ => {Execução MLP 2_PMC1_0.1_2 Teste} EQM: 0.5211733336565537
+
+Média de épocas para execução 2_PMC1_0.1: 394.0
+
+
+
+Duração(sec): 54.861536502838135
+EQM Final: 0.0035778813968767357
+Épocas: 751
+ => {Execução MLP 3_1_PMC1_0.1_1 Treino} EQM: 0.00715576279375348
+ => {Execução MLP 3_1_PMC1_0.1_1 Teste} EQM: 0.009011748566565425
+
+Duração(sec): 22.567432165145874
+EQM Final: 0.003575709207693868
+Épocas: 293
+ => {Execução MLP 3_1_PMC1_0.1_2 Treino} EQM: 0.007151418415387738
+ => {Execução MLP 3_1_PMC1_0.1_2 Teste} EQM: 0.009053219305661603
+
+Média de épocas para execução 3_1_PMC1_0.1: 208.8
+
+
+
+Duração(sec): 34.231709241867065
+EQM Final: 0.01473740068303581
+Épocas: 420
+ => {Execução MLP 3_2_PMC1_0.1_1 Treino} EQM: 0.02947480136607162
+ => {Execução MLP 3_2_PMC1_0.1_1 Teste} EQM: 0.025339889314382788
+
+Duração(sec): 16.256797790527344
+EQM Final: 0.008717601849476652
+Épocas: 236
+ => {Execução MLP 3_2_PMC1_0.1_2 Treino} EQM: 0.017435203698953305
+ => {Execução MLP 3_2_PMC1_0.1_2 Teste} EQM: 0.013993061791741
+
+Média de épocas para execução 3_2_PMC1_0.1: 131.2
+
+
+
+Duração(sec): 882.8378081321716
+EQM Final: 0.13749455409562727
 Épocas: 10001
 Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.1_3 Treino} EQM: 1.2317007531285753
- => {Execução MLP 1_PMC1_0.1_3 Teste} EQM: 1.1344088724553814
-
-Duração(sec): 241.29647874832153
-EQM Final: 0.5046865946359601
-Épocas: 7393
- => {Execução MLP 1_PMC1_0.1_4 Treino} EQM: 1.0250491960879375
- => {Execução MLP 1_PMC1_0.1_4 Teste} EQM: 0.9196297916210726
-
-Duração(sec): 323.6291823387146
-EQM Final: 0.530335604005025
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.1_5 Treino} EQM: 0.8721745527898797
- => {Execução MLP 1_PMC1_0.1_5 Teste} EQM: 0.7644532803082769
-
-Média de épocas para execução 1_PMC1_0.1: 9479.4
-
-
-
-Duração(sec): 320.479608297348
-EQM Final: 0.5652135764248079
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.2_1 Treino} EQM: 1.564697408858498
- => {Execução MLP 1_PMC1_0.2_1 Teste} EQM: 1.437644187566058
-
-Duração(sec): 323.18038272857666
-EQM Final: 0.9616282491016106
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.2_2 Treino} EQM: 3.125838554330248
- => {Execução MLP 1_PMC1_0.2_2 Teste} EQM: 3.0940866355230434
-
-Duração(sec): 322.5809862613678
-EQM Final: 0.9090372225212874
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.2_3 Treino} EQM: 0.7999263644384528
- => {Execução MLP 1_PMC1_0.2_3 Teste} EQM: 0.8253815482476574
-
-Duração(sec): 322.5371036529541
-EQM Final: 0.5613570467334773
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.2_4 Treino} EQM: 1.5847438328236267
- => {Execução MLP 1_PMC1_0.2_4 Teste} EQM: 1.4417085631119742
-
-Duração(sec): 327.56166195869446
-EQM Final: 0.9314139268257898
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.2_5 Treino} EQM: 2.5627138259410605
- => {Execução MLP 1_PMC1_0.2_5 Teste} EQM: 2.513688888364619
-
-Média de épocas para execução 1_PMC1_0.2: 10001.0
-
-
-
-Duração(sec): 322.51519083976746
-EQM Final: 1.9931079258145903
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.5_1 Treino} EQM: 2.8857497895120194
- => {Execução MLP 1_PMC1_0.5_1 Teste} EQM: 2.8150096730828476
-12:53:36
-
-Duração(sec): 321.8494174480438
-EQM Final: 1.4760234920406088
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.5_1 Treino} EQM: 4.585500528879411
- => {Execução MLP 1_PMC1_0.5_1 Teste} EQM: 4.310736074913857
-
-Duração(sec): 318.419148683548
-EQM Final: 1.0390863959269432
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.5_2 Treino} EQM: 2.5010476975367872
- => {Execução MLP 1_PMC1_0.5_2 Teste} EQM: 2.227163360142779
-
-Duração(sec): 321.11289262771606
-EQM Final: 2.238088147006714
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.5_3 Treino} EQM: 2.8201001408946693
- => {Execução MLP 1_PMC1_0.5_3 Teste} EQM: 2.375099995983929
-
-Duração(sec): 319.76110887527466
-EQM Final: 0.8892453467589213
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 1_PMC1_0.5_4 Treino} EQM: 1.1677193537235981
- => {Execução MLP 1_PMC1_0.5_4 Teste} EQM: 1.152466705180511
-
-Média de épocas para execução 1_PMC1_0.5: 8000.8
-
-
-
-Média de épocas para execução 1_PMC1_0.7: 0.0
-
-
-
-Média de épocas para execução 1_PMC1_1.0: 0.0
-
-
-
-Média de épocas para execução 1_PMC2_0.5: 0.0
-
-
-
-Média de épocas para execução 1_PMC2_0.7: 0.0
-
-
-
-Média de épocas para execução 1_PMC2_1.0: 0.0
-
-
-
-Média de épocas para execução 1_PMC3_0.5: 0.0
-
-
-
-Média de épocas para execução 1_PMC3_0.7: 0.0
-
-
-
-Média de épocas para execução 1_PMC3_1.0: 0.0
-
-
-
-Duração(sec): 303.1768989562988
-EQM Final: 0.3619986300116985
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 2_PMC1_0.01_1 Treino} EQM: 0.723997260023397
- => {Execução MLP 2_PMC1_0.01_1 Teste} EQM: 0.6250000457851473
-
-Duração(sec): 28.557598114013672
-EQM Final: 0.3014784989854207
-Épocas: 935
- => {Execução MLP 2_PMC1_0.01_2 Treino} EQM: 0.6029569979708413
- => {Execução MLP 2_PMC1_0.01_2 Teste} EQM: 0.5634515514511986
-
-Duração(sec): 46.63224220275879
-EQM Final: 0.24400181024409615
-Épocas: 1548
- => {Execução MLP 2_PMC1_0.01_3 Treino} EQM: 0.4880036204881923
- => {Execução MLP 2_PMC1_0.01_3 Teste} EQM: 0.46956768550045025
-
-Duração(sec): 100.52906394004822
-EQM Final: 0.26714971978934493
-Épocas: 3316
- => {Execução MLP 2_PMC1_0.01_4 Treino} EQM: 0.5342994395786899
- => {Execução MLP 2_PMC1_0.01_4 Teste} EQM: 0.6450279150607454
-
-Duração(sec): 41.47805881500244
-EQM Final: 0.3143600472590966
-Épocas: 1372
- => {Execução MLP 2_PMC1_0.01_5 Treino} EQM: 0.6287200945181932
- => {Execução MLP 2_PMC1_0.01_5 Teste} EQM: 0.5213720602980816
-
-Média de épocas para execução 2_PMC1_0.01: 3434.4
-
-
-
-Duração(sec): 2.3227856159210205
-EQM Final: 0.2433941532565022
-Épocas: 77
- => {Execução MLP 2_PMC1_0.1_1 Treino} EQM: 0.4867883065130044
- => {Execução MLP 2_PMC1_0.1_1 Teste} EQM: 0.40325697021608065
-
-Duração(sec): 304.28695797920227
-EQM Final: 0.3082822996905663
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 2_PMC1_0.1_2 Treino} EQM: 0.6165645993811326
- => {Execução MLP 2_PMC1_0.1_2 Teste} EQM: 0.5268799731773149
-
-Duração(sec): 39.59709191322327
-EQM Final: 0.3460125306718087
-Épocas: 1299
- => {Execução MLP 2_PMC1_0.1_3 Treino} EQM: 0.6920250613436174
- => {Execução MLP 2_PMC1_0.1_3 Teste} EQM: 0.5777229116045487
-
-Duração(sec): 53.94470715522766
-EQM Final: 0.22473901571403587
-Épocas: 1770
- => {Execução MLP 2_PMC1_0.1_4 Treino} EQM: 0.44947803142807174
- => {Execução MLP 2_PMC1_0.1_4 Teste} EQM: 0.5575749734699929
-
-Duração(sec): 76.23606705665588
-EQM Final: 0.25229193945490946
-Épocas: 2522
- => {Execução MLP 2_PMC1_0.1_5 Treino} EQM: 0.5045838789098189
- => {Execução MLP 2_PMC1_0.1_5 Teste} EQM: 0.4855792142005571
-
-Média de épocas para execução 2_PMC1_0.1: 3133.8
-
-
-
-Duração(sec): 30.604151487350464
-EQM Final: 0.29161159578639895
-Épocas: 1002
- => {Execução MLP 2_PMC1_0.2_1 Treino} EQM: 0.5832231915727979
- => {Execução MLP 2_PMC1_0.2_1 Teste} EQM: 0.5465183013741342
-
-Duração(sec): 16.985557079315186
-EQM Final: 0.34817332210051954
-Épocas: 563
- => {Execução MLP 2_PMC1_0.2_2 Treino} EQM: 0.6963466442010391
- => {Execução MLP 2_PMC1_0.2_2 Teste} EQM: 0.5303424533015884
-
-Duração(sec): 2.426535129547119
-EQM Final: 0.20446062615445915
-Épocas: 79
- => {Execução MLP 2_PMC1_0.2_3 Treino} EQM: 0.4089212523089183
- => {Execução MLP 2_PMC1_0.2_3 Teste} EQM: 0.5057683158589452
-
-Duração(sec): 3.5554871559143066
-EQM Final: 0.3210819954718434
-Épocas: 117
- => {Execução MLP 2_PMC1_0.2_4 Treino} EQM: 0.6421639909436868
- => {Execução MLP 2_PMC1_0.2_4 Teste} EQM: 0.5410425256938364
-
-Duração(sec): 3.6971077919006348
-EQM Final: 0.20775279080209155
-Épocas: 120
- => {Execução MLP 2_PMC1_0.2_5 Treino} EQM: 0.4155055816041831
- => {Execução MLP 2_PMC1_0.2_5 Teste} EQM: 0.341036994136825
-
-Média de épocas para execução 2_PMC1_0.2: 376.2
-
-
-
-Duração(sec): 0.6562213897705078
-EQM Final: 0.2564417963469564
-Épocas: 22
- => {Execução MLP 2_PMC1_0.5_1 Treino} EQM: 0.5128835926939128
- => {Execução MLP 2_PMC1_0.5_1 Teste} EQM: 0.4192949655541694
-
-Duração(sec): 42.519246101379395
-EQM Final: 0.36341237501181217
-Épocas: 1407
- => {Execução MLP 2_PMC1_0.5_2 Treino} EQM: 0.7268247500236243
- => {Execução MLP 2_PMC1_0.5_2 Teste} EQM: 0.6209786232935252
-
-Duração(sec): 45.69674587249756
-EQM Final: 0.3293812924027353
-Épocas: 1524
- => {Execução MLP 2_PMC1_0.5_3 Treino} EQM: 0.6587625848054706
- => {Execução MLP 2_PMC1_0.5_3 Teste} EQM: 0.5374435264792626
-
-Duração(sec): 13.08200192451477
-EQM Final: 0.36135463804369244
-Épocas: 437
- => {Execução MLP 2_PMC1_0.5_4 Treino} EQM: 0.7227092760873849
- => {Execução MLP 2_PMC1_0.5_4 Teste} EQM: 0.5741283792044485
-
-Duração(sec): 12.281124591827393
-EQM Final: 0.218255632025801
-Épocas: 407
- => {Execução MLP 2_PMC1_0.5_5 Treino} EQM: 0.436511264051602
- => {Execução MLP 2_PMC1_0.5_5 Teste} EQM: 0.44883359863137406
-
-Média de épocas para execução 2_PMC1_0.5: 759.4
-
-
-
-Duração(sec): 45.01060891151428
-EQM Final: 0.38174694403995957
-Épocas: 1486
- => {Execução MLP 2_PMC1_0.7_1 Treino} EQM: 0.7634938880799191
- => {Execução MLP 2_PMC1_0.7_1 Teste} EQM: 0.6146497228591005
-
-Duração(sec): 2.2489824295043945
-EQM Final: 0.2651296873688462
-Épocas: 74
- => {Execução MLP 2_PMC1_0.7_2 Treino} EQM: 0.5302593747376924
- => {Execução MLP 2_PMC1_0.7_2 Teste} EQM: 0.5278270874355814
-
-Duração(sec): 16.10790514945984
-EQM Final: 0.3424634304892114
-Épocas: 530
- => {Execução MLP 2_PMC1_0.7_3 Treino} EQM: 0.6849268609784228
- => {Execução MLP 2_PMC1_0.7_3 Teste} EQM: 0.5974468262987426
-
-Duração(sec): 9.212352991104126
-EQM Final: 0.2547180806749863
-Épocas: 301
- => {Execução MLP 2_PMC1_0.7_4 Treino} EQM: 0.5094361613499726
- => {Execução MLP 2_PMC1_0.7_4 Teste} EQM: 0.5444237380538817
-
-Duração(sec): 304.31585121154785
-EQM Final: 0.31290509789987
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 2_PMC1_0.7_5 Treino} EQM: 0.62581019579974
- => {Execução MLP 2_PMC1_0.7_5 Teste} EQM: 0.48782343325551325
-
-Média de épocas para execução 2_PMC1_0.7: 2478.4
-
-
-
-Duração(sec): 28.925644874572754
-EQM Final: 0.3584458732029176
-Épocas: 940
- => {Execução MLP 2_PMC1_1.0_1 Treino} EQM: 0.7168917464058352
- => {Execução MLP 2_PMC1_1.0_1 Teste} EQM: 0.5776707404475452
-
-Duração(sec): 0.930488109588623
-EQM Final: 0.35387891233999075
-Épocas: 30
- => {Execução MLP 2_PMC1_1.0_2 Treino} EQM: 0.7077578246799815
- => {Execução MLP 2_PMC1_1.0_2 Teste} EQM: 0.5735619123598252
-
-Duração(sec): 305.94251227378845
-EQM Final: 0.3100832412171451
-Épocas: 10001
-Máximo de épocas atingido (10000)
- => {Execução MLP 2_PMC1_1.0_3 Treino} EQM: 0.6201664824342902
- => {Execução MLP 2_PMC1_1.0_3 Teste} EQM: 0.5096595231550728
-
-Duração(sec): 48.89817953109741
-EQM Final: 0.25461974887547467
-Épocas: 1614
- => {Execução MLP 2_PMC1_1.0_4 Treino} EQM: 0.5092394977509493
- => {Execução MLP 2_PMC1_1.0_4 Teste} EQM: 0.5580191735766539
-
-Duração(sec): 8.208018064498901
-EQM Final: 0.30901032885082885
-Épocas: 270
- => {Execução MLP 2_PMC1_1.0_5 Treino} EQM: 0.6180206577016577
- => {Execução MLP 2_PMC1_1.0_5 Teste} EQM: 0.5185856853592129
-
-Média de épocas para execução 2_PMC1_1.0: 2571.0
-
-
-
-Duração(sec): 368.23185443878174
-EQM Final: 0.19351570706309537
-Épocas: 5361
- => {Execução MLP 2_PMC2_0.01_1 Treino} EQM: 0.38703141412619074
- => {Execução MLP 2_PMC2_0.01_1 Teste} EQM: 0.4561909406367826
-
-Duração(sec): 147.9422037601471
-EQM Final: 0.21875101963009055
-Épocas: 2150
- => {Execução MLP 2_PMC2_0.01_2 Treino} EQM: 0.4375020392601811
- => {Execução MLP 2_PMC2_0.01_2 Teste} EQM: 0.5177729727539944
-
-Duração(sec): 244.32300877571106
-EQM Final: 0.2909066862598151
-Épocas: 3463
- => {Execução MLP 2_PMC2_0.01_3 Treino} EQM: 0.5818133725196302
- => {Execução MLP 2_PMC2_0.01_3 Teste} EQM: 0.44208819040421576
+ => {Execução MLP 1_PMC1_0.2_1 Treino} EQM: 0.27498910819125455
+ => {Execução MLP 1_PMC1_0.2_1 Teste} EQM: 0.5461523059187128
