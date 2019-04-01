@@ -64,6 +64,7 @@ class Neuron:
             self.__threshold = 0
         
         self.weights = [self.__threshold] + self.weights
+        self.before_weights = [self.__threshold] + self.weights
 
     def __normalize_input(self, inputs):
         if not self.scaler__normalize_input:

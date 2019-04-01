@@ -135,7 +135,7 @@ class MultiLayerPerceptron:
             node_output = int(bin(output)[node_index+2])
             return 1 if node_output else -1
         elif self.codification == "oneofc":
-            return 1 if index + 1 == output else -1
+            return 1 if node_index + 1 == output else -1
     
     def get_error(self, sample_index: int):
         error = 0
@@ -287,8 +287,8 @@ class MultiLayerPerceptron:
                             if not self.momentum:
                                 momentum = 0
                             else:
-                                momentum = self.momentum * (node.weights[index_parent + 1] - node.before_weights[index_parent + 1])
-                                node.before_weights[index_parent + 1] = node.weights[index_parent + 1]
+                                momentum = self.momentum * (node.weights[index_weights] - node.before_weights[index_weights])
+                                node.before_weights[index_weights] = node.weights[index_weights]
 
                             node.weights[index_weights] = weight + momentum + node.learning_rate/len(self.samples) * aux[index_weights]
 

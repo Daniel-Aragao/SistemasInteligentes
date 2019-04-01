@@ -9,6 +9,8 @@ from IO_Operations import Exporter
 from activation_functions import ActivationFunctions
 import time
 
+import traceback
+
 from network_classify import MultiLayerPerceptron as MLP
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
@@ -18,9 +20,9 @@ train_outputs = Importer.import_output('misc/dtrain_3spirals.txt')
 test_inputs = Importer.import_input('misc/xtest_3spirals.txt')
 test_outputs = Importer.import_output('misc/dtest_3spirals.txt')
 
-save_image = False
+save_image = True
 avoid_plot_it_all = False
-save_data = False
+save_data = True
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrinterFileMLP
@@ -91,8 +93,8 @@ def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
         # ####### 5 #######
         # epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
 
-    except Exception :
-        pass
+    except Exception as e:
+        Printer.print_msg(traceback.format_exc())
     print_epoch_average(execution_name, epochs, 5)
 
 
@@ -194,13 +196,12 @@ for PMC in PMCs:
 ############# 1 #############
         config_neuron["codification"] = "sequencial"
         routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
-############# 2 #############
+# ############# 2 #############
         config_neuron["codification"] = "oneofc"
         routine_adaline("2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 ############# 3 #############]
         for momentum in momentuns:
             config_neuron["momentum"] = momentum
-            config_neuron["normalize_function"] = Normalize.min_max_scale_data
             routine_adaline("3_2_"+PMC["name"]+"_"+str(learning_rate)+"_"+str(momentum), PMC, config_neuron, True)
 
 
