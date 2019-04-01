@@ -56,9 +56,11 @@ class Neuron:
 
         if is_random:
             self.weights = Randomize.get_random_vector((weights_size), self.seed)
+            self.before_weights = self.weights.copy()
             self.__threshold = Randomize.get_random()
         else:
             self.weights = [1 for i in range(weights_size)]
+            self.before_weights = self.weights.copy()
             self.__threshold = 0
         
         self.weights = [self.__threshold] + self.weights

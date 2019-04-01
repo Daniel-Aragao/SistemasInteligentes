@@ -107,7 +107,7 @@ PMC1 = {
         {
             "neuron_type": 'perceptron',
             "activation_function" : ActivationFunctions.hyperbolic_tangent,
-            "quantity": 3
+            "quantity": 0
         }
     ]
 }
@@ -123,7 +123,7 @@ PMC2 = {
         {
             "neuron_type": 'perceptron',
             "activation_function" : ActivationFunctions.hyperbolic_tangent,
-            "quantity": 3
+            "quantity": 0
         }
     ]
 }
@@ -144,7 +144,7 @@ PMC3 = {
         {
             "neuron_type": 'perceptron',
             "activation_function" : ActivationFunctions.hyperbolic_tangent,
-            "quantity": 3
+            "quantity": 0
         }
     ]
 }
@@ -165,7 +165,7 @@ PMC4 = {
         {
             "neuron_type": 'perceptron',
             "activation_function" : ActivationFunctions.hyperbolic_tangent,
-            "quantity": 3
+            "quantity": 0
         }
     ]
 }
@@ -174,6 +174,8 @@ PMCs = [PMC1, PMC2, PMC3, PMC4]
 
 ##################### GERAL #####################
 learning_rates = [0.01, 0.1, 0.2, 0.5]
+momentuns = [0.5, 0.7, 0.9]
+
 # learning_rates = [0.01]
 config_neuron = {
     "learning_rate": 0.1,
@@ -183,8 +185,9 @@ config_neuron = {
     "normalize_function": Normalize.min_max_scale_data,
     "printer": Printer,
     "shuffle": True,
-    "momentum": False,
-    "codification": "sequencial"
+    "momentum": None,
+    "codification": "sequencial",
+    "output_classes": 3
 }
 for PMC in PMCs:
     for learning_rate in learning_rates:
@@ -192,16 +195,14 @@ for PMC in PMCs:
         config_neuron["codification"] = "sequencial"
         routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 ############# 2 #############
-
-# for PMC in PMCs:
-#     for learning_rate in learning_rates:
         config_neuron["codification"] = "oneofc"
         routine_adaline("2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
+############# 3 #############]
+        for momentum in momentuns:
+            config_neuron["momentum"] = momentum
+            config_neuron["normalize_function"] = Normalize.min_max_scale_data
+            routine_adaline("3_2_"+PMC["name"]+"_"+str(learning_rate)+"_"+str(momentum), PMC, config_neuron, True)
 
-############# 3 #############
-        config_neuron["momentum"] = True
-        config_neuron["normalize_function"] = Normalize.min_max_scale_data
-        
 
 tempo_fim = time.time()
 tempo_fim_local = time.localtime()

@@ -11,6 +11,8 @@ class MultiLayerPerceptron:
         self.config_neuron = config_neuron
 
         self.normalize_function = config_neuron['normalize_function']
+        self.codification = config_neuron['codification']
+        self.momentum = config_neuron['momentum']
 
         self.scaler__normalize_output = None
         self.scaler__normalize_input = None
@@ -59,6 +61,11 @@ class MultiLayerPerceptron:
 
         # self.expected_outputs = self.normalize_output(config_neuron['expected_outputs'])
         self.expected_outputs = config_neuron['expected_outputs']
+
+        if self.codification == "sequencial":
+            layers[len(layers)-1]["quantity"] = config_neuron['output_classes'].bit_length()
+        elif (self.codification == "oneofc"):
+            layers[len(layers)-1]["quantity"] = config_neuron['output_classes']
 
         for index, layer in enumerate(layers):
             self.layers_node.append([])
@@ -123,8 +130,12 @@ class MultiLayerPerceptron:
         for node in self.last_layer_nodes:
                 MultiLayerPerceptron.output(node, self.samples, sample_index)
     
-    def get_expected_node_output(self, output, index):
-        return 1 if index + 1 == output else -1
+    def get_expected_node_output(self, output, node_index):
+        if self.codification == "sequencial":
+            node_output = int(bin(output)[node_index+2])
+            return 1 if node_output else -1
+        elif self.codification == "oneofc":
+            return 1 if index + 1 == output else -1
     
     def get_error(self, sample_index: int):
         error = 0
@@ -223,9 +234,17 @@ class MultiLayerPerceptron:
                                                     
                         
                         for index_parent, parent in enumerate(node.parents):
-                            node.weights[index_parent + 1] += node.learning_rate/len(self.samples) * aux[index_parent]
+                            if not self.momentum:
+                                momentum = 0
+                            else:
+                                momentum = self.momentum * (node.weights[index_parent + 1] - node.before_weights[index_parent + 1])
+                                node.before_weights[index_parent + 1] = node.weights[index_parent + 1]
+                                
+                            node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
 
-                        node.weights[0] += node.learning_rate/len(self.samples) *  aux_threshold
+                        momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                        node.before_weights[0] = node.weights[0]
+                        node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
 
                     for layer_index, layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
                         for node_index, node in enumerate(layer):
@@ -242,9 +261,17 @@ class MultiLayerPerceptron:
                                     aux[index_parent] += delta * MultiLayerPerceptron.output(parent, self.samples, samp_index)
 
                             for index_parent, parent in enumerate(node.parents):
-                                node.weights[index_parent + 1] += node.learning_rate/len(self.samples) * aux[index_parent]
+                                if not self.momentum:
+                                    momentum = 0
+                                else:
+                                    momentum = self.momentum * (node.weights[index_parent + 1] - node.before_weights[index_parent + 1])
+                                    node.before_weights[index_parent + 1] = node.weights[index_parent + 1]
 
-                            node.weights[0] += node.learning_rate/len(self.samples) *  aux_threshold
+                                node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
+
+                        momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                        node.before_weights[0] = node.weights[0]
+                        node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
                     
                     for node_index, node in enumerate(self.layers_node[0]):
                         aux = [0 for i in node.weights]
@@ -257,7 +284,13 @@ class MultiLayerPerceptron:
                                 aux[index_weights] = delta * samp[index_weights]
                                                 
                         for index_weights, weight in enumerate(node.weights):
-                            node.weights[index_weights] = weight + node.learning_rate/len(self.samples) * aux[index_weights]
+                            if not self.momentum:
+                                momentum = 0
+                            else:
+                                momentum = self.momentum * (node.weights[index_parent + 1] - node.before_weights[index_parent + 1])
+                                node.before_weights[index_parent + 1] = node.weights[index_parent + 1]
+
+                            node.weights[index_weights] = weight + momentum + node.learning_rate/len(self.samples) * aux[index_weights]
 
             else:
                 for sample_index, sample in enumerate(self.samples):
@@ -323,16 +356,23 @@ class MultiLayerPerceptron:
         for sample_index, sample in enumerate(samples):
             bigger = 0
             bigger_index = 0
+            sequencial_bits = ""
 
             for index, node in enumerate(self.last_layer_nodes):
                 output = MultiLayerPerceptron.output(node, samples, sample_index)
+                
+                if self.codification == "sequencial":
+                    sequencial_bits += str(math.ceil(MultiLayerPerceptron.output(node, samples, sample_index)))
 
-                if bigger < output:
-                    bigger = output
-                    bigger_index = index + 1
+                elif (self.codification == "oneofc"):
+                    if bigger < output:
+                        bigger = output
+                        bigger_index = index + 1
             
-            
-            outputs.append(bigger_index)
+            if self.codification == "sequencial":
+                outputs.append(int(sequencial_bits, 2))
+            elif (self.codification == "oneofc"):
+                outputs.append(bigger_index)
         # eqm = self.calc_eqm()
 
         # self.printer.print_msg("EQM: " + str(eqm))
