@@ -223,8 +223,9 @@ class MultiLayerPerceptron:
                         aux = [0 for i in node.parents]
                         aux_threshold = 0
 
+                        self.clean_recursion_output()
+
                         for samp_index, samp in enumerate(self.samples):
-                            self.update_recursion_output(samp_index)
 
                             delta = self.get_node_delta_output_layer(node, samp_index)
                             node.network_delta[samp_index] = delta
@@ -256,10 +257,11 @@ class MultiLayerPerceptron:
                             aux = [0 for i in node.parents]
                             aux_threshold = 0
 
-                            for samp_index, samp in enumerate(self.samples):
-                                self.update_recursion_output(samp_index)
+                            self.clean_recursion_output()
 
-                                delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index)
+                            for samp_index, samp in enumerate(self.samples):
+
+                                delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index + 1)
                                 node.network_delta[samp_index] = delta
 
                                 for index_parent, parent in enumerate(node.parents):
@@ -274,12 +276,12 @@ class MultiLayerPerceptron:
 
                                 node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
 
-                        if not self.momentum:
-                            momentum = 0
-                        else:
-                            momentum = self.momentum * (node.weights[0] - node.before_weights[0])
-                            node.before_weights[0] = node.weights[0]
-                        node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
+                            if not self.momentum:
+                                momentum = 0
+                            else:
+                                momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                                node.before_weights[0] = node.weights[0]
+                            node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
                     
                     for node_index, node in enumerate(self.layers_node[0]):
                         aux = [0 for i in node.weights]
@@ -315,7 +317,7 @@ class MultiLayerPerceptron:
                     
                     for layer_index, layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
                         for node_index, node in enumerate(layer):
-                            delta = self.get_node_delta_hidden_layers(node, node_index, sample_index, layer_index)
+                            delta = self.get_node_delta_hidden_layers(node, node_index, sample_index, layer_index + 1)
                             node.network_delta[sample_index] = delta
 
                             for index_parent, parent in enumerate(node.parents):
