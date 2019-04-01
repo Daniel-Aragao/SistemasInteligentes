@@ -9,7 +9,7 @@ from IO_Operations import Exporter
 from activation_functions import ActivationFunctions
 import time
 
-from network_controller import MultiLayerPerceptron as MLP
+from network_regression import MultiLayerPerceptron as MLP
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
 train_inputs = Importer.import_input('misc/xtrain_bodyfat.txt')
