@@ -242,8 +242,11 @@ class MultiLayerPerceptron:
                                 
                             node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
 
-                        momentum = self.momentum * (node.weights[0] - node.before_weights[0])
-                        node.before_weights[0] = node.weights[0]
+                        if not self.momentum:
+                            momentum = 0
+                        else:
+                            momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                            node.before_weights[0] = node.weights[0]
                         node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
 
                     for layer_index, layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
@@ -269,8 +272,11 @@ class MultiLayerPerceptron:
 
                                 node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
 
-                        momentum = self.momentum * (node.weights[0] - node.before_weights[0])
-                        node.before_weights[0] = node.weights[0]
+                        if not self.momentum:
+                            momentum = 0
+                        else:
+                            momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                            node.before_weights[0] = node.weights[0]
                         node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
                     
                     for node_index, node in enumerate(self.layers_node[0]):
