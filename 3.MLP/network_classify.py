@@ -132,7 +132,9 @@ class MultiLayerPerceptron:
     
     def get_expected_node_output(self, output, node_index):
         if self.codification == "sequencial":
-            node_output = int(bin(output)[node_index+2])
+            binar = bin(int(output))
+            binar = binar if len(binar) > 3 else "0b01"
+            node_output = int(binar[node_index+2])
             return 1 if node_output else -1
         elif self.codification == "oneofc":
             return 1 if node_index + 1 == output else -1
