@@ -2016,3 +2016,306 @@ EQM Final: 1.3268933221217256
 Épocas: 488
  => {Execução MLP 3_2_PMC3_0.5_0.5_1 Treino} deu 138 erro(s) com 41.02564102564102 de taxa de acerto --------------------------------------
  => {Execução MLP 3_2_PMC3_0.5_0.5_1 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Duração(sec): 224.3209934234619
+EQM Final: 1.3198342395700868
+Épocas: 1100
+ => {Execução MLP 3_2_PMC3_0.5_0.5_2 Treino} deu 166 erro(s) com 29.059829059829063 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC3_0.5_0.5_2 Teste} deu 57 erro(s) com 26.923076923076923 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC3_0.5_0.5: 317.6
+
+
+
+Duração(sec): 27.341829776763916
+EQM Final: 1.3199767753603149
+Épocas: 178
+ => {Execução MLP 3_2_PMC3_0.5_0.7_1 Treino} deu 149 erro(s) com 36.324786324786324 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC3_0.5_0.7_1 Teste} deu 50 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+
+Duração(sec): 47.667503356933594
+EQM Final: 1.327743990945914
+Épocas: 308
+ => {Execução MLP 3_2_PMC3_0.5_0.7_2 Treino} deu 160 erro(s) com 31.62393162393162 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC3_0.5_0.7_2 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC3_0.5_0.7: 97.2
+
+
+
+Duração(sec): 53.50684952735901
+EQM Final: 1.3297391448718756
+Épocas: 349
+ => {Execução MLP 3_2_PMC3_0.5_0.9_1 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC3_0.5_0.9_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 93.70530605316162
+EQM Final: 1.7032085316025303
+Épocas: 606
+ => {Execução MLP 3_2_PMC3_0.5_0.9_2 Treino} deu 161 erro(s) com 31.196581196581196 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC3_0.5_0.9_2 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC3_0.5_0.9: 191.0
+
+
+Traceback (most recent call last):
+  File "main_mlp_classificacao.py", line 82, in routine_adaline
+    epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
+  File "main_mlp_classificacao.py", line 60, in executar_MLP
+    epochs, epochs_eqm, eqm_final = mlp.train(max_epoch=10000, offline=is_offline)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 271, in train
+    delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index + 1)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 189, in get_node_delta_hidden_layers
+    return (summ * node.activation_function(u, is_derivative=True))
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\activation_functions.py", line 69, in hyperbolic_tangent
+    return ((math.cosh(u)**2) - (math.sinh(u)**2))/(math.cosh(u)**2)
+OverflowError: (34, 'Result too large')
+
+
+Média de épocas para execução 2_PMC4_0.01: 0.0
+
+
+
+Duração(sec): 240.94140076637268
+EQM Final: 1.3198422890167678
+Épocas: 1507
+ => {Execução MLP 3_2_PMC4_0.01_0.5_1 Treino} deu 164 erro(s) com 29.914529914529915 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.5_1 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Duração(sec): 167.46101260185242
+EQM Final: 1.3006800099583546
+Épocas: 1046
+ => {Execução MLP 3_2_PMC4_0.01_0.5_2 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.5_2 Teste} deu 52 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.01_0.5: 510.6
+
+
+
+Duração(sec): 200.98632192611694
+EQM Final: 1.3244329691481833
+Épocas: 1270
+ => {Execução MLP 3_2_PMC4_0.01_0.7_1 Treino} deu 151 erro(s) com 35.47008547008547 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.7_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 166.22232699394226
+EQM Final: 1.3062332560181205
+Épocas: 1041
+ => {Execução MLP 3_2_PMC4_0.01_0.7_2 Treino} deu 153 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.7_2 Teste} deu 50 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.01_0.7: 462.2
+
+
+
+Duração(sec): 29.773357152938843
+EQM Final: 2.2118252413710913
+Épocas: 187
+ => {Execução MLP 3_2_PMC4_0.01_0.9_1 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.9_1 Teste} deu 58 erro(s) com 25.64102564102564 de taxa de acerto --------------------------------------
+
+Duração(sec): 44.10602927207947
+EQM Final: 1.7253363860066027
+Épocas: 279
+ => {Execução MLP 3_2_PMC4_0.01_0.9_2 Treino} deu 157 erro(s) com 32.9059829059829 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.01_0.9_2 Teste} deu 52 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.01_0.9: 93.2
+
+
+
+Duração(sec): 146.24474549293518
+EQM Final: 1.9937498540183356
+Épocas: 923
+ => {Execução MLP 2_PMC4_0.1_1 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.1_1 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Duração(sec): 416.4121115207672
+EQM Final: 2.066557358234476
+Épocas: 2612
+ => {Execução MLP 2_PMC4_0.1_2 Treino} deu 173 erro(s) com 26.06837606837607 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.1_2 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC4_0.1: 707.0
+
+
+
+Duração(sec): 547.5600643157959
+EQM Final: 1.3014768347604493
+Épocas: 3446
+ => {Execução MLP 3_2_PMC4_0.1_0.5_1 Treino} deu 167 erro(s) com 28.63247863247863 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.1_0.5_1 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Duração(sec): 290.27542424201965
+EQM Final: 1.3187164059207526
+Épocas: 1826
+ => {Execução MLP 3_2_PMC4_0.1_0.5_2 Treino} deu 160 erro(s) com 31.62393162393162 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.1_0.5_2 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.1_0.5: 1054.4
+
+
+
+Duração(sec): 368.0264325141907
+EQM Final: 1.3148584900411913
+Épocas: 2316
+ => {Execução MLP 3_2_PMC4_0.1_0.7_1 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.1_0.7_1 Teste} deu 64 erro(s) com 17.94871794871795 de taxa de acerto --------------------------------------
+
+Duração(sec): 95.23623847961426
+EQM Final: 1.3195910015334187
+Épocas: 599
+ => {Execução MLP 3_2_PMC4_0.1_0.7_2 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.1_0.7_2 Teste} deu 51 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.1_0.7: 583.0
+
+
+Traceback (most recent call last):
+  File "main_mlp_classificacao.py", line 82, in routine_adaline
+    epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
+  File "main_mlp_classificacao.py", line 60, in executar_MLP
+    epochs, epochs_eqm, eqm_final = mlp.train(max_epoch=10000, offline=is_offline)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 271, in train
+    delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index + 1)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 189, in get_node_delta_hidden_layers
+    return (summ * node.activation_function(u, is_derivative=True))
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\activation_functions.py", line 69, in hyperbolic_tangent
+    return ((math.cosh(u)**2) - (math.sinh(u)**2))/(math.cosh(u)**2)
+OverflowError: (34, 'Result too large')
+
+
+Média de épocas para execução 3_2_PMC4_0.1_0.9: 0.0
+
+
+
+Duração(sec): 29.40034246444702
+EQM Final: 2.370513066023396
+Épocas: 185
+ => {Execução MLP 2_PMC4_0.2_1 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.2_1 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Duração(sec): 699.672168970108
+EQM Final: 1.3222111297808528
+Épocas: 4442
+ => {Execução MLP 2_PMC4_0.2_2 Treino} deu 148 erro(s) com 36.75213675213676 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.2_2 Teste} deu 51 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC4_0.2: 925.4
+
+
+
+Duração(sec): 596.5610256195068
+EQM Final: 1.2982747325113564
+Épocas: 3737
+ => {Execução MLP 3_2_PMC4_0.2_0.5_1 Treino} deu 159 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.2_0.5_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 390.5810914039612
+EQM Final: 1.3219772305290198
+Épocas: 2467
+ => {Execução MLP 3_2_PMC4_0.2_0.5_2 Treino} deu 160 erro(s) com 31.62393162393162 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.2_0.5_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.2_0.5: 1240.8
+
+
+
+Duração(sec): 7.851022720336914
+EQM Final: 1.3312893746659198
+Épocas: 49
+ => {Execução MLP 3_2_PMC4_0.2_0.7_1 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.2_0.7_1 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 367.4031026363373
+EQM Final: 1.2951686444419113
+Épocas: 2303
+ => {Execução MLP 3_2_PMC4_0.2_0.7_2 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.2_0.7_2 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.2_0.7: 470.4
+
+
+Traceback (most recent call last):
+  File "main_mlp_classificacao.py", line 82, in routine_adaline
+    epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
+  File "main_mlp_classificacao.py", line 60, in executar_MLP
+    epochs, epochs_eqm, eqm_final = mlp.train(max_epoch=10000, offline=is_offline)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 271, in train
+    delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index + 1)
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\network_classify.py", line 189, in get_node_delta_hidden_layers
+    return (summ * node.activation_function(u, is_derivative=True))
+  File "D:\daniel\Documents\Git\SistemasInteligentes\3.MLP\activation_functions.py", line 69, in hyperbolic_tangent
+    return ((math.cosh(u)**2) - (math.sinh(u)**2))/(math.cosh(u)**2)
+OverflowError: (34, 'Result too large')
+
+
+Média de épocas para execução 3_2_PMC4_0.2_0.9: 0.0
+
+
+
+Duração(sec): 192.0502007007599
+EQM Final: 1.4515259508863823
+Épocas: 1206
+ => {Execução MLP 2_PMC4_0.5_1 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.5_1 Teste} deu 51 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+
+Duração(sec): 280.38988995552063
+EQM Final: 1.4888172682403478
+Épocas: 1764
+ => {Execução MLP 2_PMC4_0.5_2 Treino} deu 151 erro(s) com 35.47008547008547 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC4_0.5_2 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC4_0.5: 594.0
+
+
+
+Duração(sec): 7.4969704151153564
+EQM Final: 1.3321565808613058
+Épocas: 47
+ => {Execução MLP 3_2_PMC4_0.5_0.5_1 Treino} deu 154 erro(s) com 34.18803418803419 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.5_1 Teste} deu 61 erro(s) com 21.794871794871796 de taxa de acerto --------------------------------------
+
+Duração(sec): 82.36567115783691
+EQM Final: 1.3289823228955977
+Épocas: 517
+ => {Execução MLP 3_2_PMC4_0.5_0.5_2 Treino} deu 139 erro(s) com 40.598290598290596 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.5_2 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.5_0.5: 112.8
+
+
+
+Duração(sec): 14.954992294311523
+EQM Final: 1.3312986209250317
+Épocas: 93
+ => {Execução MLP 3_2_PMC4_0.5_0.7_1 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.7_1 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 202.6787931919098
+EQM Final: 1.3189673770992942
+Épocas: 1271
+ => {Execução MLP 3_2_PMC4_0.5_0.7_2 Treino} deu 150 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.7_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.5_0.7: 272.8
+
+
+
+Duração(sec): 191.03591322898865
+EQM Final: 1.304854724792187
+Épocas: 1199
+ => {Execução MLP 3_2_PMC4_0.5_0.9_1 Treino} deu 149 erro(s) com 36.324786324786324 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.9_1 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Duração(sec): 245.02949476242065
+EQM Final: 1.3022999222585736
+Épocas: 1543
+ => {Execução MLP 3_2_PMC4_0.5_0.9_2 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC4_0.5_0.9_2 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC4_0.5_0.9: 548.4
+
+
+6:17:47
+Delta tempo: 16496.730122327805
