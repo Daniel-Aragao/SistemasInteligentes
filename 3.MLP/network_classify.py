@@ -62,10 +62,12 @@ class MultiLayerPerceptron:
         # self.expected_outputs = self.normalize_output(config_neuron['expected_outputs'])
         self.expected_outputs = config_neuron['expected_outputs']
 
+        last_layer = layers[len(layers)-1]
+
         if self.codification == "sequencial":
-            layers[len(layers)-1]["quantity"] = config_neuron['output_classes'].bit_length()
+            last_layer["quantity"] = config_neuron['output_classes'].bit_length()
         elif (self.codification == "oneofc"):
-            layers[len(layers)-1]["quantity"] = config_neuron['output_classes']
+            last_layer["quantity"] = config_neuron['output_classes']
 
         for index, layer in enumerate(layers):
             self.layers_node.append([])
@@ -134,10 +136,15 @@ class MultiLayerPerceptron:
         if self.codification == "sequencial":
             binar = bin(int(output))
             binar = binar if len(binar) > 3 else "0b01"
+
             node_output = int(binar[node_index+2])
+
             return 1 if node_output else -1
+
         elif self.codification == "oneofc":
-            return 1 if node_index + 1 == output else -1
+            node_output = 1 if node_index + 1 == output else -1
+            # print(node_output, node_index + 1, output)
+            return node_output
     
     def get_error(self, sample_index: int):
         error = 0
@@ -223,8 +230,9 @@ class MultiLayerPerceptron:
                         aux = [0 for i in node.parents]
                         aux_threshold = 0
 
+                        self.clean_recursion_output()
+
                         for samp_index, samp in enumerate(self.samples):
-                            self.update_recursion_output(samp_index)
 
                             delta = self.get_node_delta_output_layer(node, samp_index)
                             node.network_delta[samp_index] = delta
@@ -259,8 +267,9 @@ class MultiLayerPerceptron:
                             aux = [0 for i in node.parents]
                             aux_threshold = 0
 
+                            self.clean_recursion_output()
+
                             for samp_index, samp in enumerate(self.samples):
-                                self.update_recursion_output(samp_index)
 
                                 delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, self.layers_node[len(tttt) - layer_index + 1])
                                 node.network_delta[samp_index] = delta
@@ -277,12 +286,12 @@ class MultiLayerPerceptron:
 
                                 node.weights[index_parent + 1] += momentum + node.learning_rate/len(self.samples) * aux[index_parent]
 
-                        if not self.momentum:
-                            momentum = 0
-                        else:
-                            momentum = self.momentum * (node.weights[0] - node.before_weights[0])
-                            node.before_weights[0] = node.weights[0]
-                        node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
+                            if not self.momentum:
+                                momentum = 0
+                            else:
+                                momentum = self.momentum * (node.weights[0] - node.before_weights[0])
+                                node.before_weights[0] = node.weights[0]
+                            node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
                     
                     for node_index, node in enumerate(self.layers_node[0]):
                         aux = [0 for i in node.weights]
@@ -318,7 +327,7 @@ class MultiLayerPerceptron:
                     
                     for layer_index, layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
                         for node_index, node in enumerate(layer):
-                            delta = self.get_node_delta_hidden_layers(node, node_index, sample_index, layer_index)
+                            delta = self.get_node_delta_hidden_layers(node, node_index, sample_index, layer_index + 1)
                             node.network_delta[sample_index] = delta
 
                             for index_parent, parent in enumerate(node.parents):
@@ -365,8 +374,8 @@ class MultiLayerPerceptron:
         self.clean_recursion_output()
 
         for sample_index, sample in enumerate(samples):
-            bigger = 0
-            bigger_index = 0
+            bigger = -math.inf
+            bigger_class = 0
             sequencial_bits = ""
 
             for index, node in enumerate(self.last_layer_nodes):
@@ -378,12 +387,12 @@ class MultiLayerPerceptron:
                 elif (self.codification == "oneofc"):
                     if bigger < output:
                         bigger = output
-                        bigger_index = index + 1
+                        bigger_class = index + 1
             
             if self.codification == "sequencial":
                 outputs.append(int(sequencial_bits, 2))
             elif (self.codification == "oneofc"):
-                outputs.append(bigger_index)
+                outputs.append(bigger_class)
         # eqm = self.calc_eqm()
 
         # self.printer.print_msg("EQM: " + str(eqm))

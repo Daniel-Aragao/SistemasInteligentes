@@ -152,7 +152,7 @@ PMC3 = {
 }
 
 PMC4 = {
-    "name": "PMC3",
+    "name": "PMC4",
     "layers" :[
         {
             "neuron_type": 'perceptron',
@@ -194,8 +194,8 @@ config_neuron = {
 for PMC in PMCs:
     for learning_rate in learning_rates:
 ############# 1 #############
-        config_neuron["codification"] = "sequencial"
-        routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
+        # config_neuron["codification"] = "sequencial"
+        # routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
 # ############# 2 #############
         config_neuron["codification"] = "oneofc"
         routine_adaline("2_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron, True)
