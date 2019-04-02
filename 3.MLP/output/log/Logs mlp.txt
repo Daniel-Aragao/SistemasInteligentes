@@ -1296,3 +1296,387 @@ EQM Final: 1.2764740787796223
 Épocas: 1042
  => {Execução MLP 2_PMC1_0.01_1 Treino} deu 153 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
  => {Execução MLP 2_PMC1_0.01_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 34.677226066589355
+EQM Final: 1.3289155460470439
+Épocas: 391
+ => {Execução MLP 2_PMC1_0.01_2 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.01_2 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC1_0.01: 286.6
+
+
+
+Duração(sec): 38.571104526519775
+EQM Final: 1.313439789002036
+Épocas: 430
+ => {Execução MLP 3_2_PMC1_0.01_0.5_1 Treino} deu 160 erro(s) com 31.62393162393162 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.5_1 Teste} deu 51 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+
+Duração(sec): 35.17688989639282
+EQM Final: 1.3284346058907082
+Épocas: 410
+ => {Execução MLP 3_2_PMC1_0.01_0.5_2 Treino} deu 148 erro(s) com 36.75213675213676 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.5_2 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.01_0.5: 168.0
+
+
+
+Duração(sec): 16.134833574295044
+EQM Final: 1.3234732451528202
+Épocas: 198
+ => {Execução MLP 3_2_PMC1_0.01_0.7_1 Treino} deu 151 erro(s) com 35.47008547008547 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.7_1 Teste} deu 58 erro(s) com 25.64102564102564 de taxa de acerto --------------------------------------
+
+Duração(sec): 24.13542890548706
+EQM Final: 1.3164765829015312
+Épocas: 304
+ => {Execução MLP 3_2_PMC1_0.01_0.7_2 Treino} deu 162 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.7_2 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.01_0.7: 100.4
+
+
+
+Duração(sec): 2.7167577743530273
+EQM Final: 2.586695059941184
+Épocas: 34
+ => {Execução MLP 3_2_PMC1_0.01_0.9_1 Treino} deu 165 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.9_1 Teste} deu 50 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+
+Duração(sec): 80.04686117172241
+EQM Final: 1.4779244609720563
+Épocas: 987
+ => {Execução MLP 3_2_PMC1_0.01_0.9_2 Treino} deu 158 erro(s) com 32.47863247863248 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.01_0.9_2 Teste} deu 44 erro(s) com 43.58974358974359 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.01_0.9: 204.2
+
+
+
+Duração(sec): 34.052921772003174
+EQM Final: 1.481431082983444
+Épocas: 432
+ => {Execução MLP 2_PMC1_0.1_1 Treino} deu 158 erro(s) com 32.47863247863248 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.1_1 Teste} deu 60 erro(s) com 23.076923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 63.013813734054565
+EQM Final: 1.7521652188092347
+Épocas: 838
+ => {Execução MLP 2_PMC1_0.1_2 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.1_2 Teste} deu 59 erro(s) com 24.358974358974358 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC1_0.1: 254.0
+
+
+
+Duração(sec): 18.956284999847412
+EQM Final: 1.3111461043290118
+Épocas: 245
+ => {Execução MLP 3_2_PMC1_0.1_0.5_1 Treino} deu 146 erro(s) com 37.60683760683761 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.5_1 Teste} deu 46 erro(s) com 41.02564102564102 de taxa de acerto --------------------------------------
+
+Duração(sec): 14.218936204910278
+EQM Final: 1.3329602022962517
+Épocas: 181
+ => {Execução MLP 3_2_PMC1_0.1_0.5_2 Treino} deu 154 erro(s) com 34.18803418803419 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.5_2 Teste} deu 52 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.1_0.5: 85.2
+
+
+
+Duração(sec): 24.561434745788574
+EQM Final: 1.3086121225195304
+Épocas: 335
+ => {Execução MLP 3_2_PMC1_0.1_0.7_1 Treino} deu 147 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.7_1 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Duração(sec): 48.933857440948486
+EQM Final: 1.311333401207536
+Épocas: 640
+ => {Execução MLP 3_2_PMC1_0.1_0.7_2 Treino} deu 162 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.7_2 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.1_0.7: 195.0
+
+
+
+Duração(sec): 23.623775720596313
+EQM Final: 1.9949080817797182
+Épocas: 308
+ => {Execução MLP 3_2_PMC1_0.1_0.9_1 Treino} deu 166 erro(s) com 29.059829059829063 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.9_1 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 29.29368495941162
+EQM Final: 2.105675946647727
+Épocas: 383
+ => {Execução MLP 3_2_PMC1_0.1_0.9_2 Treino} deu 154 erro(s) com 34.18803418803419 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.1_0.9_2 Teste} deu 61 erro(s) com 21.794871794871796 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.1_0.9: 138.2
+
+
+
+Duração(sec): 27.391085386276245
+EQM Final: 2.063791744897474
+Épocas: 357
+ => {Execução MLP 2_PMC1_0.2_1 Treino} deu 152 erro(s) com 35.04273504273504 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.2_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 58.54319715499878
+EQM Final: 1.4331982608856637
+Épocas: 770
+ => {Execução MLP 2_PMC1_0.2_2 Treino} deu 158 erro(s) com 32.47863247863248 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.2_2 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC1_0.2: 225.4
+
+
+
+Duração(sec): 15.961441040039062
+EQM Final: 1.3179687449271733
+Épocas: 212
+ => {Execução MLP 3_2_PMC1_0.2_0.5_1 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.5_1 Teste} deu 52 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+
+Duração(sec): 13.723313331604004
+EQM Final: 1.3233009475023334
+Épocas: 178
+ => {Execução MLP 3_2_PMC1_0.2_0.5_2 Treino} deu 164 erro(s) com 29.914529914529915 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.5_2 Teste} deu 58 erro(s) com 25.64102564102564 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.2_0.5: 78.0
+
+
+
+Duração(sec): 36.09552526473999
+EQM Final: 1.3001172345053675
+Épocas: 476
+ => {Execução MLP 3_2_PMC1_0.2_0.7_1 Treino} deu 145 erro(s) com 38.034188034188034 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.7_1 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 10.782152891159058
+EQM Final: 1.327930280382561
+Épocas: 141
+ => {Execução MLP 3_2_PMC1_0.2_0.7_2 Treino} deu 145 erro(s) com 38.034188034188034 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.7_2 Teste} deu 50 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.2_0.7: 123.4
+
+
+
+Duração(sec): 63.1154990196228
+EQM Final: 1.5755874836081774
+Épocas: 806
+ => {Execução MLP 3_2_PMC1_0.2_0.9_1 Treino} deu 164 erro(s) com 29.914529914529915 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.9_1 Teste} deu 40 erro(s) com 48.717948717948715 de taxa de acerto --------------------------------------
+
+Duração(sec): 39.51033306121826
+EQM Final: 1.9517530822151314
+Épocas: 512
+ => {Execução MLP 3_2_PMC1_0.2_0.9_2 Treino} deu 145 erro(s) com 38.034188034188034 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.2_0.9_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.2_0.9: 263.6
+
+
+
+Duração(sec): 47.332428216934204
+EQM Final: 1.4851392320209287
+Épocas: 624
+ => {Execução MLP 2_PMC1_0.5_1 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.5_1 Teste} deu 57 erro(s) com 26.923076923076923 de taxa de acerto --------------------------------------
+
+Duração(sec): 20.17206859588623
+EQM Final: 1.6813467168210399
+Épocas: 270
+ => {Execução MLP 2_PMC1_0.5_2 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.5_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC1_0.5: 178.8
+
+
+
+Duração(sec): 7.212731599807739
+EQM Final: 1.321922170567802
+Épocas: 98
+ => {Execução MLP 3_2_PMC1_0.5_0.5_1 Treino} deu 156 erro(s) com 33.33333333333333 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.5_1 Teste} deu 54 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 19.27443265914917
+EQM Final: 1.3276280090329684
+Épocas: 260
+ => {Execução MLP 3_2_PMC1_0.5_0.5_2 Treino} deu 149 erro(s) com 36.324786324786324 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.5_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.5_0.5: 71.6
+
+
+
+Duração(sec): 10.013183355331421
+EQM Final: 1.3208163903737247
+Épocas: 134
+ => {Execução MLP 3_2_PMC1_0.5_0.7_1 Treino} deu 162 erro(s) com 30.76923076923077 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.7_1 Teste} deu 51 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+
+Duração(sec): 12.162491798400879
+EQM Final: 1.3229142763176454
+Épocas: 163
+ => {Execução MLP 3_2_PMC1_0.5_0.7_2 Treino} deu 157 erro(s) com 32.9059829059829 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.7_2 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.5_0.7: 59.4
+
+
+
+Duração(sec): 77.37074589729309
+EQM Final: 1.2939148253842148
+Épocas: 1001
+ => {Execução MLP 3_2_PMC1_0.5_0.9_1 Treino} deu 160 erro(s) com 31.62393162393162 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.9_1 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Duração(sec): 73.9002640247345
+EQM Final: 1.2854055005914347
+Épocas: 904
+ => {Execução MLP 3_2_PMC1_0.5_0.9_2 Treino} deu 167 erro(s) com 28.63247863247863 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC1_0.5_0.9_2 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC1_0.5_0.9: 381.0
+
+
+
+Duração(sec): 48.20107698440552
+EQM Final: 1.8325671084003148
+Épocas: 339
+ => {Execução MLP 2_PMC2_0.01_1 Treino} deu 157 erro(s) com 32.9059829059829 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC2_0.01_1 Teste} deu 57 erro(s) com 26.923076923076923 de taxa de acerto --------------------------------------
+
+Duração(sec): 108.28495621681213
+EQM Final: 1.4913263896419788
+Épocas: 728
+ => {Execução MLP 2_PMC2_0.01_2 Treino} deu 148 erro(s) com 36.75213675213676 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC2_0.01_2 Teste} deu 38 erro(s) com 51.28205128205128 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC2_0.01: 213.4
+
+
+
+Duração(sec): 20.796849727630615
+EQM Final: 1.3276675194601395
+Épocas: 145
+ => {Execução MLP 3_2_PMC2_0.01_0.5_1 Treino} deu 153 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.5_1 Teste} deu 47 erro(s) com 39.743589743589745 de taxa de acerto --------------------------------------
+
+Duração(sec): 23.80637812614441
+EQM Final: 1.3258002381918077
+Épocas: 164
+ => {Execução MLP 3_2_PMC2_0.01_0.5_2 Treino} deu 164 erro(s) com 29.914529914529915 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.5_2 Teste} deu 56 erro(s) com 28.205128205128204 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.01_0.5: 61.8
+
+
+
+Duração(sec): 50.25457978248596
+EQM Final: 1.3141144837473815
+Épocas: 340
+ => {Execução MLP 3_2_PMC2_0.01_0.7_1 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.7_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+
+Duração(sec): 29.959853410720825
+EQM Final: 1.333988889599395
+Épocas: 206
+ => {Execução MLP 3_2_PMC2_0.01_0.7_2 Treino} deu 161 erro(s) com 31.196581196581196 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.7_2 Teste} deu 57 erro(s) com 26.923076923076923 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.01_0.7: 109.2
+
+
+
+Duração(sec): 381.028457403183
+EQM Final: 1.417234066189012
+Épocas: 2634
+ => {Execução MLP 3_2_PMC2_0.01_0.9_1 Treino} deu 155 erro(s) com 33.76068376068376 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.9_1 Teste} deu 43 erro(s) com 44.871794871794876 de taxa de acerto --------------------------------------
+
+Duração(sec): 237.68250012397766
+EQM Final: 1.310572109436144
+Épocas: 1639
+ => {Execução MLP 3_2_PMC2_0.01_0.9_2 Treino} deu 159 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.01_0.9_2 Teste} deu 65 erro(s) com 16.666666666666664 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.01_0.9: 854.6
+
+
+
+Duração(sec): 362.13605666160583
+EQM Final: 1.4867804906054567
+Épocas: 2511
+ => {Execução MLP 2_PMC2_0.1_1 Treino} deu 150 erro(s) com 35.8974358974359 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC2_0.1_1 Teste} deu 44 erro(s) com 43.58974358974359 de taxa de acerto --------------------------------------
+
+Duração(sec): 260.1041808128357
+EQM Final: 1.3893942300073288
+Épocas: 1824
+ => {Execução MLP 2_PMC2_0.1_2 Treino} deu 144 erro(s) com 38.46153846153847 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC2_0.1_2 Teste} deu 46 erro(s) com 41.02564102564102 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 2_PMC2_0.1: 867.0
+
+
+
+Duração(sec): 19.915717840194702
+EQM Final: 1.3162769247307335
+Épocas: 141
+ => {Execução MLP 3_2_PMC2_0.1_0.5_1 Treino} deu 159 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.5_1 Teste} deu 53 erro(s) com 32.05128205128205 de taxa de acerto --------------------------------------
+
+Duração(sec): 16.076098680496216
+EQM Final: 1.323405869306902
+Épocas: 110
+ => {Execução MLP 3_2_PMC2_0.1_0.5_2 Treino} deu 164 erro(s) com 29.914529914529915 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.5_2 Teste} deu 49 erro(s) com 37.17948717948718 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.1_0.5: 50.2
+
+
+
+Duração(sec): 13.270524740219116
+EQM Final: 1.3366416539623995
+Épocas: 95
+ => {Execução MLP 3_2_PMC2_0.1_0.7_1 Treino} deu 153 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.7_1 Teste} deu 60 erro(s) com 23.076923076923077 de taxa de acerto --------------------------------------
+
+Duração(sec): 51.65187358856201
+EQM Final: 1.3196712009183613
+Épocas: 367
+ => {Execução MLP 3_2_PMC2_0.1_0.7_2 Treino} deu 154 erro(s) com 34.18803418803419 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.7_2 Teste} deu 40 erro(s) com 48.717948717948715 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.1_0.7: 92.4
+
+
+
+Duração(sec): 526.9265494346619
+EQM Final: 1.2509637775084381
+Épocas: 3745
+ => {Execução MLP 3_2_PMC2_0.1_0.9_1 Treino} deu 158 erro(s) com 32.47863247863248 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.9_1 Teste} deu 62 erro(s) com 20.51282051282051 de taxa de acerto --------------------------------------
+
+Duração(sec): 73.43955421447754
+EQM Final: 1.5667965643901656
+Épocas: 524
+ => {Execução MLP 3_2_PMC2_0.1_0.9_2 Treino} deu 166 erro(s) com 29.059829059829063 de taxa de acerto --------------------------------------
+ => {Execução MLP 3_2_PMC2_0.1_0.9_2 Teste} deu 66 erro(s) com 15.384615384615385 de taxa de acerto --------------------------------------
+
+Média de épocas para execução 3_2_PMC2_0.1_0.9: 853.8
+
+
+
+Duração(sec): 107.55095887184143
+EQM Final: 1.7973327673911201
+Épocas: 761
+ => {Execução MLP 2_PMC2_0.2_1 Treino} deu 165 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC2_0.2_1 Teste} deu 45 erro(s) com 42.30769230769231 de taxa de acerto --------------------------------------
