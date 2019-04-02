@@ -1289,3 +1289,10 @@ Média de épocas para execução 3_2_PMC3_0.5_0.9: 0.0
 
 18:29:40
 Delta tempo: 15642.580799818039
+1:42:51
+
+Duração(sec): 79.99091625213623
+EQM Final: 1.2764740787796223
+Épocas: 1042
+ => {Execução MLP 2_PMC1_0.01_1 Treino} deu 153 erro(s) com 34.61538461538461 de taxa de acerto --------------------------------------
+ => {Execução MLP 2_PMC1_0.01_1 Teste} deu 55 erro(s) com 29.48717948717949 de taxa de acerto --------------------------------------
