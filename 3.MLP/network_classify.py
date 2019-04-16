@@ -181,7 +181,7 @@ class MultiLayerPerceptron:
     def get_node_delta_hidden_layers(self, node, node_index, sample_index, next_layer):
         summ = 0
 
-        for children_node in self.layers_node[next_layer]:
+        for children_node in next_layer:
             summ += children_node.network_delta[sample_index] * children_node.weights[node_index + 1]
 
         u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
@@ -259,7 +259,10 @@ class MultiLayerPerceptron:
                             node.before_weights[0] = node.weights[0]
                         node.weights[0] += momentum + node.learning_rate/len(self.samples) *  aux_threshold
 
-                    for layer_index, layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
+                    tttt=self.layers_node[1:len(self.layers_node) - 1:]
+                    tttt.reverse()
+
+                    for layer_index, layer in enumerate(tttt):
                         for node_index, node in enumerate(layer):
                             aux = [0 for i in node.parents]
                             aux_threshold = 0
@@ -268,7 +271,7 @@ class MultiLayerPerceptron:
 
                             for samp_index, samp in enumerate(self.samples):
 
-                                delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, layer_index + 1)
+                                delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, self.layers_node[len(tttt) - layer_index + 1])
                                 node.network_delta[samp_index] = delta
 
                                 for index_parent, parent in enumerate(node.parents):
@@ -294,7 +297,7 @@ class MultiLayerPerceptron:
                         aux = [0 for i in node.weights]
 
                         for samp_index, samp in enumerate(self.samples):
-                            delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, 1)
+                            delta = self.get_node_delta_hidden_layers(node, node_index, samp_index, self.layers_node[1])
                             node.network_delta[samp_index] = delta
 
                             for index_weights, weight in enumerate(node.weights):

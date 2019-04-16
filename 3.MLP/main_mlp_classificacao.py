@@ -20,9 +20,9 @@ train_outputs = Importer.import_output('misc/dtrain_3spirals.txt')
 test_inputs = Importer.import_input('misc/xtest_3spirals.txt')
 test_outputs = Importer.import_output('misc/dtest_3spirals.txt')
 
-save_image = True
+save_image = False
 avoid_plot_it_all = False
-save_data = True
+save_data = False
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrinterFileMLP
