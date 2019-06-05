@@ -1,4 +1,5 @@
 from importer import Importer
+from util import Util
 import random
 
 
@@ -16,15 +17,15 @@ def main():
     #### Parâmetros da rotina (ignorar por hora)
     #crossover = crossover_method # função de crossover escolhida pela rotina
     #mutate = mutate_method # função de mutação escolhida pela rotina
-    #random_seed = 1 # vamos usar quando formos criar as rotinas na primeira fase de gerar a população inicial
+    random_seed = 1 # vamos usar quando formos criar as rotinas na primeira fase de gerar a população inicial
 
     #### Legenda
     ## [array] # no python lembra uma lista dinâmica, pois posso adicionar novos elementos eternamente
     ## (tuple) # um array imutável (não da pra mudar o valor nem o adicionar novos elementos)
     ## função(parâmetros :tipo do parâmetro) : tipo do retorno
 
-    # population = gerar população inicial (random_seed: int): [N chromossomos]
-    population = []
+    # population = gerar população inicial (elements: cities, random_seed: int, population_size: int): [N chromossomos]
+    population = Util.generate_population(cities, random_seed, N)
 
     # loop com critério de parada do algoritmo genético
     for i in range(generations_limit):
