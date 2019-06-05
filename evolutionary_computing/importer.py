@@ -17,4 +17,4 @@ class Importer:
                         cities.append((splited_line[0], splited_line[1]))
                         
             
-        return cities_size, cities
+        return cities
