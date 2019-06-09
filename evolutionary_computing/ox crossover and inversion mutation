@@ -1,0 +1,110 @@
+```
+public static int[] order_crossover(int[] pai, int[] mae){
+
+    int len = pai.length;
+    int[] vetorFilho = new int[len];
+
+    //gera 2 valores randômicos entre 0 e o tamanho do vetor
+    //startPosition é a primeira posição de quebra do vetor e endPosition a última
+    int startPosition = numeroAleatorio(0, len);
+    int endPosition = numeroAleatorio(0, len);
+
+    //só para garantir que a startPosition sempre vai ser menor que a endPosition na randomização
+    while(startPosition >= endPosition) {
+        startPosition = numeroAleatorio(0, len);
+        endPosition = numeroAleatorio(0, len);
+    }
+
+    //inicializa o vetorFilho com elementos com valor -1
+    for(int i = 0; i < len; i++){
+        vetorFilho[i] = -1;
+    }
+
+    //preenchendo o vetorFilho entre as posições startPosition e endPosition com os valores do pai
+    for(int i = startPosition; i <= endPosition; i++){
+        vetorFilho[i] = pai[i];
+    }
+
+    //gerando vetor aux e preenchendo com os valores do pai que não estão preenchidos no vetorFilho ainda (ou seja, elementos restantes do pai)
+    int[] aux = new int[len - (endPosition - startPosition) - 1]; //gerando o vetor e retirando o espaço já preenchido no vetorFilho
+    int k = 0;
+
+    for(int i = 0; i < len; i++){
+
+        if (!vetorContemElemento(vetorFilho, pai[i])) {
+            aux[k] = pai[i];
+            k++;
+        }
+
+    }
+
+    //criando um clone da mae pra rotacionar à direita, assim permitindo preencher de forma organizada o vetor ordenado abaixo
+    int[] cloneMae = mae.clone();
+    rotacionarVetor(cloneMae, len - endPosition - 1);
+
+    //preenchendo o vetor ordenado (organizado) criado a seguir a partir dos valores da mae (retirando o espaço já preenchido no vetorFilho)
+    int[] orderedAux = new int[len - (endPosition - startPosition) - 1];
+    k = 0;
+
+    for(int i = 0; i < len; i++){
+
+        if (vetorContemElemento(aux, cloneMae[i])) {
+            orderedAux[k] = cloneMae[i];
+            k++;
+        }
+
+    }
+
+    //agora é só preencher o vetorFilho com os valores já organizados no vetor auxiliar ordenado (organizado) criado acima, começando após o endPosition
+    //para melhor entendimento: len é o tamanho do vetor, ou seja, 9. As posições, porém, são de 0 a 8. Isso influencia na hora de usar o módulo.
+    for(int i = 0; i < orderedAux.length; i++){
+        int actualPosition = (endPosition + i + 1) % len;
+        vetorFilho[actualPosition] = orderedAux[i];
+    }
+
+    return vetorFilho;
+}
+```
+
+```
+//método de rotacionar o vetor  para a direita
+public static void rotacionarVetor(int[] vetor, int value) {
+    int aux = vetor.length - value % vetor.length;
+
+    if (aux > 0) {
+        int[] vetorClonado = vetor.clone();
+
+        for (int i = 0; i < vetor.length; i++) {
+            int k = (i + aux) % vetor.length;
+            vetor[i] = vetorClonado[k];
+        }
+
+    }
+
+}
+```
+
+```
+//método para verificar se um elemento existe no vetor
+public static boolean vetorContemElemento(int[] vetor, int e){
+
+    for(int i = 0; i < vetor.length; i++){
+
+        if(vetor[i] == e)
+            return true;
+    }
+
+    return false;
+
+}
+```
+
+```
+//método para randomizar os numeros
+//minimo incluido mas o max não
+public static int numeroAleatorio(int min , int max) {
+    Random r = new Random();
+    double d = min + r.nextDouble() * (max - min);
+    return (int)d;
+}
+```
