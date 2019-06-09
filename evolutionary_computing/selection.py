@@ -1,4 +1,5 @@
 from util import Util
+import random
 
 
 
@@ -23,12 +24,35 @@ class Selection:
         fitness = []
         
         N = len(population)
+        summ = 0
         
         for chromossome in population:
-            fitness.append(minn + (maxx - minn) * ((N - i) / (N - 1)))
+            fitness_unit = minn + (maxx - minn) * ((N - (i + 1)) / (N - 1))
+            
+            summ += fitness_unit
+            
+            fitness.append(fitness_unit)
         
-        return fitness
+        
+        return [i/summ for i in fitness]
     
     @staticmethod
     def wheel_selection(population, fitness, select=2):
-        pass
+        selecteds = []
+        parents = []
+        
+        while len(selecteds)  < select:
+            selection_number = random.random()
+            summ = 0
+            
+            for i in range(len(fitness)):
+                summ += fitness[i]
+                
+                if summ >= selection_number:
+                    if not( i in selecteds):
+                        selecteds.append(i)
+                        parents.append(population[i])
+                    
+                    break
+        
+        return parents

@@ -39,9 +39,8 @@ def main():
         new_population = []
 
         while len(new_population) < N:
-            Selection.wheel_selection(population, fitness, select=2)
-            # father, mother = selecionar pais para crossover pela roleta(population,  fitness): (chromossomo, chromossomo)
-            father, mother = [], []
+            #father, mother = selecionar pais para crossover pela roleta(population,  fitness): (chromossomo, chromossomo)
+            father, mother = Selection.wheel_selection(population, fitness, select=2)
 
             if random.random() <= tax_crossover:
                 # son1, son2 = crossover(father, mother) : (chromossomo, chromossomo)
