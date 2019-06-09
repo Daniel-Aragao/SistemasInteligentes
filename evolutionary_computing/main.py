@@ -1,5 +1,6 @@
 from importer import Importer
 from util import Util
+from selection import Selection
 import random
 
 
@@ -29,14 +30,17 @@ def main():
 
     # loop com critério de parada do algoritmo genético
     for i in range(generations_limit):
-
+        
+        population = Selection.sort_city_chromossomes(population)
+        
         # aptidões = gerar função de aptidão (population: [N chromossomos]) : [N aptidões em percentual]
-        aptitudes = []
+        fitness = Selection.generate_fitness_city(population)
 
         new_population = []
 
         while len(new_population) < N:
-            # father, mother = selecionar pais para crossover pela roleta(population,  aptidões): (chromossomo, chromossomo)
+            Selection.wheel_selection(population, fitness, select=2)
+            # father, mother = selecionar pais para crossover pela roleta(population,  fitness): (chromossomo, chromossomo)
             father, mother = [], []
 
             if random.random() <= tax_crossover:

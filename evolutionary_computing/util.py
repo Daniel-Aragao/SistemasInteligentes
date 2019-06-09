@@ -36,10 +36,5 @@ class Util:
         
         return population
         
-    @staticmethod
-    def generate_aptitudes_city(population):
-        #aptitudes = []
-        
-        #costs = cities_costs(population)
-        pass
+    
     
