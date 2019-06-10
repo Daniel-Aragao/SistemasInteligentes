@@ -14,7 +14,7 @@ class Importer:
                     if(not cities_size):
                         cities_size = int(splited_line[0])
                     else:
-                        cities.append((splited_line[0], splited_line[1]))
+                        cities.append((int(splited_line[0]), int(splited_line[1])))
                         
             
         return cities

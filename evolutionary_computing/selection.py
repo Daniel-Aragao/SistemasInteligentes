@@ -26,7 +26,7 @@ class Selection:
         N = len(population)
         summ = 0
         
-        for chromossome in population:
+        for i, chromossome in enumerate(population):
             fitness_unit = minn + (maxx - minn) * ((N - (i + 1)) / (N - 1))
             
             summ += fitness_unit

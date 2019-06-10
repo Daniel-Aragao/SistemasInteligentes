@@ -1,6 +1,8 @@
 from importer import Importer
 from util import Util
 from selection import Selection
+from crossover import Crossover
+
 import random
 
 
@@ -16,7 +18,7 @@ def main():
     cities = Importer.import_cities(path)
 
     #### Parâmetros da rotina (ignorar por hora)
-    #crossover = crossover_method # função de crossover escolhida pela rotina
+    crossover = Crossover.OBX # função de crossover escolhida pela rotina
     #mutate = mutate_method # função de mutação escolhida pela rotina
     random_seed = 1 # vamos usar quando formos criar as rotinas na primeira fase de gerar a população inicial
 
@@ -43,8 +45,7 @@ def main():
             father, mother = Selection.wheel_selection(population, fitness, select=2)
 
             if random.random() <= tax_crossover:
-                # son1, son2 = crossover(father, mother) : (chromossomo, chromossomo)
-                son1, son2 = [], []
+                son1, son2 = crossover(father, mother) : (chromossomo, chromossomo)
             else:
                 son1, son2 = father, mother
 

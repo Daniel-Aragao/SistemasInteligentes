@@ -10,7 +10,7 @@ class Util:
     
     @staticmethod
     def distance_between_cities(c1, c2):
-        return euclidian_distance(c1[0], c1[1], c2[0], c2[1])
+        return Util.euclidian_distance(c1[0], c1[1], c2[0], c2[1])
     
     @staticmethod
     def cities_costs(cities):
@@ -18,10 +18,10 @@ class Util:
         size = len(cities)
         
         for i in range(0, size - 1):
-            summ += distance_between_cities(cities[i], cities[i + 1])
+            summ += Util.distance_between_cities(cities[i], cities[i + 1])
         
         
-        return summ + distance_between_cities(cities[size - 1], cities[0])
+        return summ + Util.distance_between_cities(cities[size - 1], cities[0])
     
     @staticmethod
     def generate_population(elements, seed, population_size):
