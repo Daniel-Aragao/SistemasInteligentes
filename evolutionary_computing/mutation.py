@@ -29,6 +29,7 @@ class Mutation:
         # son = ['A', 'B', 'C', 'D', 'E', 'F', 'G']
         # selected_elements = [2, 4]
         # son = ['A', 'B', 'E', 'D', 'C', 'F', 'G']
+        chromossome_size = len(son)
         
         if not selected_elements:
             cut_left = random.randint(0, chromossome_size - 1)

@@ -32,17 +32,17 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
         new_population = []
 
         while len(new_population) < N:
-            #father, mother = selecionar pais para crossover pela roleta(population,  fitness): (chromossomo, chromossomo)
+            #father, mother = selecionar pais para crossover pela roleta(population,  fitness): [chromossomo, chromossomo]
             father, mother = Selection.wheel_selection(population, fitness, select=2)
 
             if random.random() <= tax_crossover:
-                sons = crossover(father, mother) : (chromossomo, chromossomo)
+                sons = crossover(father, mother)
             else:
                 sons = [father.copy(), mother.copy()]
             
             for son in sons:
                 if random.random() <= tax_mutation:
-                    mutate(son) : void
+                    mutate(son)
 
                 new_population.append(son)
                 
@@ -61,10 +61,10 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
 if __name__ == "__main__":
     runs = 30
     instances = [
-        {"crossover": Crossover.OBX, "mutate": Mutation.position_based},
-        {"crossover": Crossover.OBX, "mutate": Mutation.inversion},
-        {"crossover": Crossover.OX, "mutate": Mutation.position_based},
-        {"crossover": Crossover.OX, "mutate": Mutation.inversion}
+        {"name": "OBX + Position based", "crossover": Crossover.OBX, "mutate": Mutation.position_based},
+        {"name": "OBX + Inversion", "crossover": Crossover.OBX, "mutate": Mutation.inversion},
+        {"name": "OX + Position based", "crossover": Crossover.OX, "mutate": Mutation.position_based},
+        {"name": "OX + Inversion", "crossover": Crossover.OX, "mutate": Mutation.inversion}
     ]
     
     results = []
@@ -72,6 +72,8 @@ if __name__ == "__main__":
     bests_cost_summ = 0
     
     for j, instance in enumerate(instances):
+        print("----------", "Instance: " + instance["name"])
+        
         result_instance = {
                 "instance": instance,
                 "answers": [],
@@ -82,7 +84,7 @@ if __name__ == "__main__":
                 "costs_standard_deviation": 0,
                 "time_summ": 0,
                 "time_mean": 0,
-                "generation_summ": 0
+                "generation_summ": 0,
                 "generation_mean": 0
             }
             
@@ -91,7 +93,7 @@ if __name__ == "__main__":
         for i in range(1, runs + 1):
             time_start = time.perf_counter()
             
-            result, result_cost, generation = genetic_algorithmn(random_seed=i,**instance)
+            result, result_cost, generation = genetic_algorithmn(instance["crossover"], instance["mutate"], random_seed=i)
             
             time_delta = time.perf_counter() - time_start
             
@@ -104,14 +106,18 @@ if __name__ == "__main__":
             if not result_instance["best"] or result_instance["best_cost"] > result_cost:
                 result_instance["best"] = result
                 result_instance["best_cost"] = result_cost
+                print("Instance best cost:" + str(result_cost))
         
         result_instance["time_mean"] = result_instance["time_summ"] / runs
         result_instance["costs_mean"] = result_instance["costs_summ"] / runs
         result_instance["generation_mean"] = result_instance["generation_summ"] / runs
         
-        result_instance["costs_standard_deviation"] = stdev([i for i in result_instance["answers"][2]])
+        result_instance["costs_standard_deviation"] = stdev([i[2] for i in result_instance["answers"]])
                 
         bests_cost_summ += result_instance["best_cost"]
         
         if not best_result or best_result["best_cost"] > result_instance["best_cost"]:
                 best_result = result_instance
+                print("General best cost:" + str(result_instance["best_cost"]))
+        
+        print("Time:", result_instance["time_mean"])
