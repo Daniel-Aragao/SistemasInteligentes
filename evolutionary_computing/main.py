@@ -23,6 +23,7 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
     population = Selection.sort_city_chromossomes(population)
     best_result = population[0]
     best_result_cost = Util.cities_costs(best_result)
+    best_result_generation = 0
 
     # loop com critério de parada do algoritmo genético
     for generation in range(1, generations_limit + 1):
@@ -54,8 +55,9 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
         if best_result_cost > population_0_cost:
             best_result = population[0]
             best_result_cost = population_0_cost
+            best_result_generation = generation
     
-    return best_result, best_result_cost, generation
+    return best_result, best_result_cost, best_result_generation
 
 
 if __name__ == "__main__":
@@ -106,7 +108,7 @@ if __name__ == "__main__":
             if not result_instance["best"] or result_instance["best_cost"] > result_cost:
                 result_instance["best"] = result
                 result_instance["best_cost"] = result_cost
-                print("Instance best cost:" + str(result_cost))
+                print("Instance best cost:", result_cost)
         
         result_instance["time_mean"] = result_instance["time_summ"] / runs
         result_instance["costs_mean"] = result_instance["costs_summ"] / runs
@@ -120,4 +122,10 @@ if __name__ == "__main__":
                 best_result = result_instance
                 print("General best cost:" + str(result_instance["best_cost"]))
         
+        print()
         print("Time:", result_instance["time_mean"])
+        print("generation mean:", result_instance["generation_mean"])
+        print("costs_mean:", result_instance["costs_mean"])
+        print("costs_standard_deviation:", result_instance["costs_standard_deviation"])
+        print("best_cost:", result_instance["best_cost"])
+        print()
