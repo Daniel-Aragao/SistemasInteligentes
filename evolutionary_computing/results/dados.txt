@@ -1,0 +1,53 @@
+---------- Instance: OBX + Position based
+Instance best cost: 66546.61288821067
+Instance best cost: 62750.763433036314
+Instance best cost: 60285.14855012696
+Instance best cost: 56352.62751549307
+Instance best cost: 53629.94112836145
+General best cost:53629.94112836145
+
+Time: 3.46213456330006
+generation mean: 184.8
+costs_mean: 62873.479909729445
+costs_standard_deviation: 4970.086306404182
+best_cost: 53629.94112836145
+
+---------- Instance: OBX + Inversion
+Instance best cost: 57271.07088554499
+Instance best cost: 56757.14648052271
+Instance best cost: 56089.96985653242
+Instance best cost: 53587.221248284
+Instance best cost: 52102.819466480876
+General best cost:52102.819466480876
+
+Time: 3.5693414479334025
+generation mean: 183.06666666666666
+costs_mean: 57584.98673059347
+costs_standard_deviation: 3119.16020510546
+best_cost: 52102.819466480876
+
+---------- Instance: OX + Position based
+Instance best cost: 53479.74630037651
+Instance best cost: 51703.19014292987
+General best cost:51703.19014292987
+
+Time: 3.1420367383694003
+generation mean: 179.53333333333333
+costs_mean: 59916.23002775064
+costs_standard_deviation: 4468.739293786718
+best_cost: 51703.19014292987
+
+---------- Instance: OX + Inversion
+Instance best cost: 58642.21994518361
+Instance best cost: 56527.492781666624
+Instance best cost: 54808.37897939619
+Instance best cost: 52917.88547542525
+Instance best cost: 52738.556929303515
+Instance best cost: 52710.44689078671
+
+Time: 3.2775361937684164
+generation mean: 179.96666666666667
+costs_mean: 57254.35887542589
+costs_standard_deviation: 2945.1637126732967
+best_cost: 52710.44689078671
+

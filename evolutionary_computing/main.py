@@ -4,6 +4,7 @@ from selection import Selection
 from crossover import Crossover
 from mutation import Mutation
 
+import matplotlib.pyplot as plt
 from statistics import stdev
 import random
 import time
@@ -24,6 +25,8 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
     best_result = population[0]
     best_result_cost = Util.cities_costs(best_result)
     best_result_generation = 0
+    
+    cost_by_generation = {}
 
     # loop com critério de parada do algoritmo genético
     for generation in range(1, generations_limit + 1):
@@ -56,8 +59,10 @@ def genetic_algorithmn(crossover, mutate, random_seed, path="misc/ncit30.dat"):
             best_result = population[0]
             best_result_cost = population_0_cost
             best_result_generation = generation
+        
+        cost_by_generation[generation] = best_result_cost
     
-    return best_result, best_result_cost, best_result_generation
+    return best_result, best_result_cost, best_result_generation, cost_by_generation
 
 
 if __name__ == "__main__":
@@ -87,7 +92,8 @@ if __name__ == "__main__":
                 "time_summ": 0,
                 "time_mean": 0,
                 "generation_summ": 0,
-                "generation_mean": 0
+                "generation_mean": 0,
+                "cost_by_generation": None
             }
             
         results.append(result_instance)
@@ -95,7 +101,7 @@ if __name__ == "__main__":
         for i in range(1, runs + 1):
             time_start = time.perf_counter()
             
-            result, result_cost, generation = genetic_algorithmn(instance["crossover"], instance["mutate"], random_seed=i)
+            result, result_cost, generation, cost_by_generation = genetic_algorithmn(instance["crossover"], instance["mutate"], random_seed=i)
             
             time_delta = time.perf_counter() - time_start
             
@@ -105,10 +111,22 @@ if __name__ == "__main__":
             
             result_instance["answers"].append((i, result, result_cost))
             
+            if not result_instance["cost_by_generation"]:
+                result_instance["cost_by_generation"] = cost_by_generation.copy()
+            else:
+                for generation in cost_by_generation:
+                    result_instance["cost_by_generation"][generation] += cost_by_generation[generation]
+                    
+            
             if not result_instance["best"] or result_instance["best_cost"] > result_cost:
                 result_instance["best"] = result
                 result_instance["best_cost"] = result_cost
+                
                 print("Instance best cost:", result_cost)
+            
+            
+        for generation in result_instance["cost_by_generation"]:
+            result_instance["cost_by_generation"][generation] = result_instance["cost_by_generation"][generation] / runs
         
         result_instance["time_mean"] = result_instance["time_summ"] / runs
         result_instance["costs_mean"] = result_instance["costs_summ"] / runs
@@ -121,6 +139,10 @@ if __name__ == "__main__":
         if not best_result or best_result["best_cost"] > result_instance["best_cost"]:
                 best_result = result_instance
                 print("General best cost:" + str(result_instance["best_cost"]))
+        
+        ri = result_instance["cost_by_generation"]
+        plt.plot([i for i in ri], [ri[i] for i in ri])
+        plt.show()
         
         print()
         print("Time:", result_instance["time_mean"])
