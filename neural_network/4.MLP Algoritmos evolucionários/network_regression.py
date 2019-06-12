@@ -98,34 +98,19 @@ class MultiLayerPerceptron:
 
     @staticmethod
     def get_activation_potential(node, samples, sample_index: int, update_outputs=False):
-        if not update_outputs and node.network_recursion_activation_potential[sample_index]:
-            return node.network_recursion_activation_potential[sample_index]
+        activation_potential = 0
 
+        if not node.parents:
+            for i, inputt in enumerate(samples[sample_index]):
+                    activation_potential += node.weights[i] * inputt
         else:
-            activation_potential = 0
+            activation_potential += node.weights[0] * (- 1)
 
-            if not node.parents:
-                for i, inputt in enumerate(samples[sample_index]):
-                        activation_potential += node.weights[i] * inputt
-            else:
-                activation_potential += node.weights[0] * (- 1)
+            for i, parent in enumerate(node.parents):
+                activation_potential += node.weights[i + 1] * MultiLayerPerceptron.output(parent, samples, sample_index)
+        
+        return activation_potential
 
-                for i, parent in enumerate(node.parents):
-                    activation_potential += node.weights[i + 1] * MultiLayerPerceptron.output(parent, samples, sample_index)
-            
-            return activation_potential
-
-    def clean_recursion_output(self):
-        for layer in self.layers_node:
-            for node in layer:
-                node.network_recursion_activation_potential = [None for i in range(len(self.samples))]
-                
-    def update_recursion_output(self, sample_index):
-        self.clean_recursion_output()
-
-        for node in self.last_layer_nodes:
-                MultiLayerPerceptron.output(node, self.samples, sample_index)
-    
     def get_error(self, sample_index: int):
         error = 0
 
@@ -137,9 +122,10 @@ class MultiLayerPerceptron:
         
         return error/2
     
-    def calc_eqm(self):
+    def calc_eqm(self, weights):
         error = 0
-        self.clean_recursion_output()
+        
+        self.vector_to_weights(weights):
         
         for sample_index, sample in enumerate(self.samples):
 
@@ -147,37 +133,24 @@ class MultiLayerPerceptron:
         
         return error/len(self.samples)
 
+    def vector_to_weights(self, weights):
+        cursor = 0
+        
+        for layer in self.layers_node:
+            for perceptron in layer:
+                perceptron_weights_size = len(perceptron.weights)
+                perceptron.weights = weights[cursor:perceptron_weights_size:]
+                
+                cursor += perceptron_weights_size
     
-    def get_node_delta_output_layer(self, node, sample_index):
-        d = self.expected_outputs[sample_index]
-        y = MultiLayerPerceptron.output(node, self.samples, sample_index)
-        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-        g_ = node.activation_function(u, is_derivative=True)
-
-        return ((d - y) * g_)
-
-    def get_node_delta_first_layer(self, node, node_index, sample_index):
-        summ = 0
-
-        for children_node in self.layers_node[1]:
-            summ += children_node.network_delta[sample_index] * children_node.weights[node_index + 1]
-
-        u = MultiLayerPerceptron.get_activation_potential(node, self.samples, sample_index)
-
-        return (summ * node.activation_function(u, is_derivative=True))
-    
-    def __shuffle(self):
-        shuffle_map = [i for i in range(len(self.samples))]
-        random.shuffle(shuffle_map)
-
-        for i, new_i in enumerate(shuffle_map):
-            a = self.samples[i]
-            self.samples[i] = self.samples[new_i]
-            self.samples[new_i] = a
-
-            b = self.expected_outputs[i]
-            self.expected_outputs[i] = self.expected_outputs[new_i]
-            self.expected_outputs[new_i] = b
+    def weights_to_vector(self):
+        elements = []
+        
+        for layer in self.layers_node:
+            for perceptron in layer:
+                elements += perceptron.weights
+                
+        return elements
     
     def AG(self, max_epoch):
         # self.config_evolutionary
@@ -188,10 +161,10 @@ class MultiLayerPerceptron:
         crossover = None # self.config_evolutionary["crossover"]
         mutate = None # self.config_evolutionary["mutation"]
         
-        elements = [] # samples
+        elements = self.weights_to_vector()
         
         population = Randomize.generate_population(elements, self.seed, N)
-        population = Selection.sort_MLP_chromossomes(population)
+        population = Selection.sort_MLP_chromossomes(population, self.calc_eqm)
         
         for generation in range(1, generations_limit + 1):
             fitness = Selection.generate_fitness(population)
@@ -212,7 +185,9 @@ class MultiLayerPerceptron:
     
                     new_population.append(son)
                     
-            population = Selection.sort_MLP_chromossomes(population + new_population)[0:N:]
+            population = Selection.sort_MLP_chromossomes(population + new_population, self.calc_eqm)[0:N:]
+        
+        return population[0]
     
     def PSO(self, max_epoch):
         pass
@@ -232,15 +207,17 @@ class MultiLayerPerceptron:
 
         epochs_eqm = []
         
-        
+        weights = []
         if self.config_evolutionary["evolutionary_algorithmn"] == "AG":
-            self.AG(max_epoch)
+            weights = self.AG(max_epoch)
         elif self.config_evolutionary["evolutionary_algorithmn"] == "PSO":
-            self.PSO(max_epoch)
-        if self.config_evolutionary["evolutionary_algorithmn"] == "EE":
-            self.EE(max_epoch)
+            weights = self.PSO(max_epoch)
+        elif self.config_evolutionary["evolutionary_algorithmn"] == "EE":
+            weights = self.EE(max_epoch)
+        else:
+            raise Exception("Invalid evolutionary algorithmn try AG, PSO or EE: " + str(self.config_evolutionary["evolutionary_algorithmn"]))
+            
         
-
         # while(abs(eqm_current - eqm_before) > self.precision):
         #     if epochs > max_epoch:
         #        break
@@ -286,14 +263,11 @@ class MultiLayerPerceptron:
         self.training_samples = self.samples
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
-        self.printer.print_msg("EQM Final: " + str(eqm_current))
-        self.printer.print_msg("Épocas: " + str(epochs))
+        #self.printer.print_msg("EQM Final: " + str(eqm_current))
+        #self.printer.print_msg("Épocas: " + str(epochs))
 
-        if epochs > max_epoch:
-            self.printer.print_msg(
-                "Máximo de épocas atingido ("+str(max_epoch)+")")
-
-        return epochs, epochs_eqm, eqm_current
+        return self.calc_eqm(weights)
+        #return epochs, epochs_eqm, eqm_current
 
     def classify(self, samples):
         samples = self.__normalize_input(samples)
@@ -302,8 +276,6 @@ class MultiLayerPerceptron:
         self.samples = samples
 
         outputs = []
-
-        self.clean_recursion_output()
 
         for sample_index, sample in enumerate(samples):
             for node in self.last_layer_nodes:

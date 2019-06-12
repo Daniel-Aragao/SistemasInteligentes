@@ -187,9 +187,9 @@ class DistanceCalcs:
 class Selection:
     
     @staticmethod
-    def sort_MLP_chromossomes(population):
-        #return sorted(population, key=lambda e: Util.cities_costs(e))
-        pass
+    def sort_MLP_chromossomes(population, eqm_function):
+        return sorted(population, key=lambda chromossome: eqm_function(chromossome))
+        
     
     @staticmethod
     def generate_fitness(population, maxx=2, minn=0):
