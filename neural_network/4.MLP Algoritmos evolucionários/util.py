@@ -188,18 +188,18 @@ class Selection:
     
     @staticmethod
     def sort_MLP_chromossomes(population, eqm_function):
-        return sorted(population, key=lambda chromossome: eqm_function(chromossome))
+        return sorted(population, key=lambda chromossome: 1/(1 + eqm_function(chromossome)), reverse=True)
         
     
     @staticmethod
-    def generate_fitness(population, maxx=2, minn=0):
+    def generate_fitness(population, eqm_function, maxx=2, minn=0):
         fitness = []
         
         N = len(population)
         summ = 0
         
         for i, chromossome in enumerate(population):
-            fitness_unit = minn + (maxx - minn) * ((N - (i + 1)) / (N - 1))
+            fitness_unit = 1 / (1 + eqm_function(chromossome))
             
             summ += fitness_unit
             

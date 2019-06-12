@@ -12,12 +12,11 @@ class Neuron:
 
     def __init__(self, inputs, expected_outputs: list, learning_rate: float = 1,
                  normalize=None, is_random: bool = True,
-                 activation_function=AF.signal, 
-                 parents: list = None, printer=Printer):
+                 activation_function=AF.signal,
+                 parents: list = None, printer=Printer, seed=1):
         
 
-        self.seed = Neuron.seed_count
-        Neuron.seed_count += 1
+        self.seed = seed
 
         self.normalize_function = normalize
 
@@ -44,7 +43,7 @@ class Neuron:
         if not (inputs is None) and type(inputs) == type([]):
             self.inputs = Neuron.concatanate_threshold(inputs)  # [-1] + inputs
 
-        self.__samples: Sample = []
+        self.__samples = []
 
         self.printer = printer()
     
@@ -55,7 +54,7 @@ class Neuron:
             weights_size = len(inputs[0])
 
         if is_random:
-            self.weights = Randomize.get_random_vector((weights_size), self.seed)
+            self.weights = Randomize.get_random_vector(weights_size, self.seed)
             self.before_weights = self.weights.copy()
             self.__threshold = Randomize.get_random()
         else:
@@ -116,7 +115,7 @@ class Neuron:
 
     @staticmethod
     def __associate_samples(inputs, outputs, weights):
-        samples: Sample = []
+        samples = []
 
         for i, value in enumerate(inputs):
             sample = Sample(value, outputs[i], weights)

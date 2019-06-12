@@ -48,8 +48,8 @@ class Mutation:
                 son[i] = sublist[i - cut_left]
         
     @staticmethod
-    def gaussian(son, tax_mutation):
-        sigma = statistics.stdev(son)
+    def gaussian(son, tax_mutation, sigma=0.1):
+        #sigma = statistics.stdev(son)
         
         for i, gene in enumerate(son):
             if tax_mutation >= random.random():

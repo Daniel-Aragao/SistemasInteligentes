@@ -81,7 +81,7 @@ class MultiLayerPerceptron:
 
                 p = Perceptron(inputs, expected_outputs, config_neuron['learning_rate'],
                         normalize, is_random=True, activation_function=layer['activation_function'],
-                        parents=before_layer_nodes)
+                        parents=before_layer_nodes, seed=self.seed)
 
                 self.layers_node[index].append(p)
                 p.network_recursion_activation_potential = [None for i in range(len(self.samples))]
@@ -125,7 +125,7 @@ class MultiLayerPerceptron:
     def calc_eqm(self, weights):
         error = 0
         
-        self.vector_to_weights(weights):
+        self.vector_to_weights(weights)
         
         for sample_index, sample in enumerate(self.samples):
 
@@ -139,7 +139,7 @@ class MultiLayerPerceptron:
         for layer in self.layers_node:
             for perceptron in layer:
                 perceptron_weights_size = len(perceptron.weights)
-                perceptron.weights = weights[cursor:perceptron_weights_size:]
+                perceptron.weights = weights[cursor:cursor + perceptron_weights_size:]
                 
                 cursor += perceptron_weights_size
     
@@ -154,20 +154,25 @@ class MultiLayerPerceptron:
     
     def AG(self, max_epoch):
         # self.config_evolutionary
-        generations_limit = max_epoch # limite de gerações
         N = self.config_evolutionary["population"] # tamanho da população inicial
+        generations_limit = int(max_epoch / N) # limite de gerações
         tax_crossover = self.config_evolutionary["crossover_tax"] # probabilidade de crossover
         tax_mutation = self.config_evolutionary["mutation_tax"] # probabilidade de mutação
-        crossover = None # self.config_evolutionary["crossover"]
-        mutate = None # self.config_evolutionary["mutation"]
+        crossover = self.config_evolutionary["crossover"] # self.config_evolutionary["crossover"]
+        pcrossover = self.config_evolutionary["p-crossover"]
+        mutate = self.config_evolutionary["mutation"] # self.config_evolutionary["mutation"]
+        pmutation = self.config_evolutionary["p-mutation"]
+        
+        best_eqm = float('inf')
+        best_chromossome = None
         
         elements = self.weights_to_vector()
         
         population = Randomize.generate_population(elements, self.seed, N)
-        population = Selection.sort_MLP_chromossomes(population, self.calc_eqm)
+        # population = Selection.sort_MLP_chromossomes(population, self.calc_eqm)
         
         for generation in range(1, generations_limit + 1):
-            fitness = Selection.generate_fitness(population)
+            fitness = Selection.generate_fitness(population, self.calc_eqm)
     
             new_population = []
     
@@ -175,19 +180,35 @@ class MultiLayerPerceptron:
                 father, mother = Selection.wheel_selection(population, fitness, select=2)
     
                 if random.random() <= tax_crossover:
-                    sons = crossover(father, mother)
+                    if pcrossover:
+                        sons = crossover(father, mother, pcrossover)
+                    else:
+                        sons = crossover(father, mother)
                 else:
                     sons = [father.copy(), mother.copy()]
                 
                 for son in sons:
                     #if random.random() <= tax_mutation:
-                    mutate(son, tax_mutation)
+                    if pmutation:
+                        mutate(son, tax_mutation, pmutation)
+                    else:
+                        mutate(son, tax_mutation)
     
                     new_population.append(son)
                     
             population = Selection.sort_MLP_chromossomes(population + new_population, self.calc_eqm)[0:N:]
+            
+            eqm_current = self.calc_eqm(population[0])
+            
+            if not best_chromossome or best_eqm > eqm_current:
+                best_eqm = eqm_current
+                best_chromossome = population[0]
+                print("Melhor cromossomo atualizado")
+                
+            
+            print("Geração:", generation, "EQM:", eqm_current)
         
-        return population[0]
+        return best_chromossome
     
     def PSO(self, max_epoch):
         pass
@@ -259,14 +280,15 @@ class MultiLayerPerceptron:
 
         time_end = time.time()
         time_delta = time_end - time_begin
-
+        eqm_end = self.calc_eqm(weights)
+        
         self.training_samples = self.samples
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
-        #self.printer.print_msg("EQM Final: " + str(eqm_current))
+        self.printer.print_msg("EQM Final: " + str(eqm_end))
         #self.printer.print_msg("Épocas: " + str(epochs))
 
-        return self.calc_eqm(weights)
+        return 0, 0, eqm_end
         #return epochs, epochs_eqm, eqm_current
 
     def classify(self, samples):

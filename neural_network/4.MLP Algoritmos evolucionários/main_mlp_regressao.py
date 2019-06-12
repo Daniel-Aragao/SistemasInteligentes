@@ -1,12 +1,15 @@
 from IO_Operations import Importer
+from IO_Operations import PrinterFileMLP as PrinterFileMLP
+from IO_Operations import Printer as PrintOnlyConsole
+from IO_Operations import Exporter
 from util import Classification as testc
 from util import DistanceCalcs
 from util import Normalize
 from show_graphics import Ploter
-from IO_Operations import PrinterFileMLP as PrinterFileMLP
-from IO_Operations import Printer as PrintOnlyConsole
-from IO_Operations import Exporter
 from activation_functions import ActivationFunctions
+from mutation import Mutation
+from crossover import Crossover
+
 import time
 
 from network_regression import MultiLayerPerceptron as MLP
@@ -67,10 +70,10 @@ def executar_MLP(execution_name, mlp):
     testc.test_regression_outputs("Execução MLP " + execution_name + " Teste",
                         test_results, mlp.normalize_output(test_outputs), printer=Printer)
 
-    if not avoid_plot_it_all:
-        ploting_eqm_epoch(execution_name, epochs_eqm)
+    #if not avoid_plot_it_all:
+    #    ploting_eqm_epoch(execution_name, epochs_eqm)
 
-    return epochs
+    #return epochs
 
 def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
     epochs = 0
@@ -201,10 +204,10 @@ EE8 = {
 
 AGsGeneral = {
     "population": 20,
-    "crossover": "BLX",
-    "p-crossover": "0.5",
-    "mutation": "gaussian",
-    "p-mutation": "0.1",
+    "crossover": Crossover.BLX,
+    "p-crossover": 0.5,
+    "mutation": Mutation.gaussian,
+    "p-mutation": 0.1,
     "selection": "wheel",
     "substitution": "old+new",
     "evolutionary_algorithmn": "AG"
@@ -259,8 +262,8 @@ PSO3 = {
     "topology": "star",
     **PSOsGeneral
 }
-PSO3 = {
-    "name": "PSO-3",
+PSO4 = {
+    "name": "PSO-4",
     "model": "inercia",
     "w": 0.9,
     "topology": "ring",
@@ -297,7 +300,7 @@ config_AG = {
 
 ############# 1 #############
 for PMC in PMCs:
-    for run in runs:
+    for run in range(1, runs + 1):
         for ea in EA:
             executar_MLP(str(run) + ". " + PMC["name"] + " " + ea["name"], MLP(PMC, config_neuron, ea, run))
     
