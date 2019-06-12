@@ -180,8 +180,8 @@ class MultiLayerPerceptron:
                     sons = [father.copy(), mother.copy()]
                 
                 for son in sons:
-                    if random.random() <= tax_mutation:
-                        mutate(son)
+                    #if random.random() <= tax_mutation:
+                    mutate(son, tax_mutation)
     
                     new_population.append(son)
                     
