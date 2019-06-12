@@ -165,6 +165,7 @@ class MultiLayerPerceptron:
         
         best_eqm = float('inf')
         best_chromossome = None
+        generation_to_best = 0
         
         elements = self.weights_to_vector()
         
@@ -203,12 +204,13 @@ class MultiLayerPerceptron:
             if not best_chromossome or best_eqm > eqm_current:
                 best_eqm = eqm_current
                 best_chromossome = population[0]
+                generation_to_best += 1
                 print("Melhor cromossomo atualizado")
                 
             
             print("Geração:", generation, "EQM:", eqm_current)
         
-        return best_chromossome
+        return best_chromossome, best_eqm, generation_to_best
     
     def PSO(self, max_epoch):
         pass
@@ -229,67 +231,32 @@ class MultiLayerPerceptron:
         epochs_eqm = []
         
         weights = []
+        best_eqm = 0
+        generation_to_best = 0
+        
         if self.config_evolutionary["evolutionary_algorithmn"] == "AG":
-            weights = self.AG(max_epoch)
+            weights, best_eqm, generation_to_best = self.AG(max_epoch)
+            
         elif self.config_evolutionary["evolutionary_algorithmn"] == "PSO":
-            weights = self.PSO(max_epoch)
+            weights, best_eqm, generation_to_best = self.PSO(max_epoch)
+            
         elif self.config_evolutionary["evolutionary_algorithmn"] == "EE":
-            weights = self.EE(max_epoch)
+            weights, best_eqm, generation_to_best = self.EE(max_epoch)
+            
         else:
             raise Exception("Invalid evolutionary algorithmn try AG, PSO or EE: " + str(self.config_evolutionary["evolutionary_algorithmn"]))
             
-        
-        # while(abs(eqm_current - eqm_before) > self.precision):
-        #     if epochs > max_epoch:
-        #        break
-
-            #if self.shuffle:
-            #    self.__shuffle()
-
-        #    eqm_before = self.calc_eqm()
-
-            
-            #for sample_index, sample in enumerate(self.samples):
-            #    self.update_recursion_output(sample_index)
-            #
-            #    for node in self.last_layer_nodes:
-            #        delta = self.get_node_delta_output_layer(node, sample_index)
-            #        node.network_delta[sample_index] = delta
-            #
-            #        for index_parent, parent in enumerate(node.parents):
-            #            node.weights[index_parent + 1] += node.learning_rate * delta *  MultiLayerPerceptron.output(parent, self.samples, sample_index)
-
-            #        node.weights[0] += node.learning_rate * delta *  (- 1)
-            #
-            #    # for layer in enumerate(self.layers_node[1:len(self.layers_node) - 1:]):
-            #    #     for node_index, node in enumerate(layer):
-            #    #         pass
-            #
-            #    for node_index, node in enumerate(self.layers_node[0]):
-            #        delta = self.get_node_delta_first_layer(node, node_index, sample_index)
-            #        node.network_delta[sample_index] = delta
-            #
-            #        for index_weights, weight in enumerate(node.weights):
-            #            node.weights[index_weights] = weight + node.learning_rate * delta *  sample[index_weights]
-            
-        #    eqm_current = self.calc_eqm()
-
-        #    epochs_eqm.append((epochs, eqm_current))
-
-        #    epochs += 1
 
         time_end = time.time()
         time_delta = time_end - time_begin
-        eqm_end = self.calc_eqm(weights)
         
         self.training_samples = self.samples
 
         self.printer.print_msg("\nDuração(sec): " + str(time_delta))
-        self.printer.print_msg("EQM Final: " + str(eqm_end))
+        self.printer.print_msg("EQM Final: " + str(best_eqm))
         #self.printer.print_msg("Épocas: " + str(epochs))
 
-        return 0, 0, eqm_end
-        #return epochs, epochs_eqm, eqm_current
+        return best_eqm, generation_to_best, time_delta
 
     def classify(self, samples):
         samples = self.__normalize_input(samples)

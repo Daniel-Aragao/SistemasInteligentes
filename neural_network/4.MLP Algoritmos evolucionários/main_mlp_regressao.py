@@ -299,10 +299,13 @@ config_AG = {
 
 
 ############# 1 #############
-for PMC in PMCs:
+for ea in EA:
     for run in range(1, runs + 1):
-        for ea in EA:
-            executar_MLP(str(run) + ". " + PMC["name"] + " " + ea["name"], MLP(PMC, config_neuron, ea, run))
+        for PMC in PMCs:
+            execution_name = str(run) + ". " + PMC["name"] + " " + ea["name"]
+            
+            best_eqm, generation_to_best, time_delta = mlp.train(max_epoch=10000)
+            #executar_MLP(execution_name, MLP(PMC, config_neuron, ea, run))
     
     #for learning_rate in learning_rates:
         # routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
