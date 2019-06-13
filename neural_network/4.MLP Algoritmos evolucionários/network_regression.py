@@ -153,6 +153,9 @@ class MultiLayerPerceptron:
                 elements += perceptron.weights
                 
         return elements
+        
+    def fitness(self, weights):
+        return 1 / (1 + self.calc_eqm(weights))
     
     def AG(self, max_epoch):
         # self.config_evolutionary
@@ -219,7 +222,52 @@ class MultiLayerPerceptron:
         return best_chromossome, best_eqm, generation_to_best, cost_by_generation
     
     def PSO(self, max_epoch):
-        pass
+        population_size = self.config_evolutionary["population"]
+        c1 = self.config_evolutionary["c1"]
+        c2 = self.config_evolutionary["c2"]
+        w = self.config_evolutionary["w"]
+        vmax = 0.5
+        vmin = -0.5
+        
+        aceleration1 = [random.uniform(0, c1) for i in range(len(elements))]
+        aceleration2 = [random.uniform(0, c2) for i in range(len(elements))]
+        
+        generations_limit = int(max_epoch / N)
+        
+        elements = self.weights_to_vector()
+        
+        population = Randomize.generate_population(elements, self.seed, parents_size)
+        p = population.copy()
+        pg = None
+        v = [random.uniform(vmin, vmax) for i in range(len(elements))]
+        
+        generation_to_best = 0
+        cost_by_generation = {}
+        
+        for generation in range(1, generations_limit + 1):
+            for i, particle in enumerate(population):
+                if self.fitness(particle) > self.fitness(p[i]):
+                    p[i] = particle
+            
+                for j in range(len(population)):
+                    if not pg or self.fitness[population[j]] > self.fitness(pg):
+                        pg = population[j]
+                        generation_to_best = generation
+                
+                if w:
+                    v[i] *= w
+                v[i] += [q * (p[i] - population[i]) for q in aceleration1]
+                v[i] += [q * (pg - population[i]) for q in aceleration2]
+                
+                v[i] = max(vmin, min(vmax, v[i]))
+                
+                population[i] += v[i]
+            
+            cost_by_generation[generation] = self.fitness(pg)
+        
+        return pg, self.fitness(pg), generation_to_best, cost_by_generation
+        
+        
     
     def EE(self, max_epoch):
         parents_size = self.config_evolutionary["parents"]
@@ -236,7 +284,7 @@ class MultiLayerPerceptron:
         best_chromossome = None
         generation_to_best = 0
         
-        mutation_fathers = []
+        mutation_parents = []
         
         elements = self.weights_to_vector()
         
@@ -262,12 +310,12 @@ class MultiLayerPerceptron:
             
             population = Selection.sort_MLP_chromossomes(substitution, self.calc_eqm)[0:parents_size:]
             
-            mutation_fathers.append(population[0])
+            mutation_parents.append(population[0])
             
-            if len(mutation_fathers) == k ** 2:
+            if len(mutation_parents) == k ** 2:
                 better = 0
                 for i in range(0, k):
-                    if self.calc_eqm(mutation_fathers[i]) > self.calc_eqm(mutation_fathers[i+k]):
+                    if self.calc_eqm(mutation_parents[i]) > self.calc_eqm(mutation_parents[i+k]):
                         better += 1
                 
                 if better / k > 1 / 5:
