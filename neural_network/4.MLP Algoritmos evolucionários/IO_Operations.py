@@ -93,6 +93,10 @@ class Printer:
     @staticmethod
     def print_msg(msg):
         print(msg)
+    
+    @staticmethod
+    def println_msg(msg):
+        print(msg)
 
 class PrinterFileMLP:
     path = "output/log/Logs mlp.txt"
@@ -104,20 +108,6 @@ class PrinterFileMLP:
         Printer.print_msg(msg)
         
         with codecs.open(PrinterFileMLP.path, 'a', encoding='utf8') as file_obj:
-            file_obj.write(msg)
-            file_obj.write('\n')
-        
-
-class PrinterFile:
-    path = "output/log/Logs adaline.txt"
-    def __init__(self):
-        pass
-
-    @staticmethod
-    def print_msg(msg):
-        Printer.print_msg(msg)
-        
-        with codecs.open(PrinterFile.path, 'a', encoding='utf8') as file_obj:
             file_obj.write(msg)
             file_obj.write('\n')
             

@@ -1,4 +1,7 @@
+from util import Selection
+
 import random
+
 
 
 class Crossover:
@@ -89,3 +92,26 @@ class Crossover:
             son.append(gene + beta * (mother[i] - gene))
         
         return tuple([son])
+        
+    @staticmethod
+    def dynamic(population, scope, mode):
+        son = []
+        
+        chromossome_size = len(population[0])
+        
+        if scope == "local":
+            father, mother = Selection.random_selection(population, select=2)
+        
+        for i in range(0, chromossome_size):
+            if scope == "global":
+                father, mother = Selection.random_selection(population, select=2)
+            
+            if mode == "discreet":
+                son.append(random.choice([father[i], mother[i]]))
+                
+            elif mode == "intermediary":
+                son.append((father[i] + mother[i]) / 2)
+                
+        return son
+        
+        

@@ -229,3 +229,17 @@ class Selection:
                     break
         
         return parents
+        
+    @staticmethod
+    def random_selection(population, select=2):
+        selecteds = []
+        parents = []
+        
+        while len(selecteds)  < select:
+            i = random.randint(0, len(population) - 1)
+            
+            if i not in selecteds:
+                selecteds.append(i)
+                parents.append(population[i])
+        
+        return parents

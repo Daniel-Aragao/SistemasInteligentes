@@ -54,4 +54,10 @@ class Mutation:
         for i, gene in enumerate(son):
             if tax_mutation >= random.random():
                 son[i] = random.normalvariate(gene, sigma)
+                
+    @staticmethod
+    def litte_disturbance(son, sigma):
+        
+        for i in range(len(son)):
+            son[i] += random.normalvariate(0, sigma)
             

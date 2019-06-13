@@ -5,6 +5,8 @@ from perceptron import Perceptron
 from util import Normalize
 from util import Randomize
 from util import Selection
+from crossover import Crossover
+from mutation import Mutation
 
 
 class MultiLayerPerceptron:
@@ -207,9 +209,10 @@ class MultiLayerPerceptron:
                 best_eqm = eqm_current
                 best_chromossome = population[0]
                 generation_to_best += 1
-                print("Melhor cromossomo atualizado")
+                print("Melhor EQM", eqm_current)
                 
             cost_by_generation[generation] = 1/(1 + eqm_current)
+            print("Geração:",generation)
             
             # print("Geração:", generation, "EQM:", eqm_current)
         
@@ -219,7 +222,60 @@ class MultiLayerPerceptron:
         pass
     
     def EE(self, max_epoch):
-        pass
+        parents_size = self.config_evolutionary["parents"]
+        sons_size = self.config_evolutionary["sons"]
+        c = self.config_evolutionary["c"]
+        sigma = self.config_evolutionary["sigma"]
+        mode, scope = self.config_evolutionary["crossover"].split(" ")
+        substitutions = self.config_evolutionary["substitution"].split(" ")
+        
+        generations_limit = int(max_epoch / (sons_size + parents_size))
+        
+        best_eqm = float('inf')
+        best_chromossome = None
+        generation_to_best = 0
+        
+        elements = self.weights_to_vector()
+        
+        population = Randomize.generate_population(elements, self.seed, parents_size)
+        
+        cost_by_generation = {}
+        
+        for generation in range(1, generations_limit + 1):
+            fitness = Selection.generate_fitness(population, self.calc_eqm)
+    
+            new_population = []
+    
+            while len(new_population) < sons_size:
+    
+                sons = Crossover.dynamic(population, scope, mode)
+                
+                for son in sons:
+                    #if random.random() <= tax_mutation:
+                    Mutation.litte_disturbance(son, sigma)
+                    
+                    new_population.append(son)
+            
+            substitution_dict = {"old": population, "new": new_population}
+            substitution = [substitution_dict[key] for key in substitution_dict if key in substitutions]
+            
+            population = Selection.sort_MLP_chromossomes(substitution, self.calc_eqm)[0:N:]
+            
+            eqm_current = self.calc_eqm(population[0])
+            
+            if not best_chromossome or best_eqm > eqm_current:
+                best_eqm = eqm_current
+                best_chromossome = population[0]
+                generation_to_best += 1
+                print("Melhor EQM", eqm_current)
+                
+            cost_by_generation[generation] = 1/(1 + eqm_current)
+            print("Geração:",generation)
+            
+            # print("Geração:", generation, "EQM:", eqm_current)
+        
+        return best_chromossome, best_eqm, generation_to_best, cost_by_generation
+        
         
     def train(self, max_epoch=10000):
         #precision = self.config_neuron['precision']
@@ -256,8 +312,8 @@ class MultiLayerPerceptron:
         
         self.training_samples = self.samples
 
-        self.printer.print_msg("\nDuração(sec): " + str(time_delta))
-        self.printer.print_msg("EQM Final: " + str(best_eqm))
+        #self.printer.print_msg("\nDuração(sec): " + str(time_delta))
+        #self.printer.print_msg("EQM Final: " + str(best_eqm))
         #self.printer.print_msg("Épocas: " + str(epochs))
 
         return best_eqm, generation_to_best, time_delta, cost_by_generation

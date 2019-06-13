@@ -25,7 +25,7 @@ test_outputs = Importer.import_output('misc/dtest_bodyfat.txt')
 
 save_image = False
 avoid_plot_it_all = False
-save_data = False
+save_data = True
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
     Printer = PrinterFile
@@ -92,53 +92,54 @@ EEsGeneral = {
     "parents": 20,
     "sons": 140,
     "c": 0.8,
+    "sigma": 0.1,
     "evolutionary_algorithmn": "EE"
 }
 EE1 = {
     "name": "EE-1",
-    "crossover": "intermediaria local",
-    "substitution": "old+new",
+    "crossover": "intermediary local",
+    "substitution": "old new",
     **EEsGeneral
 }
 EE2 = {
     "name": "EE-2",
-    "crossover": "discreta local",
-    "substitution": "old+new",
+    "crossover": "discreet local",
+    "substitution": "old new",
     **EEsGeneral
 }
 EE3 = {
     "name": "EE-3",
-    "crossover": "intermediaria global",
-    "substitution": "old+new",
+    "crossover": "intermediary global",
+    "substitution": "old new",
     **EEsGeneral
 }
 EE4 = {
     "name": "EE-4",
-    "crossover": "discreta global",
-    "substitution": "old+new",
+    "crossover": "discreet global",
+    "substitution": "old new",
     **EEsGeneral
 }
 EE5 = {
     "name": "EE-5",
-    "crossover": "intermediaria local",
+    "crossover": "intermediary local",
     "substitution": "new",
     **EEsGeneral
 }
 EE6 = {
     "name": "EE-6",
-    "crossover": "discreta local",
+    "crossover": "discreet local",
     "substitution": "new",
     **EEsGeneral
 }
 EE7 = {
     "name": "EE-7",
-    "crossover": "intermediaria global",
+    "crossover": "intermediary global",
     "substitution": "new",
     **EEsGeneral
 }
 EE8 = {
     "name": "EE-8",
-    "crossover": "discreta global",
+    "crossover": "discreet global",
     "substitution": "new",
     **EEsGeneral
 }
@@ -252,8 +253,9 @@ for ea in EA:
         
         for run in range(1, runs + 1):
             execution_name = str(run) + ". " + pmc_name
-            PrintOnlyConsole.print_msg(execution_name)
+            print(execution_name)
             
+            mlp = MLP(PMC, config_neuron, ea, run)
             best_eqm, generation_to_best, time_delta, cost_by_generation = mlp.train(max_epoch=10000)
             
             eqms.append(best_eqm)
@@ -269,7 +271,7 @@ for ea in EA:
         
             #executar_MLP(execution_name, MLP(PMC, config_neuron, ea, run))
         
-        Printer.println_msg( + " ----------------------")
+        Printer.println_msg(pmc_name + " ----------------------")
         Printer.println_msg("EQM médio:" + str(eqm_summ / runs))
         Printer.println_msg("Número de avaliações médio:" + str(generations_summ / runs))
         Printer.println_msg("Tempo médio:" + str(time_summ / runs))
