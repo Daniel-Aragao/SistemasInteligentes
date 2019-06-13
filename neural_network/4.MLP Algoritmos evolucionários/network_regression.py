@@ -270,7 +270,7 @@ class MultiLayerPerceptron:
                     neighbours = [population[j1], population[j2]]
                     
                 for j in range(len(neighbours)):
-                    if self.fitness[neighbours[j]] > self.fitness(pg[i]):
+                    if self.fitness(neighbours[j]) > self.fitness(pg[i]):
                         pg[i] = neighbours[j]
                 
                 if w:
