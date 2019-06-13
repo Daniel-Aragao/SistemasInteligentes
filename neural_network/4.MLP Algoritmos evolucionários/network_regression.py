@@ -170,6 +170,8 @@ class MultiLayerPerceptron:
         elements = self.weights_to_vector()
         
         population = Randomize.generate_population(elements, self.seed, N)
+        
+        cost_by_generation = {}
         # population = Selection.sort_MLP_chromossomes(population, self.calc_eqm)
         
         for generation in range(1, generations_limit + 1):
@@ -207,10 +209,11 @@ class MultiLayerPerceptron:
                 generation_to_best += 1
                 print("Melhor cromossomo atualizado")
                 
+            cost_by_generation[generation] = 1/(1 + eqm_current)
             
-            print("Geração:", generation, "EQM:", eqm_current)
+            # print("Geração:", generation, "EQM:", eqm_current)
         
-        return best_chromossome, best_eqm, generation_to_best
+        return best_chromossome, best_eqm, generation_to_best, cost_by_generation
     
     def PSO(self, max_epoch):
         pass
@@ -233,15 +236,16 @@ class MultiLayerPerceptron:
         weights = []
         best_eqm = 0
         generation_to_best = 0
+        cost_by_generation = []
         
         if self.config_evolutionary["evolutionary_algorithmn"] == "AG":
-            weights, best_eqm, generation_to_best = self.AG(max_epoch)
+            weights, best_eqm, generation_to_best, cost_by_generation = self.AG(max_epoch)
             
         elif self.config_evolutionary["evolutionary_algorithmn"] == "PSO":
-            weights, best_eqm, generation_to_best = self.PSO(max_epoch)
+            weights, best_eqm, generation_to_best, cost_by_generation = self.PSO(max_epoch)
             
         elif self.config_evolutionary["evolutionary_algorithmn"] == "EE":
-            weights, best_eqm, generation_to_best = self.EE(max_epoch)
+            weights, best_eqm, generation_to_best, cost_by_generation = self.EE(max_epoch)
             
         else:
             raise Exception("Invalid evolutionary algorithmn try AG, PSO or EE: " + str(self.config_evolutionary["evolutionary_algorithmn"]))
@@ -256,7 +260,7 @@ class MultiLayerPerceptron:
         self.printer.print_msg("EQM Final: " + str(best_eqm))
         #self.printer.print_msg("Épocas: " + str(epochs))
 
-        return best_eqm, generation_to_best, time_delta
+        return best_eqm, generation_to_best, time_delta, cost_by_generation
 
     def classify(self, samples):
         samples = self.__normalize_input(samples)

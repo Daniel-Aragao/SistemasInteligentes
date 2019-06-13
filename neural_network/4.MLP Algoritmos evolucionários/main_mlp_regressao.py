@@ -1,6 +1,7 @@
 from IO_Operations import Importer
 from IO_Operations import PrinterFileMLP as PrinterFileMLP
 from IO_Operations import Printer as PrintOnlyConsole
+from IO_Operations import PrinterFile
 from IO_Operations import Exporter
 from util import Classification as testc
 from util import DistanceCalcs
@@ -9,10 +10,11 @@ from show_graphics import Ploter
 from activation_functions import ActivationFunctions
 from mutation import Mutation
 from crossover import Crossover
+from network_regression import MultiLayerPerceptron as MLP
 
 import time
+import matplotlib.pyplot as plt
 
-from network_regression import MultiLayerPerceptron as MLP
 
 ######################################################### PARAMETRIZAÇÃO #########################################################
 train_inputs = Importer.import_input('misc/xtrain_bodyfat.txt')
@@ -26,77 +28,16 @@ avoid_plot_it_all = False
 save_data = False
 ######################################################### PRÉ ROTINAS #########################################################
 if save_data:
-    Printer = PrinterFileMLP
+    Printer = PrinterFile
 else:
     Printer = PrintOnlyConsole
 
 tempo_inicio = time.time()
 tempo_inicio_local = time.localtime()
-Printer.print_msg(str(tempo_inicio_local.tm_hour)+":"+str(tempo_inicio_local.tm_min)+":"+str(tempo_inicio_local.tm_sec))
 
-def print_epoch_average(exec, epochs, qtd):
-    Printer.print_msg("\nMédia de épocas para execução " +
-                      exec + ": " + str(epochs/qtd) + "\n\n")
-
-def ploting_inputs_class(name, inputs, expected_outputs, outputs, weights):
-    Ploter.plot_results(inputs, expected_outputs, outputs)
-    Ploter.plot_line(inputs, weights)
-    title = "Execução MLP " + name
-
-    if save_image:
-        Ploter.savefig(title)
-    else:
-        Ploter.show(title)
-
-def ploting_eqm_epoch(name, epochs_eqm):
-    Ploter.plot_eqm_epoch(epochs_eqm)
-    title = "Execução MLP " + name + " EQM x ÉPOCA "
-
-    if save_image:
-        Ploter.savefig(title)
-    else:
-        Ploter.show(title)
-
-def executar_MLP(execution_name, mlp):
-    epochs, epochs_eqm, eqm_final = mlp.train(max_epoch=10000)
-
-    train_results = mlp.classify(train_inputs)
-
-    test_results = mlp.classify(test_inputs)
-
-    testc.test_regression_outputs("Execução MLP " + execution_name + " Treino",
-                       train_results, mlp.normalize_output(train_outputs), printer=Printer)
-
-    testc.test_regression_outputs("Execução MLP " + execution_name + " Teste",
-                        test_results, mlp.normalize_output(test_outputs), printer=Printer)
-
-    #if not avoid_plot_it_all:
-    #    ploting_eqm_epoch(execution_name, epochs_eqm)
-
-    #return epochs
-
-def routine_adaline(execution_name, PMC, config_neuron, is_offline=False):
-    epochs = 0
-    try:
-        
-        ####### 1 #######
-        epochs += executar_MLP(execution_name + "_1", MLP(PMC, config_neuron), is_offline)
-
-        ####### 2 #######
-        epochs += executar_MLP(execution_name + "_2", MLP(PMC, config_neuron), is_offline)
-
-        ####### 3 #######
-        # epochs += executar_MLP(execution_name + "_3", MLP(PMC, config_neuron), is_offline)
-
-        # ####### 4 #######
-        # epochs += executar_MLP(execution_name + "_4", MLP(PMC, config_neuron), is_offline)
-
-        # ####### 5 #######
-        # epochs += executar_MLP(execution_name + "_5", MLP(PMC, config_neuron), is_offline)
-
-    except Exception :
-        pass
-    print_epoch_average(execution_name, epochs, 5)
+def savefig(title):
+        plt.savefig("./output/img/" + title+ ".png", format="PNG")
+        plt.close()
 
 
 PMC1 = {
@@ -300,13 +241,41 @@ config_AG = {
 
 ############# 1 #############
 for ea in EA:
-    for run in range(1, runs + 1):
-        for PMC in PMCs:
-            execution_name = str(run) + ". " + PMC["name"] + " " + ea["name"]
-            
-            best_eqm, generation_to_best, time_delta = mlp.train(max_epoch=10000)
-            #executar_MLP(execution_name, MLP(PMC, config_neuron, ea, run))
     
+    for PMC in PMCs:
+        eqm_summ = 0
+        eqms = []
+        generations_summ = 0
+        time_summ = 0
+        PMC_cost_by_generation = None
+        pmc_name = ea["name"] + " " + PMC["name"]
+        
+        for run in range(1, runs + 1):
+            execution_name = str(run) + ". " + pmc_name
+            PrintOnlyConsole.print_msg(execution_name)
+            
+            best_eqm, generation_to_best, time_delta, cost_by_generation = mlp.train(max_epoch=10000)
+            
+            eqms.append(best_eqm)
+            eqm_summ += best_eqm
+            generations_summ += generation_to_best
+            time_summ += time_delta
+            
+            if not PMC_cost_by_generation:
+                PMC_cost_by_generation = cost_by_generation
+            else:
+                for generation in cost_by_generation:
+                    PMC_cost_by_generation[generation] += cost_by_generation[generation]
+        
+            #executar_MLP(execution_name, MLP(PMC, config_neuron, ea, run))
+        
+        Printer.println_msg( + " ----------------------")
+        Printer.println_msg("EQM médio:" + str(eqm_summ / runs))
+        Printer.println_msg("Número de avaliações médio:" + str(generations_summ / runs))
+        Printer.println_msg("Tempo médio:" + str(time_summ / runs))
+        
+        plt.plot([i for i in PMC_cost_by_generation], [PMC_cost_by_generation[i] for i in PMC_cost_by_generation])
+        savefig(pmc_name)
     #for learning_rate in learning_rates:
         # routine_adaline("1_"+PMC["name"]+"_"+str(learning_rate), PMC, config_neuron)
 
