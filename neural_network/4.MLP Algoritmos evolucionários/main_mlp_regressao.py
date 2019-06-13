@@ -214,12 +214,13 @@ PSO4 = {
 }
 
 
-EEs = [EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8]
+#EEs = [EE1, EE2, EE3, EE4, EE5, EE6, EE7, EE8]
+EEs = [EE3, EE4, EE5, EE6, EE7, EE8]
 AGs = [AG1, AG2, AG3, AG4]
 PSOs = [PSO1, PSO2, PSO3, PSO4]
 
 #EA = EEs + AGs + PSOs
-EA = EEs
+EA = EEs + AGs
 PMCs = [PMC1, PMC2, PMC3]
 runs = 10
 

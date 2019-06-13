@@ -1,0 +1,68 @@
+EE-1 PMC1 ----------------------
+EQM médio:0.004273238815624878
+Número de avaliações médio:56.2
+Tempo médio:13.641616129875183
+EE-1 PMC2 ----------------------
+EQM médio:0.004383470148141251
+Número de avaliações médio:54.3
+Tempo médio:29.83189697265625
+EE-1 PMC3 ----------------------
+EQM médio:0.004618400264265868
+Número de avaliações médio:48.0
+Tempo médio:56.850162625312805
+EE-2 PMC1 ----------------------
+EQM médio:0.004295431919145212
+Número de avaliações médio:53.0
+Tempo médio:14.053456926345826
+EE-2 PMC2 ----------------------
+EQM médio:0.004757855642495114
+Número de avaliações médio:50.7
+Tempo médio:30.095031476020814
+EE-2 PMC3 ----------------------
+EQM médio:0.005300109572763397
+Número de avaliações médio:38.2
+Tempo médio:57.682158899307254
+EE-3 PMC1 ----------------------
+EQM médio:0.004396943987799283
+Número de avaliações médio:53.4
+Tempo médio:14.52227418422699
+EE-3 PMC2 ----------------------
+EQM médio:0.004572263198514645
+Número de avaliações médio:50.8
+Tempo médio:32.420249819755554
+EE-3 PMC3 ----------------------
+EQM médio:0.00470225768002582
+Número de avaliações médio:48.4
+Tempo médio:60.90059833526611
+EE-4 PMC1 ----------------------
+EQM médio:0.004569631396525215
+Número de avaliações médio:53.3
+Tempo médio:14.79075846672058
+EE-4 PMC2 ----------------------
+EQM médio:0.004879347037834622
+Número de avaliações médio:47.6
+Tempo médio:32.08487675189972
+EE-4 PMC3 ----------------------
+EQM médio:0.005848928057364191
+Número de avaliações médio:47.1
+Tempo médio:61.839506435394284
+EE-5 PMC1 ----------------------
+EQM médio:0.004399063767525511
+Número de avaliações médio:55.6
+Tempo médio:12.326946449279784
+EE-5 PMC2 ----------------------
+EQM médio:0.004526077808947903
+Número de avaliações médio:48.0
+Tempo médio:26.530585098266602
+EE-5 PMC3 ----------------------
+EQM médio:0.004705499607529565
+Número de avaliações médio:46.9
+Tempo médio:50.32198009490967
+EE-6 PMC1 ----------------------
+EQM médio:0.004723798846770365
+Número de avaliações médio:40.5
+Tempo médio:12.396567773818969
+EE-6 PMC2 ----------------------
+EQM médio:0.005535501095766525
+Número de avaliações médio:26.9
+Tempo médio:27.26130883693695
