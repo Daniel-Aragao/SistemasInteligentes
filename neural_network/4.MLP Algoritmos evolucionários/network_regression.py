@@ -261,7 +261,7 @@ class MultiLayerPerceptron:
                         generation_to_best = generation
                         print("Melhor fitness")
                 
-                if topology == "start":
+                if topology == "star":
                     neighbours = population.copy()
                 elif topology == "ring":
                     j1 = i-1 if i >= 1 else population_size - 1
