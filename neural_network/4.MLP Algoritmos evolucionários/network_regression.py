@@ -239,7 +239,10 @@ class MultiLayerPerceptron:
         
         population = Randomize.generate_population(elements, self.seed, population_size)
         p = population.copy()
+        p_fitness = [self.fitness(g) for g in p]
+        
         pg = population.copy()
+        pg_fitness = [self.fitness(g) for g in pg]
         v = [[random.uniform(vmin, vmax) for j in range(0,len(elements))] for i in range(0, population_size)]
         
         best_fitness = 0
@@ -252,8 +255,9 @@ class MultiLayerPerceptron:
                 particle_fitness = self.fitness(particle)
                 neighbours = []
                 
-                if particle_fitness > self.fitness(p[i]):
+                if particle_fitness > p_fitness[i]:
                     p[i] = particle
+                    p_fitness[i] = particle_fitness
                     
                     if best_fitness < particle_fitness:
                         best_fitness = particle_fitness
@@ -263,6 +267,7 @@ class MultiLayerPerceptron:
                 
                 if topology == "star":
                     neighbours = population.copy()
+                    
                 elif topology == "ring":
                     j1 = i-1 if i >= 1 else population_size - 1
                     j2 = i+1 if i < population_size - 1 else 0
@@ -270,8 +275,9 @@ class MultiLayerPerceptron:
                     neighbours = [population[j1], population[j2]]
                     
                 for j in range(len(neighbours)):
-                    if self.fitness(neighbours[j]) > self.fitness(pg[i]):
+                    if self.fitness(neighbours[j]) > pg_fitness[i]:
                         pg[i] = neighbours[j]
+                        pg_fitness[i] = self.fitness(neighbours[j])
                 
                 if w:
                     v[i] = [w * k for k in v[i]]
