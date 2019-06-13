@@ -219,7 +219,7 @@ AGs = [AG1, AG2, AG3, AG4]
 PSOs = [PSO1, PSO2, PSO3, PSO4]
 
 #EA = EEs + AGs + PSOs
-EA = AGs
+EA = EEs
 PMCs = [PMC1, PMC2, PMC3]
 runs = 10
 

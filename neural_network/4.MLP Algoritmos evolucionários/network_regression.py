@@ -208,7 +208,7 @@ class MultiLayerPerceptron:
             if not best_chromossome or best_eqm > eqm_current:
                 best_eqm = eqm_current
                 best_chromossome = population[0]
-                generation_to_best += 1
+                generation_to_best += generation
                 print("Melhor EQM", eqm_current)
                 
             cost_by_generation[generation] = 1/(1 + eqm_current)
@@ -258,8 +258,8 @@ class MultiLayerPerceptron:
                     new_population.append(son)
             
             substitution_dict = {"old": population, "new": new_population}
-            substitution = [i for i in substitution_dict[key] for key in substitution_dict if key in substitutions]
-            print(substitution, len(substitution))
+            substitution = [i for key in substitution_dict for i in substitution_dict[key] if key in substitutions]
+            
             population = Selection.sort_MLP_chromossomes(substitution, self.calc_eqm)[0:parents_size:]
             
             mutation_fathers.append(population[0])
