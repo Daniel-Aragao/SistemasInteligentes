@@ -112,6 +112,6 @@ class Crossover:
             elif mode == "intermediary":
                 son.append((father[i] + mother[i]) / 2)
                 
-        return son
+        return tuple([son])
         
         

@@ -228,12 +228,15 @@ class MultiLayerPerceptron:
         sigma = self.config_evolutionary["sigma"]
         mode, scope = self.config_evolutionary["crossover"].split(" ")
         substitutions = self.config_evolutionary["substitution"].split(" ")
+        k = self.config_evolutionary["k-generations"]
         
         generations_limit = int(max_epoch / (sons_size + parents_size))
         
         best_eqm = float('inf')
         best_chromossome = None
         generation_to_best = 0
+        
+        mutation_fathers = []
         
         elements = self.weights_to_vector()
         
@@ -242,8 +245,6 @@ class MultiLayerPerceptron:
         cost_by_generation = {}
         
         for generation in range(1, generations_limit + 1):
-            fitness = Selection.generate_fitness(population, self.calc_eqm)
-    
             new_population = []
     
             while len(new_population) < sons_size:
@@ -257,16 +258,29 @@ class MultiLayerPerceptron:
                     new_population.append(son)
             
             substitution_dict = {"old": population, "new": new_population}
-            substitution = [substitution_dict[key] for key in substitution_dict if key in substitutions]
+            substitution = [i for i in substitution_dict[key] for key in substitution_dict if key in substitutions]
+            print(substitution, len(substitution))
+            population = Selection.sort_MLP_chromossomes(substitution, self.calc_eqm)[0:parents_size:]
             
-            population = Selection.sort_MLP_chromossomes(substitution, self.calc_eqm)[0:N:]
+            mutation_fathers.append(population[0])
+            
+            if len(mutation_fathers) == k ** 2:
+                better = 0
+                for i in range(0, k):
+                    if self.calc_eqm(mutation_fathers[i]) > self.calc_eqm(mutation_fathers[i+k]):
+                        better += 1
+                
+                if better / k > 1 / 5:
+                    sigma = sigma / c
+                elif better / k < 1 / 5:
+                    sigma = sigma * c
             
             eqm_current = self.calc_eqm(population[0])
             
             if not best_chromossome or best_eqm > eqm_current:
                 best_eqm = eqm_current
                 best_chromossome = population[0]
-                generation_to_best += 1
+                generation_to_best = generation
                 print("Melhor EQM", eqm_current)
                 
             cost_by_generation[generation] = 1/(1 + eqm_current)

@@ -93,6 +93,7 @@ EEsGeneral = {
     "sons": 140,
     "c": 0.8,
     "sigma": 0.1,
+    "k-generations": 5,
     "evolutionary_algorithmn": "EE"
 }
 EE1 = {
