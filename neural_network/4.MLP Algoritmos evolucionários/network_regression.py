@@ -226,46 +226,67 @@ class MultiLayerPerceptron:
         c1 = self.config_evolutionary["c1"]
         c2 = self.config_evolutionary["c2"]
         w = self.config_evolutionary["w"]
+        topology = self.config_evolutionary["topology"]
         vmax = 0.5
         vmin = -0.5
+        
+        generations_limit = int(max_epoch / population_size)
+        
+        elements = self.weights_to_vector()
         
         aceleration1 = [random.uniform(0, c1) for i in range(len(elements))]
         aceleration2 = [random.uniform(0, c2) for i in range(len(elements))]
         
-        generations_limit = int(max_epoch / N)
-        
-        elements = self.weights_to_vector()
-        
-        population = Randomize.generate_population(elements, self.seed, parents_size)
+        population = Randomize.generate_population(elements, self.seed, population_size)
         p = population.copy()
-        pg = None
-        v = [random.uniform(vmin, vmax) for i in range(len(elements))]
+        pg = population.copy()
+        v = [[random.uniform(vmin, vmax) for j in range(0,len(elements))] for i in range(0, population_size)]
         
+        best_fitness = 0
+        best_particle = None
         generation_to_best = 0
         cost_by_generation = {}
         
         for generation in range(1, generations_limit + 1):
             for i, particle in enumerate(population):
-                if self.fitness(particle) > self.fitness(p[i]):
+                particle_fitness = self.fitness(particle)
+                neighbours = []
+                
+                if particle_fitness > self.fitness(p[i]):
                     p[i] = particle
-            
-                for j in range(len(population)):
-                    if not pg or self.fitness[population[j]] > self.fitness(pg):
-                        pg = population[j]
+                    
+                    if best_fitness < particle_fitness:
+                        best_fitness = particle_fitness
+                        best_particle = particle
                         generation_to_best = generation
+                        print("Melhor fitness")
+                
+                if topology == "start":
+                    neighbours = population.copy()
+                elif topology == "ring":
+                    j1 = i-1 if i >= 1 else population_size - 1
+                    j2 = i+1 if i < population_size - 1 else 0
+                    
+                    neighbours = [population[j1], population[j2]]
+                    
+                for j in range(len(neighbours)):
+                    if self.fitness[neighbours[j]] > self.fitness(pg[i]):
+                        pg[i] = neighbours[j]
                 
                 if w:
-                    v[i] *= w
-                v[i] += [q * (p[i] - population[i]) for q in aceleration1]
-                v[i] += [q * (pg - population[i]) for q in aceleration2]
+                    v[i] = [w * k for k in v[i]]
+                    
+                v[i] = [q * (p[i][k] - particle[k]) for k, q in enumerate(aceleration1)]
+                v[i] = [q * (pg[i][k] - particle[k]) for k, q in enumerate(aceleration2)]
                 
-                v[i] = max(vmin, min(vmax, v[i]))
+                v[i] = [max(vmin, min(vmax, k)) for k in v[i]]
                 
-                population[i] += v[i]
+                population[i] = [q + particle[k] for k, q in enumerate(v[i])]
             
-            cost_by_generation[generation] = self.fitness(pg)
+            cost_by_generation[generation] = best_fitness
+            print("Geração:", generation)
         
-        return pg, self.fitness(pg), generation_to_best, cost_by_generation
+        return best_particle, best_fitness, generation_to_best, cost_by_generation
         
         
     

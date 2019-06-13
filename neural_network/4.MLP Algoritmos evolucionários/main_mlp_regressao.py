@@ -184,6 +184,7 @@ PSOsGeneral = {
     "population": 20,
     "c1": 2.05,
     "c2": 2.05,
+    "w": 0,
     "evolutionary_algorithmn": "PSO"
 }
 PSO1 = {
@@ -220,7 +221,7 @@ AGs = [AG1, AG2, AG3, AG4]
 PSOs = [PSO1, PSO2, PSO3, PSO4]
 
 #EA = EEs + AGs + PSOs
-EA = EEs + AGs
+EA = PSOs
 PMCs = [PMC1, PMC2, PMC3]
 runs = 10
 
