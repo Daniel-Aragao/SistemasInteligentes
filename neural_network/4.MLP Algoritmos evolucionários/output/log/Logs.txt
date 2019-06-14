@@ -142,4 +142,28 @@ AG-4 PMC3 ----------------------
 EQM médio:0.0035604477011134715
 Número de avaliações médio:42153.9
 Tempo médio:173.48295204639436
-9:4:2Delta tempo: 18198.18731570244
+9:4:2Delta tempo: 18198.18731570244PSO-2 PMC1 ----------------------
+EQM médio:0.9935727938773334
+Número de avaliações médio:253.4
+Tempo médio:140.6656363725662
+PSO-2 PMC2 ----------------------
+EQM médio:0.9936829352917391
+Número de avaliações médio:252.4
+Tempo médio:209.88961358070372
+PSO-2 PMC3 ----------------------
+EQM médio:0.9937483587307435
+Número de avaliações médio:335.5
+Tempo médio:405.2410336256027
+PSO-4 PMC1 ----------------------
+EQM médio:0.9935727938773334
+Número de avaliações médio:253.4
+Tempo médio:100.89142229557038
+PSO-4 PMC2 ----------------------
+EQM médio:0.9936829352917391
+Número de avaliações médio:252.4
+Tempo médio:1423.1593757152557
+PSO-4 PMC3 ----------------------
+EQM médio:0.9937483587307435
+Número de avaliações médio:335.5
+Tempo médio:592.278093791008
+23:2:40Delta tempo: 28723.66172170639
